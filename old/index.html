@@ -1,0 +1,291 @@
+<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe - Rentabilidades Alianza</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Escala de Grises Wireframe */
+  --black: #1a1a1a;
+  --gray900: #333333;
+  --gray700: #555555;
+  --gray500: #888888;
+  --gray300: #cccccc;
+  --gray200: #e0e0e0;
+  --gray100: #f2f2f2;
+  --white: #ffffff;
+  --radius: 4px; /* Bordes más rectos para estilo wireframe */
+  --shadow: 0 1px 3px rgba(0,0,0,0.1);
+  --tr: .15s ease-in-out;
+}
+body{font-family:'Inter', sans-serif;background:var(--gray100);color:var(--black);min-height:100vh}
+
+/* NAVBAR WIREFRAME */
+.navbar{background:var(--white);border-bottom:2px solid var(--gray300);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nb{display:flex;align-items:center;gap:10px}
+.nb-logo{width:30px;height:30px;background:var(--gray300);border:2px solid var(--gray700)}
+.nb-txt{color:var(--black);font-weight:800;font-size:18px;text-transform:uppercase}
+.nl{display:flex;gap:20px}
+.nl a{color:var(--gray700);text-decoration:none;font-size:13px;font-weight:600}
+.na{display:flex;gap:10px}
+.btn-b{background:var(--white);border:1px solid var(--gray700);color:var(--black);padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer}
+.btn-i{background:var(--gray900);color:var(--white);border:none;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer}
+
+/* HERO WIREFRAME */
+.hero{background:var(--white);border-bottom:1px solid var(--gray300);padding:40px 60px;border-left:10px solid var(--gray900)}
+.hero-lbl{color:var(--gray500);font-size:11px;text-transform:uppercase;margin-bottom:4px;font-weight:700}
+.hero-title{color:var(--black);font-size:36px;font-weight:800}
+.bc{display:flex;gap:6px;margin-top:10px}
+.bc a, .bc span{color:var(--gray500);font-size:12px;text-decoration:none}
+
+/* LAYOUT */
+.wrap{max-width:1400px;margin:0 auto;padding:0 40px}
+
+/* SUMMARY WIREFRAME */
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}
+.sum-card{background:var(--white);border:1px solid var(--gray300);padding:20px;text-align:left}
+.sum-lbl{font-size:10px;text-transform:uppercase;color:var(--gray500);font-weight:700;margin-bottom:4px}
+.sum-val{font-size:18px;font-weight:800;color:var(--black);font-family:monospace}
+
+/* TABS WIREFRAME */
+.tabs-w{margin-bottom:20px;border-bottom:2px solid var(--gray300)}
+.tab-btn{padding:12px 24px;font-size:13px;font-weight:700;color:var(--gray500);background:none;border:none;cursor:pointer;border-bottom:4px solid transparent}
+.tab-btn.active{color:var(--black);border-bottom-color:var(--black)}
+
+/* TOOLBAR WIREFRAME */
+.tb{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding:15px;background:var(--white);border:1px solid var(--gray300)}
+.tb-title{font-size:16px;font-weight:800;text-transform:uppercase}
+.badge{background:var(--gray700);color:var(--white);font-size:10px;padding:2px 8px;border-radius:2px;display:none}
+.badge.vis{display:inline-block}
+.sbox{border:1px solid var(--gray300);padding:6px 10px;display:flex;align-items:center;gap:8px}
+.sbox input{border:none;outline:none;font-size:12px;width:180px}
+.btn-cmp{background:var(--gray300);color:var(--gray700);border:1px solid var(--gray500);padding:8px 16px;font-weight:700;cursor:pointer;opacity:0.5}
+.btn-cmp.on{background:var(--black);color:var(--white);opacity:1}
+
+/* FILTERS WIREFRAME */
+.fbar{display:flex;gap:10px;margin-bottom:20px;align-items:center;flex-wrap:wrap}
+.chip{background:var(--white);border:1px solid var(--gray300);padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px}
+.chip.active, .chip.has-filter{border-color:var(--black);background:var(--gray200)}
+.chip-dd{display:none;position:absolute;top:100%;left:0;background:var(--white);border:1px solid var(--black);z-index:50;min-width:180px;padding:4px;box-shadow:var(--shadow)}
+.chip-dd.open{display:block}
+.dd-item{padding:8px;font-size:12px;cursor:pointer}
+.dd-item:hover{background:var(--gray100)}
+.dd-item.sel{font-weight:800;text-decoration:underline}
+
+/* GRID & CARDS WIREFRAME */
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.card{background:var(--white);border:1px solid var(--gray300);padding:15px;position:relative;cursor:pointer}
+.card:hover{border-color:var(--gray700)}
+.card.sel{border:2px solid var(--black);background:var(--gray100)}
+.card-name{font-size:11px;font-weight:800;margin-bottom:15px;height:30px;overflow:hidden;text-transform:uppercase}
+.card-icon{position:absolute;top:10px;right:10px;width:18px;height:18px;border:1px solid var(--gray300);display:flex;align-items:center;justify-content:center;font-size:10px;background:white}
+.card.sel .card-icon{background:var(--black);color:var(--white);border-color:var(--black)}
+
+.card-main-lbl{font-size:9px;color:var(--gray500);text-transform:uppercase}
+.card-main-val{font-size:16px;font-weight:800;font-family:monospace}
+.card-sec-val{font-size:10px;color:var(--gray700);font-family:monospace}
+
+/* MODAL WIREFRAME */
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;align-items:center;justify-content:center}
+.mo.open{display:flex}
+.md{background:var(--white);width:90%;max-width:1100px;border:2px solid var(--black);max-height:90vh;overflow:auto}
+.md-h{padding:20px;border-bottom:1px solid var(--gray300);display:flex;justify-content:space-between;align-items:center}
+.md-b{padding:20px}
+.ct{width:100%;border-collapse:collapse;font-size:12px}
+.ct th{background:var(--gray200);padding:10px;text-align:left;border:1px solid var(--gray300)}
+.ct td{padding:10px;border:1px solid var(--gray300);font-family:monospace}
+
+/* INDICADORES WIREFRAME */
+.tp{color:var(--black);font-weight:800} /* Positivo en wireframe es solo bold */
+.tn{color:var(--gray700);text-decoration: underline;} /* Negativo con subrayado */
+
+.pag{display:flex;justify-content:center;gap:5px;margin:30px 0}
+.pag-btn{padding:5px 10px;border:1px solid var(--gray300);background:var(--white);cursor:pointer}
+.pag-btn.active{background:var(--black);color:var(--white)}
+
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nb">
+    <div class="nb-logo"></div>
+    <span class="nb-txt">ALIANZA [WF]</span>
+  </div>
+  <div class="nl">
+    <a href="#">OPCIÓN 1</a><a href="#">OPCIÓN 2</a><a href="#">OPCIÓN 3</a>
+  </div>
+  <div class="na">
+    <button class="btn-b">BUSCAR</button>
+    <button class="btn-i">LOGIN</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-lbl">SISTEMA DE CONSULTA</div>
+  <h1 class="hero-title">Rentabilidades Históricas</h1>
+  <div class="bc">Inicio / Inversiones / <b>Rentabilidades</b></div>
+</div>
+
+<div class="wrap">
+  <div class="sum">
+    <div class="sum-card"><div class="sum-lbl">VALOR UNIDAD</div><div class="sum-val">$ 43.063,46</div></div>
+    <div class="sum-card"><div class="sum-lbl">VALOR FONDO</div><div class="sum-val">$ 684.207.103k</div></div>
+    <div class="sum-card"><div class="sum-lbl">FECHA CORTE</div><div class="sum-val">2026-05-03</div></div>
+  </div>
+
+  <div class="tabs-w">
+    <button class="tab-btn">FONDOS</button>
+    <button class="tab-btn active">PENSIONES VOLUNTARIAS</button>
+  </div>
+
+  <div class="tb">
+    <div class="tb-l">
+      <span class="tb-title">Listado de Portafolios</span>
+      <span class="badge" id="bdg">0 seleccionados</span>
+    </div>
+    <div class="tb-r" style="display:flex; gap:10px;">
+      <div class="sbox">
+        <input type="text" placeholder="Buscar..." oninput="flt(this.value)" id="si">
+      </div>
+      <button class="btn-cmp" id="bco" onclick="openM()">COMPARAR</button>
+    </div>
+  </div>
+
+  <div class="fbar">
+    <div class="chip-wrap" style="position:relative">
+        <button class="chip" onclick="toggleDD('rend')">Rendimiento ▾</button>
+        <div class="chip-dd" id="dd-rend">
+            <div class="dd-item" onclick="setFilter('rend', this)" data-val="alto">Alto (>15%)</div>
+            <div class="dd-item" onclick="setFilter('rend', this)" data-val="medio">Medio</div>
+            <div class="dd-item" onclick="setFilter('rend', this)" data-val="bajo">Bajo</div>
+        </div>
+    </div>
+    <div class="chip-wrap" style="position:relative">
+        <button class="chip" onclick="toggleDD('tipo')">Tipo Activo ▾</button>
+        <div class="chip-dd" id="dd-tipo">
+            <div class="dd-item" onclick="setFilter('tipo', this)" data-val="rf">Renta Fija</div>
+            <div class="dd-item" onclick="setFilter('tipo', this)" data-val="ac">Acciones</div>
+        </div>
+    </div>
+    <button class="chip" onclick="clearAllFilters()" style="border-style:dashed">Limpiar Filtros</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <div class="pag" id="pag"></div>
+</div>
+
+<div class="mo" id="mo" onclick="omc(event)">
+  <div class="md">
+    <div class="md-h">
+      <div class="md-ht">TABLA COMPARATIVA</div>
+      <button onclick="closeM()" style="cursor:pointer"> [CERRAR X] </button>
+    </div>
+    <div class="md-b">
+      <div id="cc"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Se mantiene la misma data que proporcionaste
+const ALL_P = [
+  {id:1,nm:"Renta Fija Colombia Visión", ac:2.87, di:11.75, me:14.36, se:-5.79, ua:3.47, d2:4.25, d3:7.46, tipo:'rf', riesgo:'con'},
+  {id:2,nm:"Inmobiliaria Colombia Visión", ac:92.02, di:170.88,me:204.36,se:47.08, ua:43.73, d2:18.68, d3:6.53, tipo:'in', riesgo:'agr'},
+  {id:3,nm:"Acciones Colombia Visión", ac:21.29, di:-0.84, me:-36.69,se:23.06, ua:32.36, d2:30.67, d3:31.37, tipo:'ac', riesgo:'agr'},
+  {id:4,nm:"Acciones Globales Visión", ac:0.63, di:-2.25, me:73.78, se:-2.14, ua:0.08, d2:7.5, d3:2.95, tipo:'ac', riesgo:'agr'},
+  {id:5,nm:"Activos No Tradicionales Col. V.", ac:8.86, di:10.07, me:10.85, se:7.76, ua:7.81, d2:8.48, d3:9.28, tipo:'al', riesgo:'mod'},
+  {id:6,nm:"Liquidez Dólar Visión", ac:-7.9, di:2.09, me:-9.78, se:-9.98, ua:-12.49,d2:-1.26, d3:-5.79, tipo:'lq', riesgo:'con'},
+  {id:12,nm:"Portafolio Recaudador", ac:23.93, di:10.7, me:8.76, se:18.57, ua:10.99, d2:7.52, d3:8.3, tipo:'ba', riesgo:'mod'},
+  // ... más data simulada para el wireframe
+];
+
+const COLS=[{k:'ua',l:'Año'},{k:'ac',l:'Corrido'},{k:'se',l:'6 Meses'},{k:'me',l:'Mes'},{k:'di',l:'Día'}];
+
+let sel = new Set();
+let filters = {rend:null, tipo:null};
+let searchQ = '';
+
+function renderGrid() {
+    const container = document.getElementById('grid');
+    let list = ALL_P.filter(p => {
+        const matchesSearch = p.nm.toLowerCase().includes(searchQ.toLowerCase());
+        const matchesTipo = !filters.tipo || p.tipo === filters.tipo;
+        return matchesSearch && matchesTipo;
+    });
+
+    container.innerHTML = list.map(p => `
+        <div class="card ${sel.has(p.id)?'sel':''}" onclick="tgl(${p.id})">
+            <div class="card-icon">${sel.has(p.id)?'✓':'i'}</div>
+            <div class="card-name">${p.nm}</div>
+            <div class="card-main">
+                <div class="card-main-lbl">Rend. Anual</div>
+                <div class="card-main-val ${p.ua<0?'tn':'tp'}">${p.ua || 0}%</div>
+            </div>
+            <div class="card-sec-val">Día: ${p.di || 0}%</div>
+        </div>
+    `).join('');
+}
+
+function tgl(id) {
+    if(sel.has(id)) sel.delete(id);
+    else sel.add(id);
+    
+    document.getElementById('bdg').innerText = `${sel.size} seleccionados`;
+    document.getElementById('bdg').classList.toggle('vis', sel.size > 0);
+    document.getElementById('bco').classList.toggle('on', sel.size > 0);
+    renderGrid();
+}
+
+function flt(val) { searchQ = val; renderGrid(); }
+
+function toggleDD(id) {
+    document.querySelectorAll('.chip-dd').forEach(d => {
+        if(d.id !== 'dd-'+id) d.classList.remove('open');
+    });
+    document.getElementById('dd-'+id).classList.toggle('open');
+}
+
+function setFilter(type, el) {
+    filters[type] = el.dataset.val;
+    el.parentElement.classList.remove('open');
+    renderGrid();
+}
+
+function clearAllFilters() {
+    filters = {rend:null, tipo:null};
+    searchQ = '';
+    document.getElementById('si').value = '';
+    renderGrid();
+}
+
+function openM() {
+    if(sel.size === 0) return;
+    const items = ALL_P.filter(p => sel.has(p.id));
+    let html = `<table class="ct"><thead><tr><th>Indicador</th>`;
+    items.forEach(p => html += `<th>${p.nm}</th>`);
+    html += `</tr></thead><tbody>`;
+    
+    COLS.forEach(c => {
+        html += `<tr><td>${c.l}</td>`;
+        items.forEach(p => {
+            const val = p[c.k] || 0;
+            html += `<td class="${val<0?'tn':'tp'}">${val}%</td>`;
+        });
+        html += `</tr>`;
+    });
+    
+    html += `</tbody></table>`;
+    document.getElementById('cc').innerHTML = html;
+    document.getElementById('mo').classList.add('open');
+}
+
+function closeM() { document.getElementById('mo').classList.remove('open'); }
+function omc(e) { if(e.target.id === 'mo') closeM(); }
+
+renderGrid();
+</script>
+</body></html>
