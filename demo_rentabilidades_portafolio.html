@@ -136,6 +136,7 @@ body{font-family:'Nunito Sans',sans-serif;background:#f6f6f6;color:var(--gray700
 .ci-lbl{font-size:8px;font-weight:800;color:var(--gray700);text-transform:uppercase;letter-spacing:.4px;opacity:0;transition:opacity .18s ease;white-space:nowrap;position:absolute;top:28px;right:-6px}
 
 /* Card name */
+.card-class{font-size:8px;font-weight:700;color:#a6acb6;text-transform:uppercase;letter-spacing:.4px;line-height:1.2;margin-bottom:4px;padding-right:30px}
 .card-name{font-size:10px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;line-height:1.35;margin-bottom:18px;padding-right:30px;min-height:32px}
 
 /* hover detail button removed */
@@ -349,6 +350,19 @@ body{font-family:'Nunito Sans',sans-serif;background:#f6f6f6;color:var(--gray700
         </div>
       </div>
 
+      <!-- Clase -->
+      <div class="chip-wrap">
+        <button class="chip" id="chip-clase" onclick="toggleDD('clase')">
+          <span class="chip-dot"></span>
+          Clase
+          <svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="5,8 10,13 15,8"></polyline></svg>
+        </button>
+        <div class="chip-dd" id="dd-clase">
+          <div class="dd-item" data-filter="clase" data-val="abierto" onclick="setFilter('clase',this)">Abierto</div>
+          <div class="dd-item" data-filter="clase" data-val="cerrado" onclick="setFilter('clase',this)">Cerrado</div>
+        </div>
+      </div>
+
       <!-- Ordenar -->
       <div class="chip-wrap">
         <button class="chip chip-sort" id="chip-sort" onclick="toggleDD('sort')">
@@ -446,6 +460,7 @@ const TIPO_LABEL={rf:'Renta Fija',ac:'Acciones',in:'Inmobiliaria',lq:'Liquidez',
 const TIPO_CLS={rf:'tag-rf',ac:'tag-ac',in:'tag-in',lq:'tag-lq',ba:'tag-ba',al:'tag-al'};
 const RISK_LABEL={con:'Conservador',mod:'Moderado',agr:'Agresivo'};
 const RISK_CLS={con:'tag-con',mod:'tag-mod',agr:'tag-agr'};
+const CLASE_LABEL={abierto:'Abierto',cerrado:'Cerrado'};
 
 
 // Extra prototype entries (repeats with new ids for pagination demo)
@@ -473,7 +488,7 @@ const ALL_P=[...P,...EXTRA];
 // ── STATE ──
 let sel=new Set();
 let searchQ='';
-let filters={rend:null,tend:null,tipo:null,riesgo:null};
+let filters={rend:null,tend:null,tipo:null,riesgo:null,clase:null};
 let sortVal='ua-desc';
 let openDD=null;
 let curPage=1;
@@ -502,6 +517,10 @@ function getRend(ua){
   return'negativo';
 }
 
+function getClase(p){
+  return p.clase || (p.id%2===0?'cerrado':'abierto');
+}
+
 // ── FILTERS & SORT ──
 function applyAll(){
   let list=[...ALL_P];
@@ -515,6 +534,8 @@ function applyAll(){
   if(filters.tipo){list=list.filter(p=>p.tipo===filters.tipo);}
   // riesgo
   if(filters.riesgo){list=list.filter(p=>p.riesgo===filters.riesgo);}
+  // clase
+  if(filters.clase){list=list.filter(p=>getClase(p)===filters.clase);}
   // sort
   list.sort((a,b)=>{
     if(sortVal==='ua-desc'){const av=a.ua??-Infinity,bv=b.ua??-Infinity;return bv-av;}
@@ -536,6 +557,7 @@ function buildCard(p){
       '<div class="ci-ring">✓</div>'+
       '<span class="ci-lbl">Seleccionar</span>'+
     '</div>'+
+    '<div class="card-class">'+CLASE_LABEL[getClase(p)]+'</div>'+
     '<div class="card-name">'+p.nm+'</div>'+
     '<div class="card-metrics">'+
       '<div class="card-main">'+
@@ -737,7 +759,7 @@ function updateClearAll(){
 }
 
 function clearAllFilters(){
-  filters={rend:null,tend:null,tipo:null,riesgo:null};
+  filters={rend:null,tend:null,tipo:null,riesgo:null,clase:null};
   sortVal='ua-desc';
   document.getElementById('sort-lbl').textContent='Ordenar';
   document.querySelectorAll('.chip').forEach(c=>c.classList.remove('has-filter','open'));
