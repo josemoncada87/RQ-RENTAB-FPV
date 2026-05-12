@@ -97,18 +97,17 @@
 Limpiar filtros
 </span>
 <div class="hb-filters-right">
+<div class="hb-view-toggle" role="group" aria-label="Cambiar vista">
+<button class="hb-view-btn active" id="f-view-cards" type="button" onclick="setView('f','cards')">Tarjetas</button>
+<button class="hb-view-btn" id="f-view-table" type="button" onclick="setView('f','table')">Tabla</button>
+</div>
 <div class="hb-items-per-page">
-<label class="hb-items-label" for="f-items-select">Ver:</label>
 <select class="hb-items-select" id="f-items-select" onchange="setItemsPerPage('f', this.value)">
 <option value="10">10</option>
 <option value="20" selected>20</option>
 <option value="50">50</option>
 <option value="100">100</option>
 </select>
-</div>
-<div class="hb-view-toggle" role="group" aria-label="Cambiar vista">
-<button class="hb-view-btn active" id="f-view-cards" type="button" onclick="setView('f','cards')">Tarjetas</button>
-<button class="hb-view-btn" id="f-view-table" type="button" onclick="setView('f','table')">Tabla</button>
 </div>
 </div>
 </div>
@@ -211,18 +210,17 @@ Limpiar filtros
 Limpiar filtros
 </span>
 <div class="hb-filters-right">
+<div class="hb-view-toggle" role="group" aria-label="Cambiar vista">
+<button class="hb-view-btn active" id="p-view-cards" type="button" onclick="setView('p','cards')">Tarjetas</button>
+<button class="hb-view-btn" id="p-view-table" type="button" onclick="setView('p','table')">Tabla</button>
+</div>
 <div class="hb-items-per-page">
-<label class="hb-items-label" for="p-items-select">Ver:</label>
 <select class="hb-items-select" id="p-items-select" onchange="setItemsPerPage('p', this.value)">
 <option value="10">10</option>
 <option value="20" selected>20</option>
 <option value="50">50</option>
 <option value="100">100</option>
 </select>
-</div>
-<div class="hb-view-toggle" role="group" aria-label="Cambiar vista">
-<button class="hb-view-btn active" id="p-view-cards" type="button" onclick="setView('p','cards')">Tarjetas</button>
-<button class="hb-view-btn" id="p-view-table" type="button" onclick="setView('p','table')">Tabla</button>
 </div>
 </div>
 </div>

@@ -544,7 +544,8 @@
 	background: #fff;
 	color: var(--hb-text);
 	border-radius: 4px;
-	padding: 8px 10px;
+	height: 40px;
+	padding: 0 10px;
 	font: inherit;
 	font-size: 12px;
 	font-weight: 600;
