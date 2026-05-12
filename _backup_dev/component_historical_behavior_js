@@ -1,0 +1,244 @@
+const renderStablePortfolio = [
+	{ name: 'Valor Unidad', value: "unitValue" }, 
+	{ name: 'Valor Fondo', value: "fundValue" },
+	{ name: 'Información al', value: "date" }
+];
+const tableHeaders = [
+	{ name: 'Tipo de participación', value: 'unitName', width: '30%' },
+	{ name: 'Año corrido', value: 'yearToDate', width: '10%' },
+	{ name: 'Diaria', value: 'return1', width: '10%' },
+	{ name: 'Mensual', value: 'return30', width: '10%' },
+	{ name: 'Semestral', value: 'return180', width: '10%' },
+	{ name: 'Último Año', value: 'return365', width: '10%' },
+	{ name: 'Últimos 2 Años', value: 'return730', width: '10%' },
+	{ name: 'Últimos 3 Años', value: 'return1095', width: '10%' }
+];
+
+const selectFundForm = document.querySelector('#select-fund');
+const tableElement = document.querySelector('#table-data');
+const fundDataElement = document.querySelector('#fund-data');
+
+// Datos cargados desde Liquid
+const dataLista = {{ dataList | json }};
+const pTypes = {{ participationTypes | json }};
+
+// Helper: determina si una fila tiene todos sus valores de retorno en cero
+const isEmptyFund = (fund) => {
+	const returnFields = ['yearToDate', 'return1', 'return30', 'return180', 'return365', 'return730', 'return1095'];
+	return returnFields.every(field => parseFloat(fund[field]) === 0);
+};
+
+function renderFundData(data) {
+	const { stablePortfolio: stablePortfolioData } = data;
+	if (!stablePortfolioData || Object.keys(stablePortfolioData).length === 0) {
+		fundDataElement.innerHTML = '<p class="fs-4 w-100 py-10 text-center color-gray-500">Sin datos del fondo</p>';
+		return;
+	}
+	
+	fundDataElement.innerHTML = '';
+	renderStablePortfolio.forEach(({ name, value }) => {
+		const subtitle = value !== 'date' ? stablePortfolioData[value] : stablePortfolioData[value].replace(/[T].+/, '');
+		let card = document.createElement('div');
+		card.classList.add('col-12', 'col-lg');
+		card.innerHTML = `{% snippet 'component_text_feature_html', title: '${name}', subtitle: '${subtitle}' %}`;
+		fundDataElement.appendChild(card);
+	});
+} 
+
+function renderHistoricalBehavior(data) {
+	let orderedMode = true;
+
+	const fundCodeAsInt = selectFundForm 
+		? parseInt(selectFundForm.value) 
+		: parseInt('{{ fundCode }}');
+		
+	// 1 Buscar el fondo actual directamente con find()
+	const currentFund = dataLista.find(
+		item => item.fields["Código identificador"] === fundCodeAsInt
+	);
+
+	if (!currentFund) {
+		console.warn("No se encontró un fondo con ese código.");
+		tableElement.innerHTML = '<p class="fs-4 w-100 py-30 text-center color-gray-500">El fondo no fue encontrado, intente más tarde</p>';
+		return;
+	}
+	
+	let copyUnits = [];
+
+	// 2 Unir tipos de participación con pTypes — extraído fuera del if para disponibilidad global
+	let tiposDeParticipacion = [];
+	if (currentFund.fields["Tipos de participación"]) {
+		tiposDeParticipacion = currentFund.fields["Tipos de participación"].fields.map(ptFund => {
+			const match = pTypes.find(pt => pt.meta.uuid === ptFund["Tipo de participación"].uuid);
+			return match ? {
+				...ptFund,
+				useAlias: match.fields["Usar alias general"],
+				alias: match.fields.Nombre,
+				unitId: parseInt(match.fields.UnitId),
+				order: ptFund["Orden Participación"]
+			} : ptFund;
+		});
+	}
+
+	// Helper para enriquecer stablePortfolio con propiedades de tiposDeParticipacion
+	const enrichStablePortfolio = (sp) => {
+		if (!sp || Object.keys(sp).length === 0) return sp;
+		const tpStable = tiposDeParticipacion.find(
+			tp => parseInt(tp.unitId) === parseInt(sp.unitId)
+		);
+		return tpStable ? { ...sp, ...tpStable, order: tpStable.order } : sp;
+	};
+
+	// En caso de que ya tenga tipos
+	if (currentFund.fields["Tipos de participación"]) {
+
+		// 3 Combinar unidades históricas con tipos de participación
+		let { units: historicalBehavior = [], stablePortfolio } = data;
+		if (stablePortfolio && Object.keys(stablePortfolio).length > 0) {
+			stablePortfolio = enrichStablePortfolio(stablePortfolio);
+			historicalBehavior = [stablePortfolio, ...historicalBehavior];
+		}
+
+		copyUnits = historicalBehavior.map(external => {
+			const tpLocal = tiposDeParticipacion.find(
+				tp => parseInt(tp.unitId) === parseInt(external.unitId)
+			);
+			return tpLocal ? { ...external, ...tpLocal, order: tpLocal.order } : null;
+		})
+		.filter(Boolean)
+		.sort((a, b) => a.order - b.order);
+
+		
+		// 3.1 Si no quedó mapeado, filtrar y agregar los faltantes
+		historicalBehavior.forEach(incoming => {
+			if (stablePortfolio && parseInt(incoming.unitId) === parseInt(stablePortfolio.unitId)) return;
+			const temp = copyUnits.find(existent => parseInt(existent.unitId) === parseInt(incoming.unitId));
+			if (!temp) copyUnits.push(incoming);
+		});
+				
+		// Logs de diagnóstico (Eliminar antes de enviar)
+		/*console.table(tiposDeParticipacion.map(tp => ({ 
+			unitId: tp.unitId, 
+			order: tp.order 
+		})));
+
+		console.table(copyUnits.map(u => ({ 
+			unitId: u.unitId, 
+			unitName: u.unitName, 
+			order: u.order 
+		})));*/
+
+		// 4 Validar si hay datos
+		if (!historicalBehavior.length) {
+			tableElement.innerHTML = '<p class="fs-4 w-100 py-30 text-center color-gray-500">El fondo no cuenta con datos históricos</p>';
+			return;
+		}
+
+		if (!copyUnits.length) {
+			orderedMode = false;
+		}
+
+	} else {		
+		orderedMode = false;
+	}
+	
+	if (!orderedMode) {
+		let { units: baseUnits = [], stablePortfolio } = data;
+		if (stablePortfolio && Object.keys(stablePortfolio).length > 0) {
+			stablePortfolio = enrichStablePortfolio(stablePortfolio);
+		}
+		let baseData = stablePortfolio && Object.keys(stablePortfolio).length > 0
+			? [stablePortfolio, ...baseUnits]
+			: baseUnits;
+		if (!baseData.length) {
+			tableElement.innerHTML = '<p class="fs-4 w-100 py-30 text-center color-gray-500">El fondo no cuenta con datos históricos</p>';
+			return;
+		}
+		copyUnits = [...baseData];
+	}
+
+	// Filtros ANTES de renderizar la tabla
+
+	// Filas con todos los valores en cero y flag de ocultar activo
+	copyUnits = copyUnits.filter(fund =>
+		!(isEmptyFund(fund) && fund["Ocultar fila en ceros"])
+	);
+
+	// Filas desactivadas
+	copyUnits = copyUnits.filter(fund => !fund["Desactivar fila"]);
+
+	// Verificar si todo lo que queda es visualmente vacío (ceros o N.A)
+	const allInvisible = copyUnits.every(fund => isEmptyFund(fund));
+
+	if (!copyUnits.length || allInvisible) {
+		tableElement.innerHTML = '<p class="fs-4 w-100 py-30 text-center color-gray-500">El fondo no cuenta con datos históricos</p>';
+		return;
+	}
+	
+		// Sort final para garantizar orden después de todos los ajustes
+	copyUnits.sort((a, b) => {
+			const orderA = a.order ?? Infinity; // sin order van al final
+			const orderB = b.order ?? Infinity;
+			return orderA - orderB;
+	});
+
+	// Recién aquí se renderiza la tabla
+	tableElement.innerHTML = `
+		<thead><tr></tr></thead>
+		<tbody class="table-group-divider"></tbody>
+	`;
+
+	const theadElement = document.querySelector('#table-data thead tr');
+	const tbodyElement = document.querySelector('#table-data tbody');
+
+	tableHeaders.forEach(({ name, width = '10%' }) => {
+		const th = document.createElement('th');
+		th.textContent = name.toUpperCase();
+		th.style.width = width;
+		th.setAttribute('scope', 'col');
+		theadElement.appendChild(th);
+	});
+
+	// Mostramos las unidades según existencia
+	copyUnits.forEach(fund => {
+		const tr = document.createElement('tr');
+		tableHeaders.forEach(({ value }) => {
+			const td = document.createElement('td');
+			if (parseFloat(fund[value]) !== 0) {
+				td.textContent = fund[value] ?? "";
+			} else if (fund["Cambiar cero"]) {
+				td.textContent = "N.A";
+			} else {
+				td.textContent = "0";
+			}
+			tr.appendChild(td);
+		});
+		tbodyElement.appendChild(tr);
+	});
+}
+
+async function getFundData(value) {
+	const loadingElement = document.querySelectorAll('.loading');
+	loadingElement.forEach(loading => loading.classList.remove('d-none'));
+	try {
+		const response = await fetch(`{{ vars.api }}/historical-returns/${value}`);
+		if (!response.ok) throw response.status;
+		const data = await response.json();
+		if (fundDataElement) renderFundData(data);
+		if (tableElement) renderHistoricalBehavior(data);
+	} catch (error) {
+		// console.log("Error", error);
+		const errorMessage = 'Ocurrió un error al buscar información del fondo. Recargue la página e inténtelo nuevamente';
+		tableElement.innerHTML = `<p class="fs-4 w-100 py-30 text-center color-gray-500">${errorMessage}</p>`;
+		fundDataElement.innerHTML = `<p class="fs-4 w-100 py-10 text-center color-gray-500">${errorMessage}</p>`;
+	} finally {
+		loadingElement.forEach(loading => loading.classList.add('d-none'));
+	}
+}
+	
+if ('{{ fundCode }}' !== '' && !selectFundForm) getFundData('{{ fundCode }}');
+
+if (selectFundForm) {
+	getFundData(selectFundForm.value);
+	selectFundForm.addEventListener('change', () => getFundData(selectFundForm.value));
+}

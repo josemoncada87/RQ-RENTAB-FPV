@@ -1,0 +1,43 @@
+{% if renderFundInformation %}
+	<div class="position-relative">
+		<h5 class="fs-5 color-secondary-500 fw-normal text-uppercase letter-spacing">Todo acerca de</h5>
+		<h2 class="fs-1 color-secondary-300 fw-bold font-family-secondary">Rentabilidades</h2>
+		{% if renderFundSelect and list.size > 0 %}
+			<form id="fund-form" class="needs-validation mt-4 mt-lg-10 z-0" novalidate>
+				<div class="col-12 col-md-10 offset-md-1 mb-6">
+					<select class="form-select" id="select-fund" aria-label="Tipo de fondo" required>
+						<option value="" disabled>Seleccione un tipo de fondo</option>
+						{% for item in list %}
+						<option value="{{ item.fields['Código identificador'] }}" {% if forloop.first %}selected{% endif %}>{{ item.meta.name }}</option>
+						{% endfor %}
+					</select>
+					<div id="input-user-type-assistive-text" class="invalid-feedback">Debe seleccionar un fondo</div>
+				</div>
+			</form>
+		{% endif %}	
+		<div class="pb-4 pb-lg-16">
+			<div id="fund-data" class="fund-data mt-4 mt-lg-10 row row-gap-6"></div>
+			<div class="loading w-100 h-100 ">
+				{% snippet "component_spinner_html" %}
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+{% if renderHistoricalBehavior %}
+	<div class="pt-4 pt-lg-16 position-relative">
+		<h2 class="fs-1 color-secondary-300 fw-bold font-family-secondary">Comportamiento Histórico</h2>
+		<div class="historical-table table-responsive ">
+			<table class="table small color-gray-600 mt-4 mt-lg-10" id="table-data"></table>
+
+		</div>
+		<div class="loading w-100 h-100 ">
+			{% snippet "component_spinner_html" %}
+		</div>
+	</div>
+{% endif %}
+
+{% assign participationTypes = spaces["sp-que-hacemos"].types["tipo-de-participacion"].entries %}
+{% assign dataList = spaces["sp-que-hacemos"].entries | where: 'Código identificador' %}
+
+<script>{% snippet "component_historical_behavior_js", dataList, participationTypes, fundCode %}</script>

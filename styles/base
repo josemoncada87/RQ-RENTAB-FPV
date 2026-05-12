@@ -1,0 +1,15 @@
+/* Notifications CSS */
+{% snippet "shared/notifications/notifications_css" %}
+
+{% snippet "variables_css" %}
+{% snippet "design_system_css" %}
+{% snippet "icons_css" %}
+{% snippet "slick_css" %}
+
+* {
+	font-family: var(--font-family-primary);
+	font-weight: var(--font-weight-regular);
+}
+html, body {
+	color: var(--bs-body-color);
+}

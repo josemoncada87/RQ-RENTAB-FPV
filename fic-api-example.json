@@ -1,0 +1,1667 @@
+{
+  "meta": {
+    "uuid": "e46fc44c-b02f-48d2-849b-71c0637dc035",
+    "space": "sp-que-hacemos",
+    "name": "Fondo CxC",
+    "slug": "fondo-cxc",
+    "type": "fondos-de-inversion-colectiva",
+    "category": null,
+    "category_slug": null,
+    "category_name": null,
+    "updated_at": "2026-05-07T16:10:13.000-05:00",
+    "created_at": "2024-11-11T16:18:32.000-05:00",
+    "published_at": "2026-05-07T16:10:13.000-05:00",
+    "unpublish_at": null,
+    "tags": [],
+    "available_locales": [
+      "es"
+    ],
+    "locale": "es",
+    "segments": [],
+    "private": false,
+    "version_type": "editable",
+    "author": {},
+    "excerpt": ""
+  },
+  "fields": {
+    "Hero interno": {
+      "uuid": "e8a2c58b-a8b8-46a5-81f1-40b23b63e720",
+      "content_type": "hero-interno"
+    },
+    "Sección informativa": {
+      "uuid": "7b694b46-ef51-49b5-a7ff-ad8fb750ded4",
+      "content_type": "seccion-informativa"
+    },
+    "Monto mínimo": 100000,
+    "Tipo de fondo": "Abierto",
+    "Características": {
+      "fields": [
+        {
+          "Título": "Características",
+          "Contenido": "<p id=\"isPasted\">La comisión de administración que cobra Alianza Fiduciaria dependerá del tipo de participación en el cual esté registrada su inversión. Estas comisiones van desde 2,0% hasta 3,10% E.A. (ver reglamento del fondo).</p><p>Los recursos adicionados al fondo deberán permanecer invertidos por 30 días. A partir del día 31, podrán ser retirados en cualquier momento. Si desea utilizar el dinero invertido antes del día 30, podrá hacerlo pagando una multa por retiro anticipado (ver reglamento del fondo).</p><p>Tras cumplir el plazo de permanencia, podrá realizar retiros parciales de hasta el 99% del saldo total. Para retirar el 100% de los recursos, deberá cancelar el encargo.</p>",
+          "Archivo": [],
+          "Texto enlace": "",
+          "Enlace": ""
+        },
+        {
+          "Título": "Estrategia de inversión",
+          "Contenido": "<p>El fondo invierte en títulos de deuda inscritos en el Registro Nacional de Valores y Emisores (RNVE) y en títulos de contenido económico. La porción invertida en activos RNVE representa entre el 20% y el 80% del valor del fondo. Los recursos invertidos en activos alternativos se enfocan en la compra de facturas, sentencias, libranzas, pagarés, cheques, contratos y letras. </p>",
+          "Archivo": [],
+          "Texto enlace": "",
+          "Enlace": ""
+        },
+        {
+          "Título": "Atención al inversionista, Términos y Condiciones para la prestación del servicio de asesoría",
+          "Contenido": "<p>La Sociedad Administradora pone a disposición de los inversionistas del Fondo los siguientes canales habilitados para proporcionar la debida atención al inversionista: el correo electrónico <a href=\"mailto:servicioalcliente@alianza.com.co\">servicioalcliente@alianza.com.co</a>, las líneas telefónicas y las oficinas a nivel nacional disponibles <a href=\"/oficinas\">aquí</a> o podrá comunicarse directamente con su asesor comercial.</p>\n\n<p>Consulte los términos y condiciones para la prestación del servicio de asesoría en el Manual de Asesoría disponible <a href=\"https://cdn.modyo.cloud/uploads/860540d7-96e3-4d02-ae64-17e7bc48b54b/original/Manual_de_Actividad_de_Asesoria_Alianza_2024.pdf\">aquí</a></p>",
+          "Archivo": [],
+          "Texto enlace": "",
+          "Enlace": ""
+        }
+      ]
+    },
+    "Documentación": {
+      "fields": [
+        {
+          "Título": "Reglamento prospecto",
+          "Archivo": [
+            {
+              "uuid": "f04d73d5-059f-4e2e-ae6e-328faf28b33f",
+              "url": "https://cdn.modyo.cloud/uploads/f04d73d5-059f-4e2e-ae6e-328faf28b33f/original/Reglamento_FIC_CxC_2026-02_.pdf",
+              "content_type": "application/pdf",
+              "title": "Reglamento Fic Cxc 2026 02",
+              "description": "Reglamento (vigente)",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "Reglamento_FIC_CxC_2026-02_.pdf",
+              "thumb": null,
+              "size": 747015
+            },
+            {
+              "uuid": "749337d4-cfb3-4bc7-8fb2-345a7b600317",
+              "url": "https://cdn.modyo.cloud/uploads/749337d4-cfb3-4bc7-8fb2-345a7b600317/original/Prospecto_FIC_CxC_2026-2_.pdf",
+              "content_type": "application/pdf",
+              "title": "Prospecto Fic Cxc 2026 2",
+              "description": "Prospecto (vigente)",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "Prospecto_FIC_CxC_2026-2_.pdf",
+              "thumb": null,
+              "size": 278825
+            },
+            {
+              "uuid": "be1789c3-36c8-4206-b612-1b5e3bc3eea2",
+              "url": "https://cdn.modyo.cloud/uploads/be1789c3-36c8-4206-b612-1b5e3bc3eea2/original/Novedades_CXC.pdf",
+              "content_type": "application/pdf",
+              "title": "Novedades Cxc",
+              "description": "Novedades",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "Novedades_CXC.pdf",
+              "thumb": null,
+              "size": 151054
+            },
+            {
+              "uuid": "9862f8aa-9f2a-412c-b714-4e3ee836e585",
+              "url": "https://cdn.modyo.cloud/uploads/9862f8aa-9f2a-412c-b714-4e3ee836e585/original/Contrato_de_corresponsalia_fondo_cxc.pdf",
+              "content_type": "application/pdf",
+              "title": "Contrato De Corresponsalia Fondo Cxc",
+              "description": "Contrato de Corresponsalía",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "Contrato_de_corresponsalia_fondo_cxc.pdf",
+              "thumb": null,
+              "size": 1926445
+            },
+            {
+              "uuid": "0633caad-6113-44b1-ab68-73ad4bf83e80",
+              "url": "https://cdn.modyo.cloud/uploads/0633caad-6113-44b1-ab68-73ad4bf83e80/original/reglamento_cxc_2025-12_.pdf",
+              "content_type": "application/pdf",
+              "title": "Reglamento Cxc 2025 12",
+              "description": "Reglamento (vigente hasta el 27 de marzo de 2026)",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "reglamento_cxc_2025-12_.pdf",
+              "thumb": null,
+              "size": 742239
+            },
+            {
+              "uuid": "c5ad9f61-d4cb-4446-93cd-9c9408283bc6",
+              "url": "https://cdn.modyo.cloud/uploads/c5ad9f61-d4cb-4446-93cd-9c9408283bc6/original/Prospecto_FIC_CxC_2025-12_.pdf",
+              "content_type": "application/pdf",
+              "title": "Prospecto Fic Cxc 2025 12",
+              "description": "Prospecto (vigente hasta el 27 de marzo de 2026)",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "Prospecto_FIC_CxC_2025-12_.pdf",
+              "thumb": null,
+              "size": 244521
+            }
+          ],
+          "Contenido": "",
+          "Texto enlace": "",
+          "Enlace": ""
+        },
+        {
+          "Título": "Estados financieros",
+          "Archivo": [
+            {
+              "uuid": "d9fc8939-32aa-4776-bd46-ffa81c88a25c",
+              "url": "https://cdn.modyo.cloud/uploads/d9fc8939-32aa-4776-bd46-ffa81c88a25c/original/10824-NOTAS_EEFF_FONDO_INVERSON_COLECTIVA_CXC.pdf",
+              "content_type": "application/pdf",
+              "title": "10824-NOTAS_EEFF_FONDO_INVERSON_COLECTIVA_CXC.pdf",
+              "description": "2018",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "estados-financieros"
+              ],
+              "name": "10824-NOTAS_EEFF_FONDO_INVERSON_COLECTIVA_CXC.pdf",
+              "thumb": null,
+              "size": 3630129
+            },
+            {
+              "uuid": "ae42e73e-1a58-4711-b5a3-b6003b4be45e",
+              "url": "https://cdn.modyo.cloud/uploads/ae42e73e-1a58-4711-b5a3-b6003b4be45e/original/Estados_Financieros_2019.pdf",
+              "content_type": "application/pdf",
+              "title": "Estados_Financieros_2019.pdf",
+              "description": "2019",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "estados-financieros"
+              ],
+              "name": "Estados_Financieros_2019.pdf",
+              "thumb": null,
+              "size": 3107676
+            },
+            {
+              "uuid": "645bbc70-b207-4e0c-8c2b-25778bd5c275",
+              "url": "https://cdn.modyo.cloud/uploads/645bbc70-b207-4e0c-8c2b-25778bd5c275/original/EF2020_fondo_cxc.pdf",
+              "content_type": "application/pdf",
+              "title": "Ef2020 Fondo Cxc",
+              "description": "2020",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "estados-financieros"
+              ],
+              "name": "EF2020_fondo_cxc.pdf",
+              "thumb": null,
+              "size": 1990643
+            },
+            {
+              "uuid": "9c207e74-a16d-4ad9-b25c-f1a5df8e194b",
+              "url": "https://cdn.modyo.cloud/uploads/9c207e74-a16d-4ad9-b25c-f1a5df8e194b/original/EE_FF_2021_fondo_cxc.pdf",
+              "content_type": "application/pdf",
+              "title": "Ee Ff 2021 Fondo Cxc",
+              "description": "2021",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "estados-financieros"
+              ],
+              "name": "EE_FF_2021_fondo_cxc.pdf",
+              "thumb": null,
+              "size": 1508968
+            },
+            {
+              "uuid": "96e4aaf8-29b8-4014-94a8-3e88e8cda324",
+              "url": "https://cdn.modyo.cloud/uploads/96e4aaf8-29b8-4014-94a8-3e88e8cda324/original/AS-1295-23_10824_FONDO_FACTURAS_CXC_DIC_2022.pdf",
+              "content_type": "application/pdf",
+              "title": "AS-1295-23_10824_FONDO_FACTURAS_CXC_DIC_2022.pdf",
+              "description": "2022",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "estados-financieros"
+              ],
+              "name": "AS-1295-23_10824_FONDO_FACTURAS_CXC_DIC_2022.pdf",
+              "thumb": null,
+              "size": 1390090
+            },
+            {
+              "uuid": "ae6c744c-7a3f-4e62-9dd8-59f6cc2bf1d0",
+              "url": "https://cdn.modyo.cloud/uploads/ae6c744c-7a3f-4e62-9dd8-59f6cc2bf1d0/original/FONDO_CXC.pdf",
+              "content_type": "application/pdf",
+              "title": "FONDO_CXC.pdf",
+              "description": "2023",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "estados-financieros"
+              ],
+              "name": "FONDO_CXC.pdf",
+              "thumb": null,
+              "size": 1605310
+            },
+            {
+              "uuid": "1a4e10a8-9d73-454e-bffe-d3c15e4b4b1e",
+              "url": "https://cdn.modyo.cloud/uploads/1a4e10a8-9d73-454e-bffe-d3c15e4b4b1e/original/10824_FONDO_FACTURAS_CXC_DICIEMBRE_2024_PROTECLSG.pdf",
+              "content_type": "application/pdf",
+              "title": "10824 Fondo Facturas Cxc Diciembre 2024 Proteclsg",
+              "description": "2024",
+              "alt_text": "",
+              "tags": [],
+              "name": "10824_FONDO_FACTURAS_CXC_DICIEMBRE_2024_PROTECLSG.pdf",
+              "thumb": null,
+              "size": 1727745
+            },
+            {
+              "uuid": "15f638bc-dca1-40a5-a487-52a5fd904543",
+              "url": "https://cdn.modyo.cloud/uploads/15f638bc-dca1-40a5-a487-52a5fd904543/original/010824_Fondo_CXC_Diciembre_2025_1.pdf",
+              "content_type": "application/pdf",
+              "title": "010824 Fondo Cxc Diciembre 2025 1",
+              "description": "2025",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "estados-financieros"
+              ],
+              "name": "010824_Fondo_CXC_Diciembre_2025_1.pdf",
+              "thumb": null,
+              "size": 1814798
+            }
+          ],
+          "Contenido": "",
+          "Texto enlace": "",
+          "Enlace": ""
+        },
+        {
+          "Título": "Rendición de cuentas",
+          "Archivo": [
+            {
+              "uuid": "90520634-4062-4143-97f3-922db4517835",
+              "url": "https://cdn.modyo.cloud/uploads/90520634-4062-4143-97f3-922db4517835/original/Rendicion_de_cuenta_Junio_2018.pdf",
+              "content_type": "application/pdf",
+              "title": "Rendicion_de_cuenta_Junio_2018.pdf",
+              "description": "2018 - 1 sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "Rendicion_de_cuenta_Junio_2018.pdf",
+              "thumb": null,
+              "size": 1117555
+            },
+            {
+              "uuid": "764ce9cd-40d1-4ba8-8223-381d6c34ad87",
+              "url": "https://cdn.modyo.cloud/uploads/764ce9cd-40d1-4ba8-8223-381d6c34ad87/original/fondoCxC_282_29.pdf",
+              "content_type": "application/pdf",
+              "title": "fondoCxC_282_29.pdf",
+              "description": "2018-2 sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "fondoCxC_282_29.pdf",
+              "thumb": null,
+              "size": 1326991
+            },
+            {
+              "uuid": "eea5eea3-9403-463c-b891-305f524f8b5d",
+              "url": "https://cdn.modyo.cloud/uploads/eea5eea3-9403-463c-b891-305f524f8b5d/original/CxC.pdf",
+              "content_type": "application/pdf",
+              "title": "CxC.pdf",
+              "description": "2019 -1sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "CxC.pdf",
+              "thumb": null,
+              "size": 8484390
+            },
+            {
+              "uuid": "c4aaed3f-443e-42a8-bf10-fb6a31c5ae7f",
+              "url": "https://cdn.modyo.cloud/uploads/c4aaed3f-443e-42a8-bf10-fb6a31c5ae7f/original/RENDICION_CUENTA_CXC_282_29.pdf",
+              "content_type": "application/pdf",
+              "title": "RENDICION_CUENTA_CXC_282_29.pdf",
+              "description": "2019-2 sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "RENDICION_CUENTA_CXC_282_29.pdf",
+              "thumb": null,
+              "size": 697107
+            },
+            {
+              "uuid": "d711811b-70b0-407e-acb9-d186d438c6c5",
+              "url": "https://cdn.modyo.cloud/uploads/d711811b-70b0-407e-acb9-d186d438c6c5/original/CxC_-_2020_1sem.pdf",
+              "content_type": "application/pdf",
+              "title": "Cxc 2020 1sem",
+              "description": "2020 - 1sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "CxC_-_2020_1sem.pdf",
+              "thumb": null,
+              "size": 4878948
+            },
+            {
+              "uuid": "1dd84dd4-6939-4546-9ffe-34dde79e4da9",
+              "url": "https://cdn.modyo.cloud/uploads/1dd84dd4-6939-4546-9ffe-34dde79e4da9/original/FONDO_ABIERTO_CON_PACTO_DE_PERMANENCIA_MINIMA_CxC.pdf",
+              "content_type": "application/pdf",
+              "title": "FONDO_ABIERTO_CON_PACTO_DE_PERMANENCIA_MINIMA_CxC.pdf",
+              "description": "2020 - 2 sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "FONDO_ABIERTO_CON_PACTO_DE_PERMANENCIA_MINIMA_CxC.pdf",
+              "thumb": null,
+              "size": 6287167
+            },
+            {
+              "uuid": "7d6bb6ac-4a1d-4e9b-876e-da5e13f6729e",
+              "url": "https://cdn.modyo.cloud/uploads/7d6bb6ac-4a1d-4e9b-876e-da5e13f6729e/original/RENDICION_DE_CUENTAS_FDO_CxC_Jun_2021_281_29.pdf",
+              "content_type": "application/pdf",
+              "title": "RENDICION_DE_CUENTAS_FDO_CxC_Jun_2021_281_29.pdf",
+              "description": "2021 - 1 sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "RENDICION_DE_CUENTAS_FDO_CxC_Jun_2021_281_29.pdf",
+              "thumb": null,
+              "size": 693734
+            },
+            {
+              "uuid": "463ce267-17ea-451b-9ca6-a4e6fac07c71",
+              "url": "https://cdn.modyo.cloud/uploads/463ce267-17ea-451b-9ca6-a4e6fac07c71/original/CxC_-_2018_2sem.pdf",
+              "content_type": "application/pdf",
+              "title": "Cxc 2018 2sem",
+              "description": "2021 - 2sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "CxC_-_2018_2sem.pdf",
+              "thumb": null,
+              "size": 2192322
+            },
+            {
+              "uuid": "91ef45a6-8407-44ce-9e02-cc2f7aaf4b37",
+              "url": "https://cdn.modyo.cloud/uploads/91ef45a6-8407-44ce-9e02-cc2f7aaf4b37/original/RENDICION_DE_CUENTAS_FDO_CxC_Jun_2022.pdf",
+              "content_type": "application/pdf",
+              "title": "RENDICION_DE_CUENTAS_FDO_CxC_Jun_2022.pdf",
+              "description": "2022 - 1 sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "RENDICION_DE_CUENTAS_FDO_CxC_Jun_2022.pdf",
+              "thumb": null,
+              "size": 1402881
+            },
+            {
+              "uuid": "8709edc1-1bd2-4fe7-8da4-e6c476db25e9",
+              "url": "https://cdn.modyo.cloud/uploads/8709edc1-1bd2-4fe7-8da4-e6c476db25e9/original/RENDICION_DE_CUENTAS_FDO_CxC_Diciembre_2022_281_29.pdf",
+              "content_type": "application/pdf",
+              "title": "RENDICION_DE_CUENTAS_FDO_CxC_Diciembre_2022_281_29.pdf",
+              "description": "2022- 2 sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "RENDICION_DE_CUENTAS_FDO_CxC_Diciembre_2022_281_29.pdf",
+              "thumb": null,
+              "size": 1347700
+            },
+            {
+              "uuid": "9bd96f5a-d47c-45b3-892a-c6e3dcc10b24",
+              "url": "https://cdn.modyo.cloud/uploads/9bd96f5a-d47c-45b3-892a-c6e3dcc10b24/original/RENDICION_CUENTAS_FDO_CxC_junio_2023.pdf",
+              "content_type": "application/pdf",
+              "title": "RENDICION_CUENTAS_FDO_CxC_junio_2023.pdf",
+              "description": "2023 - 1 sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "RENDICION_CUENTAS_FDO_CxC_junio_2023.pdf",
+              "thumb": null,
+              "size": 950811
+            },
+            {
+              "uuid": "fbc555a9-f750-40b5-85a8-46c54084f8e6",
+              "url": "https://cdn.modyo.cloud/uploads/fbc555a9-f750-40b5-85a8-46c54084f8e6/original/RENDICION_CUENTAS_FDO_CxC_Diciembre_2023.pdf",
+              "content_type": "application/pdf",
+              "title": "RENDICION_CUENTAS_FDO_CxC_Diciembre_2023.pdf",
+              "description": "2023- 2 sem",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "RENDICION_CUENTAS_FDO_CxC_Diciembre_2023.pdf",
+              "thumb": null,
+              "size": 856196
+            },
+            {
+              "uuid": "7ae70990-9fea-4859-b0d1-2f4803e06512",
+              "url": "https://cdn.modyo.cloud/uploads/7ae70990-9fea-4859-b0d1-2f4803e06512/original/IS2024_-_Rendicion_Cuentas_Fondo_CxC.pdf",
+              "content_type": "application/pdf",
+              "title": "IS2024_-_Rendicion_Cuentas_Fondo_CxC.pdf",
+              "description": "2024 - 1 sem",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "IS2024_-_Rendicion_Cuentas_Fondo_CxC.pdf",
+              "thumb": null,
+              "size": 894565
+            },
+            {
+              "uuid": "987a065c-dcc9-49be-baba-d37606927f6f",
+              "url": "https://cdn.modyo.cloud/uploads/987a065c-dcc9-49be-baba-d37606927f6f/original/2024-2.pdf",
+              "content_type": "application/pdf",
+              "title": "2024 2",
+              "description": "2024- 2 Sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "2024-2.pdf",
+              "thumb": null,
+              "size": 740050
+            },
+            {
+              "uuid": "7a16e285-214d-4aaa-881a-5ea16d4cda6e",
+              "url": "https://cdn.modyo.cloud/uploads/7a16e285-214d-4aaa-881a-5ea16d4cda6e/original/Rendici_n_Cuentas_FIC_CXC_2025_1.pdf",
+              "content_type": "application/pdf",
+              "title": "Rendicion Cuentas Fic Cxc 2025 1",
+              "description": "2025-1sem",
+              "alt_text": "",
+              "tags": [],
+              "name": "Rendici_n_Cuentas_FIC_CXC_2025_1.pdf",
+              "thumb": null,
+              "size": 843629
+            },
+            {
+              "uuid": "e7f6ac94-98be-45bd-a20d-1679adaec60f",
+              "url": "https://cdn.modyo.cloud/uploads/e7f6ac94-98be-45bd-a20d-1679adaec60f/original/Rendicion_Cuentas_FIC_CxC_Diciembre_2025.pdf",
+              "content_type": "application/pdf",
+              "title": "Rendicion Cuentas Fic Cxc Diciembre 2025",
+              "description": "2025-2sem",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "rendicion-de-cuentas"
+              ],
+              "name": "Rendicion_Cuentas_FIC_CxC_Diciembre_2025.pdf",
+              "thumb": null,
+              "size": 830059
+            }
+          ],
+          "Contenido": "",
+          "Texto enlace": "",
+          "Enlace": ""
+        },
+        {
+          "Título": "Informes 2020",
+          "Archivo": [
+            {
+              "uuid": "befa577e-6014-4bd9-bd1b-2e21274db712",
+              "url": "https://cdn.modyo.cloud/uploads/befa577e-6014-4bd9-bd1b-2e21274db712/original/CE054_SEP2020_PUBLICO.pdf",
+              "content_type": "application/pdf",
+              "title": "CE054_SEP2020_PUBLICO.pdf",
+              "description": "Sep",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "CE054_SEP2020_PUBLICO.pdf",
+              "thumb": null,
+              "size": 307729
+            },
+            {
+              "uuid": "e573a5a3-fee6-4190-bf0a-8c054ad33504",
+              "url": "https://cdn.modyo.cloud/uploads/e573a5a3-fee6-4190-bf0a-8c054ad33504/original/CE054_AGO2020_PUBLICO.pdf",
+              "content_type": "application/pdf",
+              "title": "CE054_AGO2020_PUBLICO.pdf",
+              "description": "Ago",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "CE054_AGO2020_PUBLICO.pdf",
+              "thumb": null,
+              "size": 309192
+            },
+            {
+              "uuid": "c1a23d9f-f021-40e1-bcf6-868ceabb517d",
+              "url": "https://cdn.modyo.cloud/uploads/c1a23d9f-f021-40e1-bcf6-868ceabb517d/original/CE054_JUL2020_PUBLICO_.pdf",
+              "content_type": "application/pdf",
+              "title": "CE054_JUL2020_PUBLICO_.pdf",
+              "description": "Jul",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "CE054_JUL2020_PUBLICO_.pdf",
+              "thumb": null,
+              "size": 362283
+            },
+            {
+              "uuid": "96c78fa2-5bfa-49cf-b018-b755ff4b67d7",
+              "url": "https://cdn.modyo.cloud/uploads/96c78fa2-5bfa-49cf-b018-b755ff4b67d7/original/CE054_DIC2020_PUBLICO.pdf",
+              "content_type": "application/pdf",
+              "title": "CE054_DIC2020_PUBLICO.pdf",
+              "description": "Dic",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "CE054_DIC2020_PUBLICO.pdf",
+              "thumb": null,
+              "size": 166782
+            },
+            {
+              "uuid": "1c054388-d3be-42b2-92a5-4e8327f40d64",
+              "url": "https://cdn.modyo.cloud/uploads/1c054388-d3be-42b2-92a5-4e8327f40d64/original/CE054_OCT2020_PUBLICO.pdf",
+              "content_type": "application/pdf",
+              "title": "CE054_OCT2020_PUBLICO.pdf",
+              "description": "Oct",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "CE054_OCT2020_PUBLICO.pdf",
+              "thumb": null,
+              "size": 163278
+            },
+            {
+              "uuid": "40381548-918f-43d5-99d0-593b1b7c1a38",
+              "url": "https://cdn.modyo.cloud/uploads/40381548-918f-43d5-99d0-593b1b7c1a38/original/CE054_NOV2020_PUBLICO_281_29.pdf",
+              "content_type": "application/pdf",
+              "title": "CE054_NOV2020_PUBLICO_281_29.pdf",
+              "description": "Nov",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "CE054_NOV2020_PUBLICO_281_29.pdf",
+              "thumb": null,
+              "size": 163453
+            }
+          ],
+          "Contenido": "",
+          "Texto enlace": "",
+          "Enlace": ""
+        },
+        {
+          "Título": "Informes 2021",
+          "Archivo": [
+            {
+              "uuid": "419a3fb2-a9bc-42b0-b32e-db90e1795c01",
+              "url": "https://cdn.modyo.cloud/uploads/419a3fb2-a9bc-42b0-b32e-db90e1795c01/original/202107_CE054_JUL2021_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202107_CE054_JUL2021_PUBLICO_28CXC_29.pdf",
+              "description": "Jul",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202107_CE054_JUL2021_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 167917
+            },
+            {
+              "uuid": "3ed4b44e-ae58-451c-b434-6116f64374ff",
+              "url": "https://cdn.modyo.cloud/uploads/3ed4b44e-ae58-451c-b434-6116f64374ff/original/202108_CE054_AGO2021_PUBLICO_28CXC_29_.pdf",
+              "content_type": "application/pdf",
+              "title": "202108_CE054_AGO2021_PUBLICO_28CXC_29_.pdf",
+              "description": "Ago",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202108_CE054_AGO2021_PUBLICO_28CXC_29_.pdf",
+              "thumb": null,
+              "size": 169626
+            },
+            {
+              "uuid": "496afa5a-0ef7-477a-b3d2-47b97e298e0b",
+              "url": "https://cdn.modyo.cloud/uploads/496afa5a-0ef7-477a-b3d2-47b97e298e0b/original/202109_CE054_SEP2021_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202109_CE054_SEP2021_PUBLICO_28CXC_29.pdf",
+              "description": "Sep",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202109_CE054_SEP2021_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 169032
+            },
+            {
+              "uuid": "d4d72e8c-db36-4d23-a262-9b0d87d47dcc",
+              "url": "https://cdn.modyo.cloud/uploads/d4d72e8c-db36-4d23-a262-9b0d87d47dcc/original/202110_CE054_OCT2021_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202110_CE054_OCT2021_PUBLICO_28CXC_29.pdf",
+              "description": "Oct",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202110_CE054_OCT2021_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 175564
+            },
+            {
+              "uuid": "be5e9283-f842-4e0c-9fc5-2103114fb629",
+              "url": "https://cdn.modyo.cloud/uploads/be5e9283-f842-4e0c-9fc5-2103114fb629/original/202111_CE054_NOV2021_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202111_CE054_NOV2021_PUBLICO_28CXC_29.pdf",
+              "description": "Nov",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202111_CE054_NOV2021_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 170408
+            },
+            {
+              "uuid": "4e191b56-7c1a-4420-b57c-7cf4c2c22fe5",
+              "url": "https://cdn.modyo.cloud/uploads/4e191b56-7c1a-4420-b57c-7cf4c2c22fe5/original/202112_CE054_DIC2021_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202112_CE054_DIC2021_PUBLICO_28CXC_29.pdf",
+              "description": "Dic",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202112_CE054_DIC2021_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 170989
+            },
+            {
+              "uuid": "482591eb-678b-423f-8df8-15111bfc97cd",
+              "url": "https://cdn.modyo.cloud/uploads/482591eb-678b-423f-8df8-15111bfc97cd/original/202201_CE054_ENE2021_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202201_CE054_ENE2021_PUBLICO_28CXC_29.pdf",
+              "description": "Ene",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202201_CE054_ENE2021_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 168894
+            },
+            {
+              "uuid": "2adf4437-8814-456f-a50e-136e81647bd9",
+              "url": "https://cdn.modyo.cloud/uploads/2adf4437-8814-456f-a50e-136e81647bd9/original/202203_CE054_MAR2022_PUBLICO_28CXC_29_.pdf",
+              "content_type": "application/pdf",
+              "title": "202203_CE054_MAR2022_PUBLICO_28CXC_29_.pdf",
+              "description": "Mar",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202203_CE054_MAR2022_PUBLICO_28CXC_29_.pdf",
+              "thumb": null,
+              "size": 169335
+            },
+            {
+              "uuid": "929427b3-856c-4a5d-9dc3-e71f288edd1a",
+              "url": "https://cdn.modyo.cloud/uploads/929427b3-856c-4a5d-9dc3-e71f288edd1a/original/202204_CE054_ABR2022_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202204_CE054_ABR2022_PUBLICO_28CXC_29.pdf",
+              "description": "Abr",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202204_CE054_ABR2022_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 184823
+            },
+            {
+              "uuid": "03f4ff14-37fd-47f5-9040-f71d22fa4f19",
+              "url": "https://cdn.modyo.cloud/uploads/03f4ff14-37fd-47f5-9040-f71d22fa4f19/original/202205_CE054_MAY2022_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202205_CE054_MAY2022_PUBLICO_28CXC_29.pdf",
+              "description": "May",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202205_CE054_MAY2022_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 166263
+            },
+            {
+              "uuid": "c5026605-f90f-4925-8fff-376c62ee2dc3",
+              "url": "https://cdn.modyo.cloud/uploads/c5026605-f90f-4925-8fff-376c62ee2dc3/original/202206_CE054_JUN2022_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202206_CE054_JUN2022_PUBLICO_28CXC_29.pdf",
+              "description": "Jun",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202206_CE054_JUN2022_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 165641
+            },
+            {
+              "uuid": "3fff1801-31e4-4093-baf1-b88dbedf23ae",
+              "url": "https://cdn.modyo.cloud/uploads/3fff1801-31e4-4093-baf1-b88dbedf23ae/original/CE054_FEB2022_fondo_cxc.pdf",
+              "content_type": "application/pdf",
+              "title": "Ce054 Feb2022 Fondo Cxc",
+              "description": "Feb",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "CE054_FEB2022_fondo_cxc.pdf",
+              "thumb": null,
+              "size": 152040
+            }
+          ],
+          "Contenido": "",
+          "Texto enlace": "",
+          "Enlace": ""
+        },
+        {
+          "Título": "Informes 2022",
+          "Archivo": [
+            {
+              "uuid": "c660770d-fcf7-47da-a35c-6de6d1218426",
+              "url": "https://cdn.modyo.cloud/uploads/c660770d-fcf7-47da-a35c-6de6d1218426/original/202207_CE054_JUL2022_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202207_CE054_JUL2022_PUBLICO_28CXC_29.pdf",
+              "description": "Jul",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202207_CE054_JUL2022_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 162587
+            },
+            {
+              "uuid": "b650c728-7e34-455f-a154-4a99b77ff8d2",
+              "url": "https://cdn.modyo.cloud/uploads/b650c728-7e34-455f-a154-4a99b77ff8d2/original/202207_CE054_AGO2022_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202207_CE054_AGO2022_PUBLICO_28CXC_29.pdf",
+              "description": "Ago",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202207_CE054_AGO2022_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 163551
+            },
+            {
+              "uuid": "2ac61147-bfab-4df5-b456-27f7f86ac5f6",
+              "url": "https://cdn.modyo.cloud/uploads/2ac61147-bfab-4df5-b456-27f7f86ac5f6/original/202207_CE054_SEP2022.pdf",
+              "content_type": "application/pdf",
+              "title": "202207_CE054_SEP2022.pdf",
+              "description": "Sep",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202207_CE054_SEP2022.pdf",
+              "thumb": null,
+              "size": 181274
+            },
+            {
+              "uuid": "78937c45-9c92-415a-bdce-bb84bea51b81",
+              "url": "https://cdn.modyo.cloud/uploads/78937c45-9c92-415a-bdce-bb84bea51b81/original/202210_CE054_OCT2022_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202210_CE054_OCT2022_PUBLICO_28CXC_29.pdf",
+              "description": "Oct",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202210_CE054_OCT2022_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 175747
+            },
+            {
+              "uuid": "7a410be1-7e6b-4b00-a00d-b10b320a355b",
+              "url": "https://cdn.modyo.cloud/uploads/7a410be1-7e6b-4b00-a00d-b10b320a355b/original/202211_CE054_OCT2022_PUBLICO_28CXC_29_docx.pdf",
+              "content_type": "application/pdf",
+              "title": "202211_CE054_OCT2022_PUBLICO_28CXC_29_docx.pdf",
+              "description": "Nov",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202211_CE054_OCT2022_PUBLICO_28CXC_29_docx.pdf",
+              "thumb": null,
+              "size": 120993
+            },
+            {
+              "uuid": "c06f5570-5336-4355-9b4c-7ee06b4d3e98",
+              "url": "https://cdn.modyo.cloud/uploads/c06f5570-5336-4355-9b4c-7ee06b4d3e98/original/202212_CE054_DIC2022_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202212_CE054_DIC2022_PUBLICO_28CXC_29.pdf",
+              "description": "Dic",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202212_CE054_DIC2022_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 133490
+            },
+            {
+              "uuid": "e1a1c071-b9b7-4c19-b9db-d20a1201a637",
+              "url": "https://cdn.modyo.cloud/uploads/e1a1c071-b9b7-4c19-b9db-d20a1201a637/original/202301_CE054_ENE2023_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202301_CE054_ENE2023_PUBLICO_28CXC_29.pdf",
+              "description": "Ene",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202301_CE054_ENE2023_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 133919
+            },
+            {
+              "uuid": "3694773b-8b40-4a25-a307-fb7c126fab95",
+              "url": "https://cdn.modyo.cloud/uploads/3694773b-8b40-4a25-a307-fb7c126fab95/original/202302_CE054_FEB2023_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202302_CE054_FEB2023_PUBLICO_28CXC_29.pdf",
+              "description": "Feb",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202302_CE054_FEB2023_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 134376
+            },
+            {
+              "uuid": "82319d29-fea8-42c5-8528-be05bcc683da",
+              "url": "https://cdn.modyo.cloud/uploads/82319d29-fea8-42c5-8528-be05bcc683da/original/202303_CE054_MAR2023_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202303_CE054_MAR2023_PUBLICO_28CXC_29.pdf",
+              "description": "Mar",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202303_CE054_MAR2023_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 167324
+            },
+            {
+              "uuid": "d440508f-0710-4032-acd7-0db46d07dfbc",
+              "url": "https://cdn.modyo.cloud/uploads/d440508f-0710-4032-acd7-0db46d07dfbc/original/202304_CE054_ABRI2023_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202304_CE054_ABRI2023_PUBLICO_28CXC_29.pdf",
+              "description": "Abr",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202304_CE054_ABRI2023_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 132675
+            },
+            {
+              "uuid": "b8533174-0394-4598-9f6b-179cecd7d242",
+              "url": "https://cdn.modyo.cloud/uploads/b8533174-0394-4598-9f6b-179cecd7d242/original/202305_CE054_MAYO2023_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202305_CE054_MAYO2023_PUBLICO_28CXC_29.pdf",
+              "description": "May",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202305_CE054_MAYO2023_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 117815
+            },
+            {
+              "uuid": "e42f6a1c-bd2c-475a-a4fd-c0d1860e54d5",
+              "url": "https://cdn.modyo.cloud/uploads/e42f6a1c-bd2c-475a-a4fd-c0d1860e54d5/original/202306_CE054_JUNIO2023_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202306_CE054_JUNIO2023_PUBLICO_28CXC_29.pdf",
+              "description": "Jun",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202306_CE054_JUNIO2023_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 131985
+            }
+          ],
+          "Contenido": "",
+          "Texto enlace": "",
+          "Enlace": ""
+        },
+        {
+          "Título": "Informes 2023",
+          "Archivo": [
+            {
+              "uuid": "36d6025b-ee88-4055-9b09-226e99fdde46",
+              "url": "https://cdn.modyo.cloud/uploads/36d6025b-ee88-4055-9b09-226e99fdde46/original/202307_CE054_JULIO2023_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202307_CE054_JULIO2023_PUBLICO_28CXC_29.pdf",
+              "description": "Jul",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202307_CE054_JULIO2023_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 117507
+            },
+            {
+              "uuid": "33a29621-f677-4ba5-be5a-34821d7f428e",
+              "url": "https://cdn.modyo.cloud/uploads/33a29621-f677-4ba5-be5a-34821d7f428e/original/202308_CE054_AGOSTO2023_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202308_CE054_AGOSTO2023_PUBLICO_28CXC_29.pdf",
+              "description": "Ago",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202308_CE054_AGOSTO2023_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 161509
+            },
+            {
+              "uuid": "2111e602-71b7-4045-a8bb-78debd9ef22b",
+              "url": "https://cdn.modyo.cloud/uploads/2111e602-71b7-4045-a8bb-78debd9ef22b/original/Septiembre.pdf",
+              "content_type": "application/pdf",
+              "title": "Septiembre.pdf",
+              "description": "Sep",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "Septiembre.pdf",
+              "thumb": null,
+              "size": 116997
+            },
+            {
+              "uuid": "26d75358-c9b8-4299-b3da-d988f3865a40",
+              "url": "https://cdn.modyo.cloud/uploads/26d75358-c9b8-4299-b3da-d988f3865a40/original/202310_CE054_OCTUBRE2023_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202310_CE054_OCTUBRE2023_PUBLICO_28CXC_29.pdf",
+              "description": "Oct",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202310_CE054_OCTUBRE2023_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 133982
+            },
+            {
+              "uuid": "309ce436-ea48-47e8-92fb-afb24197a9db",
+              "url": "https://cdn.modyo.cloud/uploads/309ce436-ea48-47e8-92fb-afb24197a9db/original/202311_CE054_NOVIEMBRE2023_PUBLICO_28CXC_29_281_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202311_CE054_NOVIEMBRE2023_PUBLICO_28CXC_29_281_29.pdf",
+              "description": "Nov",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "informes-2023"
+              ],
+              "name": "202311_CE054_NOVIEMBRE2023_PUBLICO_28CXC_29_281_29.pdf",
+              "thumb": null,
+              "size": 114149
+            },
+            {
+              "uuid": "2bd47b6e-05af-4225-97a6-e57d9cc634f1",
+              "url": "https://cdn.modyo.cloud/uploads/2bd47b6e-05af-4225-97a6-e57d9cc634f1/original/202312_CE054_DICIEMBRE2023_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202312_CE054_DICIEMBRE2023_PUBLICO_28CXC_29.pdf",
+              "description": "Dic",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202312_CE054_DICIEMBRE2023_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 130978
+            },
+            {
+              "uuid": "8160d862-f743-4f28-aeb5-c759247b5d00",
+              "url": "https://cdn.modyo.cloud/uploads/8160d862-f743-4f28-aeb5-c759247b5d00/original/202401_CE054_ENERO2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202401_CE054_ENERO2024_PUBLICO_28CXC_29.pdf",
+              "description": "Ene",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202401_CE054_ENERO2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 113699
+            },
+            {
+              "uuid": "e452bf7a-2196-4d9e-9732-cb9cbd324e8f",
+              "url": "https://cdn.modyo.cloud/uploads/e452bf7a-2196-4d9e-9732-cb9cbd324e8f/original/202402_CE054_FEBRERO2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202402_CE054_FEBRERO2024_PUBLICO_28CXC_29.pdf",
+              "description": "Feb",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202402_CE054_FEBRERO2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 159740
+            },
+            {
+              "uuid": "171a4036-1cef-4cd2-a606-cf96f8749f1c",
+              "url": "https://cdn.modyo.cloud/uploads/171a4036-1cef-4cd2-a606-cf96f8749f1c/original/202403_CE054_MARZO2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202403_CE054_MARZO2024_PUBLICO_28CXC_29.pdf",
+              "description": "Mar",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202403_CE054_MARZO2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 159307
+            },
+            {
+              "uuid": "7c4bad17-4f97-499e-bbd6-853df875a8f9",
+              "url": "https://cdn.modyo.cloud/uploads/7c4bad17-4f97-499e-bbd6-853df875a8f9/original/202404_CE054_ABRIL2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202404_CE054_ABRIL2024_PUBLICO_28CXC_29.pdf",
+              "description": "Abr",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202404_CE054_ABRIL2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 159935
+            },
+            {
+              "uuid": "9c3c6167-e63d-409a-a6f4-74609e8bf557",
+              "url": "https://cdn.modyo.cloud/uploads/9c3c6167-e63d-409a-a6f4-74609e8bf557/original/202405_CE054_MAY2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202405_CE054_MAY2024_PUBLICO_28CXC_29.pdf",
+              "description": "May",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202405_CE054_MAY2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 133874
+            },
+            {
+              "uuid": "a05016f0-c179-4983-b86f-58039dd765d7",
+              "url": "https://cdn.modyo.cloud/uploads/a05016f0-c179-4983-b86f-58039dd765d7/original/202406_CE054_JUN2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202406_CE054_JUN2024_PUBLICO_28CXC_29.pdf",
+              "description": "Jun",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202406_CE054_JUN2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 160312
+            }
+          ],
+          "Contenido": "",
+          "Texto enlace": "",
+          "Enlace": ""
+        },
+        {
+          "Título": "Informes 2024",
+          "Archivo": [
+            {
+              "uuid": "8160d862-f743-4f28-aeb5-c759247b5d00",
+              "url": "https://cdn.modyo.cloud/uploads/8160d862-f743-4f28-aeb5-c759247b5d00/original/202401_CE054_ENERO2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202401_CE054_ENERO2024_PUBLICO_28CXC_29.pdf",
+              "description": "Ene",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202401_CE054_ENERO2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 113699
+            },
+            {
+              "uuid": "e452bf7a-2196-4d9e-9732-cb9cbd324e8f",
+              "url": "https://cdn.modyo.cloud/uploads/e452bf7a-2196-4d9e-9732-cb9cbd324e8f/original/202402_CE054_FEBRERO2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202402_CE054_FEBRERO2024_PUBLICO_28CXC_29.pdf",
+              "description": "Feb",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202402_CE054_FEBRERO2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 159740
+            },
+            {
+              "uuid": "171a4036-1cef-4cd2-a606-cf96f8749f1c",
+              "url": "https://cdn.modyo.cloud/uploads/171a4036-1cef-4cd2-a606-cf96f8749f1c/original/202403_CE054_MARZO2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202403_CE054_MARZO2024_PUBLICO_28CXC_29.pdf",
+              "description": "Mar",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202403_CE054_MARZO2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 159307
+            },
+            {
+              "uuid": "7c4bad17-4f97-499e-bbd6-853df875a8f9",
+              "url": "https://cdn.modyo.cloud/uploads/7c4bad17-4f97-499e-bbd6-853df875a8f9/original/202404_CE054_ABRIL2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202404_CE054_ABRIL2024_PUBLICO_28CXC_29.pdf",
+              "description": "Abr",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202404_CE054_ABRIL2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 159935
+            },
+            {
+              "uuid": "9c3c6167-e63d-409a-a6f4-74609e8bf557",
+              "url": "https://cdn.modyo.cloud/uploads/9c3c6167-e63d-409a-a6f4-74609e8bf557/original/202405_CE054_MAY2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202405_CE054_MAY2024_PUBLICO_28CXC_29.pdf",
+              "description": "May",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202405_CE054_MAY2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 133874
+            },
+            {
+              "uuid": "a05016f0-c179-4983-b86f-58039dd765d7",
+              "url": "https://cdn.modyo.cloud/uploads/a05016f0-c179-4983-b86f-58039dd765d7/original/202406_CE054_JUN2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202406_CE054_JUN2024_PUBLICO_28CXC_29.pdf",
+              "description": "Jun",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202406_CE054_JUN2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 160312
+            },
+            {
+              "uuid": "513546fc-2c7d-48b6-bba1-bdfe01630877",
+              "url": "https://cdn.modyo.cloud/uploads/513546fc-2c7d-48b6-bba1-bdfe01630877/original/202407_CE054_JULIO2024_PUBLICO_28Sentencias_V_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202407_CE054_JULIO2024_PUBLICO_28Sentencias_V_29.pdf",
+              "description": "Jul",
+              "alt_text": "",
+              "tags": [
+                "fondo-cerrado-nacion-alianza-cinco",
+                "rendicion-de-cuentas"
+              ],
+              "name": "202407_CE054_JULIO2024_PUBLICO_28Sentencias_V_29.pdf",
+              "thumb": null,
+              "size": 115283
+            },
+            {
+              "uuid": "abc51947-97b2-4fab-8ed4-cb8a3aae3dd4",
+              "url": "https://cdn.modyo.cloud/uploads/abc51947-97b2-4fab-8ed4-cb8a3aae3dd4/original/202408_CE054_AGOSTO2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202408_CE054_AGOSTO2024_PUBLICO_28CXC_29.pdf",
+              "description": "Ago",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202408_CE054_AGOSTO2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 163162
+            },
+            {
+              "uuid": "db4978b5-5bc7-4a24-8652-9fee22b2764f",
+              "url": "https://cdn.modyo.cloud/uploads/db4978b5-5bc7-4a24-8652-9fee22b2764f/original/202409_CE054_SEPTIEMBRE_2024_PUBLICO_28CXC_29.pdf",
+              "content_type": "application/pdf",
+              "title": "202409_CE054_SEPTIEMBRE_2024_PUBLICO_28CXC_29.pdf",
+              "description": "Sep",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202409_CE054_SEPTIEMBRE_2024_PUBLICO_28CXC_29.pdf",
+              "thumb": null,
+              "size": 162399
+            },
+            {
+              "uuid": "61a033dc-aa35-4207-920d-c215ec18fd12",
+              "url": "https://cdn.modyo.cloud/uploads/61a033dc-aa35-4207-920d-c215ec18fd12/original/Octubre.pdf",
+              "content_type": "application/pdf",
+              "title": "Octubre.pdf",
+              "description": "Oct",
+              "alt_text": null,
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "Octubre.pdf",
+              "thumb": null,
+              "size": 144612
+            },
+            {
+              "uuid": "b033036e-12ef-465c-8577-458cc650b0ad",
+              "url": "https://cdn.modyo.cloud/uploads/b033036e-12ef-465c-8577-458cc650b0ad/original/Nov.pdf",
+              "content_type": "application/pdf",
+              "title": "Nov",
+              "description": null,
+              "alt_text": null,
+              "tags": [],
+              "name": "Nov.pdf",
+              "thumb": null,
+              "size": 136008
+            },
+            {
+              "uuid": "d1b5a1e5-3d39-4430-8e42-9765936ea5bd",
+              "url": "https://cdn.modyo.cloud/uploads/d1b5a1e5-3d39-4430-8e42-9765936ea5bd/original/Dic.pdf",
+              "content_type": "application/pdf",
+              "title": "Dic",
+              "description": null,
+              "alt_text": null,
+              "tags": [],
+              "name": "Dic.pdf",
+              "thumb": null,
+              "size": 174497
+            }
+          ],
+          "Contenido": "",
+          "Texto enlace": "",
+          "Enlace": ""
+        },
+        {
+          "Título": "Informes 2025",
+          "Contenido": "",
+          "Archivo": [
+            {
+              "uuid": "35de5f04-dea7-4125-862b-d7cdd7ed7724",
+              "url": "https://cdn.modyo.cloud/uploads/35de5f04-dea7-4125-862b-d7cdd7ed7724/original/Enero.pdf",
+              "content_type": "application/pdf",
+              "title": "Enero",
+              "description": "Enero",
+              "alt_text": "",
+              "tags": [
+                "informe de riesgo 2025"
+              ],
+              "name": "Enero.pdf",
+              "thumb": null,
+              "size": 240508
+            },
+            {
+              "uuid": "e0cc1bae-af51-49da-a9e8-14b3eecb86f4",
+              "url": "https://cdn.modyo.cloud/uploads/e0cc1bae-af51-49da-a9e8-14b3eecb86f4/original/202502_CE054_FEBRERO_2025_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202502 Ce054 Febrero 2025 Publico Cxc",
+              "description": "Febrero",
+              "alt_text": "",
+              "tags": [
+                "cxc",
+                "informes-de-riesgo"
+              ],
+              "name": "202502_CE054_FEBRERO_2025_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 164399
+            },
+            {
+              "uuid": "696e1fe0-a9c5-427a-85f4-7a6d50a38e23",
+              "url": "https://cdn.modyo.cloud/uploads/696e1fe0-a9c5-427a-85f4-7a6d50a38e23/original/202503_CE054_MARZO_2025_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202503 Ce054 Marzo 2025 Publico Cxc",
+              "description": "Marzo",
+              "alt_text": "",
+              "tags": [],
+              "name": "202503_CE054_MARZO_2025_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 163031
+            },
+            {
+              "uuid": "a5f13697-2faf-4018-bee8-f6e978484b91",
+              "url": "https://cdn.modyo.cloud/uploads/a5f13697-2faf-4018-bee8-f6e978484b91/original/202504_CE054_ABRIL_2025_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202504 Ce054 Abril 2025 Publico Cxc",
+              "description": "Abril",
+              "alt_text": "",
+              "tags": [],
+              "name": "202504_CE054_ABRIL_2025_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 137005
+            },
+            {
+              "uuid": "87233b1e-ae98-42b5-8c13-fcc9535b9613",
+              "url": "https://cdn.modyo.cloud/uploads/87233b1e-ae98-42b5-8c13-fcc9535b9613/original/202505_CE054_MAYO_2025_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202505 Ce054 Mayo 2025 Publico Cxc",
+              "description": "Mayo",
+              "alt_text": "",
+              "tags": [
+                "informes-2025",
+                "fondo-cxc",
+                "mayo"
+              ],
+              "name": "202505_CE054_MAYO_2025_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 346027
+            },
+            {
+              "uuid": "4442a524-021c-48fd-890b-5642563f48c3",
+              "url": "https://cdn.modyo.cloud/uploads/4442a524-021c-48fd-890b-5642563f48c3/original/202506_CE054_JUNIO_2025_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202506 Ce054 Junio 2025 Publico Cxc",
+              "description": "Junio",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "2025",
+                "informe de riesgo 2025",
+                "junio"
+              ],
+              "name": "202506_CE054_JUNIO_2025_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 271515
+            },
+            {
+              "uuid": "a29a6343-fda3-4b1d-8e6a-600a9de7b7f6",
+              "url": "https://cdn.modyo.cloud/uploads/a29a6343-fda3-4b1d-8e6a-600a9de7b7f6/original/202507_CE054_JULIO_2025_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202507 Ce054 Julio 2025 Publico Cxc",
+              "description": "Julio",
+              "alt_text": "",
+              "tags": [
+                "cxc"
+              ],
+              "name": "202507_CE054_JULIO_2025_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 249515
+            },
+            {
+              "uuid": "84c2a71d-b208-4b69-a302-fc0fb180aaf5",
+              "url": "https://cdn.modyo.cloud/uploads/84c2a71d-b208-4b69-a302-fc0fb180aaf5/original/202508_CE054_AGOSTO_2025_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202508 Ce054 Agosto 2025 Publico Cxc",
+              "description": "Agosto",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "informe de riesgo 2025"
+              ],
+              "name": "202508_CE054_AGOSTO_2025_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 245148
+            },
+            {
+              "uuid": "12de1f1f-0f27-403c-be2d-844d6e66ed8a",
+              "url": "https://cdn.modyo.cloud/uploads/12de1f1f-0f27-403c-be2d-844d6e66ed8a/original/Septiembre.pdf",
+              "content_type": "application/pdf",
+              "title": "Septiembre",
+              "description": null,
+              "alt_text": null,
+              "tags": [],
+              "name": "Septiembre.pdf",
+              "thumb": null,
+              "size": 245796
+            },
+            {
+              "uuid": "6d650b04-3e66-4b60-b652-e479ddd38da2",
+              "url": "https://cdn.modyo.cloud/uploads/6d650b04-3e66-4b60-b652-e479ddd38da2/original/202510_CE054_OCTUBRE2025_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202510 Ce054 Octubre2025 Publico Cxc",
+              "description": "Octubre",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc"
+              ],
+              "name": "202510_CE054_OCTUBRE2025_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 230602
+            },
+            {
+              "uuid": "0056bfd1-a273-4024-a0b2-7639e88a01b2",
+              "url": "https://cdn.modyo.cloud/uploads/0056bfd1-a273-4024-a0b2-7639e88a01b2/original/202511_CE054_NOVIEMBRE2025_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202511 Ce054 Noviembre2025 Publico Cxc",
+              "description": "Noviembre",
+              "alt_text": "",
+              "tags": [
+                "cxc",
+                "informe-de-riesgo-2025"
+              ],
+              "name": "202511_CE054_NOVIEMBRE2025_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 258743
+            },
+            {
+              "uuid": "f55f557b-171a-44cc-9d45-4ade5eab2b34",
+              "url": "https://cdn.modyo.cloud/uploads/f55f557b-171a-44cc-9d45-4ade5eab2b34/original/202512_CE054_DICIEMBRE2025_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202512 Ce054 Diciembre2025 Publico Cxc",
+              "description": "Diciembre",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "informe-2025"
+              ],
+              "name": "202512_CE054_DICIEMBRE2025_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 275467
+            }
+          ],
+          "Texto enlace": "",
+          "Enlace": ""
+        },
+        {
+          "Título": "Informes 2026",
+          "Contenido": "",
+          "Archivo": [
+            {
+              "uuid": "c57afcd9-a6ac-40c7-8aea-d9b50dd91e66",
+              "url": "https://cdn.modyo.cloud/uploads/c57afcd9-a6ac-40c7-8aea-d9b50dd91e66/original/202601_CE054_ENERO2026_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202601 Ce054 Enero2026 Publico Cxc",
+              "description": "Enero",
+              "alt_text": "",
+              "tags": [
+                "informes-2026"
+              ],
+              "name": "202601_CE054_ENERO2026_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 273842
+            },
+            {
+              "uuid": "6b98941b-8331-4609-afa3-7dc62784e7ab",
+              "url": "https://cdn.modyo.cloud/uploads/6b98941b-8331-4609-afa3-7dc62784e7ab/original/202602_CE054_FEBRERO2026_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202602 Ce054 Febrero2026 Publico Cxc",
+              "description": "Febrero",
+              "alt_text": "",
+              "tags": [],
+              "name": "202602_CE054_FEBRERO2026_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 273819
+            },
+            {
+              "uuid": "ac57854f-a258-42c2-b01c-a9446797e6a9",
+              "url": "https://cdn.modyo.cloud/uploads/ac57854f-a258-42c2-b01c-a9446797e6a9/original/202603_CE054_MARZO2026_PUBLICO_CXC_.pdf",
+              "content_type": "application/pdf",
+              "title": "202603 Ce054 Marzo2026 Publico Cxc",
+              "description": "Marzo",
+              "alt_text": "",
+              "tags": [
+                "fondo-cxc",
+                "informes-2026"
+              ],
+              "name": "202603_CE054_MARZO2026_PUBLICO_CXC_.pdf",
+              "thumb": null,
+              "size": 312932
+            }
+          ],
+          "Texto enlace": "",
+          "Enlace": ""
+        },
+        {
+          "Título": "Manual de asesoría",
+          "Archivo": [
+            {
+              "uuid": "860540d7-96e3-4d02-ae64-17e7bc48b54b",
+              "url": "https://cdn.modyo.cloud/uploads/860540d7-96e3-4d02-ae64-17e7bc48b54b/original/Manual_de_Actividad_de_Asesoria_Alianza_2024.pdf",
+              "content_type": "application/pdf",
+              "title": "Manual De Actividad De Asesoria Alianza 2024",
+              "description": "",
+              "alt_text": "",
+              "tags": [
+                "fondo-abierto-alianza",
+                "redireccionamiento",
+                "manual-de-asesoria",
+                "fondo-cash-conservador-1525"
+              ],
+              "name": "Manual_de_Actividad_de_Asesoria_Alianza_2024.pdf",
+              "thumb": null,
+              "size": 558799
+            }
+          ],
+          "Contenido": "",
+          "Texto enlace": "",
+          "Enlace": ""
+        }
+      ]
+    },
+    "Texto enlace acordeón": "Ver fichas técnicas",
+    "Enlace acordeón": "/fichas-tecnicas-fondos-de-inversion-colectiva/fondos-alternativos/fondo-cxc",
+    "Banner": {
+      "uuid": "09c75bb6-1b16-4d44-95db-3b80193dcd10",
+      "content_type": "banner"
+    },
+    "Soluciones": {},
+    "Productos recomendados": [],
+    "Rentabilidad anual": null,
+    "Plazo de permanencia": "030 - 30 días",
+    "Categoría": "Complejo",
+    "Perfil de riesgo": "2 - Moderado",
+    "Grupo": "Alternativos Local",
+    "Calificadora": "Value and Risk Rating",
+    "Gestor del fondo": "",
+    "Calificación": "F -AAA",
+    "PDF": {},
+    "Código identificador": 400,
+    "Recomendación": 3,
+    "Tipos de participación": {
+      "fields": [
+        {
+          "Tipo de participación": {
+            "uuid": "e553020a-c96a-452a-9a27-3e3b56cb35b4",
+            "content_type": "tipo-de-participacion"
+          },
+          "Orden Participación": 1,
+          "Cambiar cero": false,
+          "Ocultar fila en ceros": true,
+          "Desactivar fila": false
+        },
+        {
+          "Tipo de participación": {
+            "uuid": "d70ea039-3655-4e88-8263-12533ffaf021",
+            "content_type": "tipo-de-participacion"
+          },
+          "Orden Participación": 2,
+          "Cambiar cero": false,
+          "Ocultar fila en ceros": true,
+          "Desactivar fila": false
+        },
+        {
+          "Tipo de participación": {
+            "uuid": "e972c792-e13e-4c84-ae90-d1ea9260b0d6",
+            "content_type": "tipo-de-participacion"
+          },
+          "Orden Participación": 3,
+          "Cambiar cero": false,
+          "Ocultar fila en ceros": true,
+          "Desactivar fila": false
+        },
+        {
+          "Tipo de participación": {
+            "uuid": "342b6823-498d-4f50-b7ce-678182a915a1",
+            "content_type": "tipo-de-participacion"
+          },
+          "Orden Participación": 4,
+          "Cambiar cero": false,
+          "Ocultar fila en ceros": true,
+          "Desactivar fila": false
+        },
+        {
+          "Tipo de participación": {
+            "uuid": "181ca8c6-293e-4fa8-be8c-488064f2ddbf",
+            "content_type": "tipo-de-participacion"
+          },
+          "Orden Participación": 5,
+          "Cambiar cero": false,
+          "Ocultar fila en ceros": true,
+          "Desactivar fila": false
+        },
+        {
+          "Tipo de participación": {
+            "uuid": "46a6db2a-1379-4ab8-96e3-c3c72746e450",
+            "content_type": "tipo-de-participacion"
+          },
+          "Orden Participación": 6,
+          "Cambiar cero": false,
+          "Ocultar fila en ceros": true,
+          "Desactivar fila": false
+        },
+        {
+          "Tipo de participación": {
+            "uuid": "9b99d914-cdfe-42a5-863e-119700f87519",
+            "content_type": "tipo-de-participacion"
+          },
+          "Orden Participación": 7,
+          "Cambiar cero": false,
+          "Ocultar fila en ceros": true,
+          "Desactivar fila": false
+        }
+      ]
+    }
+  }
+}

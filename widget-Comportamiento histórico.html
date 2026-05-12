@@ -1,0 +1,27 @@
+{% assign listFundCollectiveInvestment = spaces["sp-que-hacemos"].types["fondos-de-inversion-colectiva"].entries | where: 'Código identificador' %}
+{% assign listFundVoluntaryPensions = spaces["sp-que-hacemos"].types["fondos-de-pensiones-voluntarias"].entries | where: 'Código identificador' %}
+{% assign listFundPrivateEquity = spaces["sp-que-hacemos"].types["fondos-de-capital-privado"].entries | where: 'Código identificador' %}
+
+
+{% assign listFund = "" | split: "" %}
+{% if listFundCollectiveInvestment.size > 0 %}{% assign listFund = listFund | concat: listFundCollectiveInvestment %}{% endif %}
+{% if listFundVoluntaryPensions.size > 0 %}{% assign listFund = listFund | concat: listFundVoluntaryPensions %}{% endif %}
+{% if listFundPrivateEquity.size > 0 %}{% assign listFund = listFund | concat: listFundPrivateEquity %}{% endif %}
+
+{% if listFund and listFund.size > 0 %}
+<section class="container py-4 py-lg-16 position-relative">	
+	
+	
+	{% snippet "component_historical_behavior_html",
+		list: listFund,
+		fundCode: '',
+    renderFundSelect: true,
+		renderFundInformation: true,
+		renderHistoricalBehavior: true
+	%}
+	
+	
+	<p class="fs-10 w-100 py-10 color-gray-500">* N.A = No Aplica.</p>
+</section>
+
+{% endif %}

@@ -1,0 +1,16 @@
+.fund-data { min-height: 100px; }
+.historical-table:not(:has(tbody tr)) { min-height: 400px; }
+.historical-table .table>:not(caption) > * > * {
+	color: var(--bs-gray-600) !important;
+	font-weight: var(--font-weight-bold) !important;
+}
+.historical-table .table>:not(caption) > * > *:first-child { padding-left: 0 !important; }
+.historical-table .table>:not(caption) > * > *:last-child { padding-right: 0 !important; }
+/*.historical-table .table>:not(caption) > * > *:not(:first-child, :last-child) { padding: 0.875rem 1rem !important; }*/
+.historical-table .table>:not(caption) > * > * { padding: 0.875rem 1rem !important; }
+.historical-table .table .table-group-divider { border-top: 2px solid var(--bs-gray-100) !important; }
+.fund-data div { word-break: break-word; }
+
+@media screen and (min-width: 992px) {
+	.fund-data div { word-break: normal; }
+}

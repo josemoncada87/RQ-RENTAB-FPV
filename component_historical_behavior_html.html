@@ -1,0 +1,264 @@
+{% if renderFundInformation or renderHistoricalBehavior %}
+{% assign listFIC = spaces["sp-que-hacemos"].types["fondos-de-inversion-colectiva"].entries | where: 'Código identificador' %}
+{% assign listPV  = spaces["sp-que-hacemos"].types["fondos-de-pensiones-voluntarias"].entries | where: 'Código identificador' %}
+
+<div class="hb-shell">
+
+{% if renderFundInformation %}
+<div class="hb-tabs" role="tablist" aria-label="Rentabilidades">
+<button class="hb-tab active" id="hb-tab-f" type="button" onclick="sw('f')" aria-controls="hb-panel-f" aria-selected="true">Fondos de inversión colectiva</button>
+<button class="hb-tab" id="hb-tab-p" type="button" onclick="sw('p')" aria-controls="hb-panel-p" aria-selected="false">Fondo de pensiones voluntarias</button>
+</div>
+{% endif %}
+
+<div class="hb-panel" id="hb-panel-f" role="tabpanel" aria-labelledby="hb-tab-f">
+{% if renderFundInformation %}
+<div class="hb-hero">
+<div>
+<div class="hb-kicker">Rentabilidades en los</div>
+<h2 class="hb-title">Fondos de inversión colectiva</h2>
+</div>
+{% if renderFundSelect and listFIC.size > 0 %}
+<form id="f-fund-form" class="hb-select-wrap" novalidate>
+<label class="hb-select-label" for="f-select-fund">Fondo seleccionado</label>
+<select class="hb-select" id="f-select-fund" aria-label="Seleccione un fondo">
+{% for item in listFIC %}
+<option value="{{ item.fields['Código identificador'] }}" {% if forloop.first %}selected{% endif %}>{{ item.meta.name }}</option>
+{% endfor %}
+</select>
+</form>
+{% endif %}
+</div>
+
+<div class="hb-summary" id="f-fund-data"></div>
+<div class="loading hb-loading w-100 h-100" id="f-loading">
+{% snippet "component_spinner_html" %}
+</div>
+
+<div class="hb-toolbar">
+<div class="hb-toolbar-left">
+<span class="hb-toolbar-title">Comportamiento Histórico</span>
+<span class="hb-badge" id="f-selection-badge">0 seleccionados</span>
+</div>
+<div class="hb-toolbar-right">
+<div class="hb-search">
+<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="9" r="7"></circle><path d="M15 15l3 3"></path></svg>
+<input id="f-search-input" type="text" placeholder="Buscar fondo..." oninput="flt('f',this.value)">
+</div>
+<button class="hb-btn hb-btn-primary" id="f-compare-btn" type="button" onclick="openM('f')" disabled>
+<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="2" y="3" width="7" height="14" rx="1.5"></rect><rect x="11" y="3" width="7" height="14" rx="1.5"></rect></svg>
+<span id="f-compare-label">Comparar</span>
+</button>
+<button class="hb-btn hb-btn-ghost" id="f-clear-selection" type="button" onclick="clrSel('f')">Limpiar selección</button>
+</div>
+</div>
+
+<div class="hb-filters">
+<span class="hb-filters-label">Filtrar</span>
+<div class="hb-chip-wrap">
+<button class="hb-chip" id="f-chip-risk" type="button" onclick="toggleDD('f','risk')">
+<span class="hb-chip-dot"></span><span id="f-chip-risk-lbl">Riesgo</span>
+<svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="5,8 10,13 15,8"></polyline></svg>
+</button>
+<div class="hb-chip-dd" id="f-dd-risk">
+<div class="hb-dd-item" data-val="conservador" onclick="setFilter('f','risk',this)">1 - Conservador</div>
+<div class="hb-dd-item" data-val="moderado" onclick="setFilter('f','risk',this)">2 - Moderado</div>
+<div class="hb-dd-item" data-val="mayor" onclick="setFilter('f','risk',this)">3 - Mayor</div>
+</div>
+</div>
+<div class="hb-chip-wrap">
+<button class="hb-chip" id="f-chip-clase" type="button" onclick="toggleDD('f','clase')">
+<span class="hb-chip-dot"></span><span id="f-chip-clase-lbl">Clase</span>
+<svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="5,8 10,13 15,8"></polyline></svg>
+</button>
+<div class="hb-chip-dd" id="f-dd-clase">
+<div class="hb-dd-item" data-val="abierto" onclick="setFilter('f','clase',this)">Abierto</div>
+<div class="hb-dd-item" data-val="cerrado" onclick="setFilter('f','clase',this)">Cerrado</div>
+</div>
+</div>
+<div class="hb-chip-wrap hb-chip-wrap-sort">
+<button class="hb-chip hb-chip-sort" id="f-chip-sort" type="button" onclick="toggleDD('f','sort')">
+<svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="4" y1="6" x2="16" y2="6"></line><line x1="4" y1="10" x2="12" y2="10"></line><line x1="4" y1="14" x2="8" y2="14"></line></svg>
+<span id="f-sort-lbl">Destacados Alianza</span>
+<svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="5,8 10,13 15,8"></polyline></svg>
+</button>
+<div class="hb-chip-dd hb-chip-dd-sort" id="f-dd-sort">
+<div class="hb-dd-item" data-val="order" onclick="setSort('f',this,'Destacados Alianza')">Destacados Alianza</div>
+<div class="hb-dd-sep"></div>
+<div class="hb-dd-item" data-val="ua-desc" onclick="setSort('f',this,'Mayor rendimiento')">Mayor rendimiento</div>
+<div class="hb-dd-item" data-val="ua-asc" onclick="setSort('f',this,'Menor rendimiento')">Menor rendimiento</div>
+<div class="hb-dd-sep"></div>
+<div class="hb-dd-item" data-val="az" onclick="setSort('f',this,'Nombre A-Z')">Nombre A-Z</div>
+<div class="hb-dd-item" data-val="za" onclick="setSort('f',this,'Nombre Z-A')">Nombre Z-A</div>
+</div>
+</div>
+<span class="hb-chip-clear" id="f-clear-filters" onclick="clearAllFilters('f')">
+<svg width="11" height="11" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="4" y1="4" x2="16" y2="16"></line><line x1="16" y1="4" x2="4" y2="16"></line></svg>
+Limpiar filtros
+</span>
+<div class="hb-filters-right">
+<div class="hb-items-per-page">
+<label class="hb-items-label" for="f-items-select">Ver:</label>
+<select class="hb-items-select" id="f-items-select" onchange="setItemsPerPage('f', this.value)">
+<option value="10">10</option>
+<option value="20" selected>20</option>
+<option value="50">50</option>
+<option value="100">100</option>
+</select>
+</div>
+<div class="hb-view-toggle" role="group" aria-label="Cambiar vista">
+<button class="hb-view-btn active" id="f-view-cards" type="button" onclick="setView('f','cards')">Tarjetas</button>
+<button class="hb-view-btn" id="f-view-table" type="button" onclick="setView('f','table')">Tabla</button>
+</div>
+</div>
+</div>
+<div class="hb-hint" id="f-hb-hint">
+<svg class="hb-hint-ico" width="15" height="15" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle><rect x="9.2" y="8.5" width="1.6" height="6" rx=".8"></rect><circle cx="10" cy="6.2" r=".9"></circle></svg>
+<span class="hb-hint-txt">Haz clic en una tarjeta para ver su detalle, marca el selector para comparar y usa la barra superior para filtrar resultados.</span>
+</div>
+{% endif %}
+
+<div class="hb-empty is-hidden" id="f-hb-empty"></div>
+<div class="hb-grid" id="f-portfolio-grid"></div>
+<div class="hb-table-zone" id="f-portfolio-table"></div>
+<div class="hb-pagination" id="f-hb-pagination"></div>
+<p class="hb-footnote">* N.A = No Aplica. Valores expresados en porcentaje (%).</p>
+</div>
+
+<div class="hb-panel" id="hb-panel-p" role="tabpanel" aria-labelledby="hb-tab-p" hidden>
+{% if renderFundInformation %}
+<div class="hb-hero">
+<div>
+<div class="hb-kicker">Rentabilidad en el</div>
+<h2 class="hb-title">Fondo de pensiones voluntarias</h2>
+</div>
+{% if renderFundSelect and listPV.size > 0 %}
+<form id="p-fund-form" class="hb-select-wrap" novalidate>
+<label class="hb-select-label" for="p-select-fund">Tipo de fondo</label>
+<select class="hb-select" id="p-select-fund" aria-label="Seleccione un fondo">
+{% for item in listPV %}
+<option value="{{ item.fields['Código identificador'] }}" {% if forloop.first %}selected{% endif %}>{{ item.meta.name }}</option>
+{% endfor %}
+</select>
+</form>
+{% endif %}
+</div>
+
+<div class="hb-summary" id="p-fund-data"></div>
+<div class="loading hb-loading w-100 h-100" id="p-loading">
+{% snippet "component_spinner_html" %}
+</div>
+
+<div class="hb-toolbar">
+<div class="hb-toolbar-left">
+<span class="hb-toolbar-title">Comportamiento Histórico</span>
+<span class="hb-badge" id="p-selection-badge">0 seleccionados</span>
+</div>
+<div class="hb-toolbar-right">
+<div class="hb-search">
+<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="9" r="7"></circle><path d="M15 15l3 3"></path></svg>
+<input id="p-search-input" type="text" placeholder="Buscar portafolio..." oninput="flt('p',this.value)">
+</div>
+<button class="hb-btn hb-btn-primary" id="p-compare-btn" type="button" onclick="openM('p')" disabled>
+<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="2" y="3" width="7" height="14" rx="1.5"></rect><rect x="11" y="3" width="7" height="14" rx="1.5"></rect></svg>
+<span id="p-compare-label">Comparar</span>
+</button>
+<button class="hb-btn hb-btn-ghost" id="p-clear-selection" type="button" onclick="clrSel('p')">Limpiar selección</button>
+</div>
+</div>
+
+<div class="hb-filters">
+<span class="hb-filters-label">Filtrar</span>
+<div class="hb-chip-wrap">
+<button class="hb-chip" id="p-chip-risk" type="button" onclick="toggleDD('p','risk')">
+<span class="hb-chip-dot"></span><span id="p-chip-risk-lbl">Riesgo</span>
+<svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="5,8 10,13 15,8"></polyline></svg>
+</button>
+<div class="hb-chip-dd" id="p-dd-risk">
+<div class="hb-dd-item" data-val="conservador" onclick="setFilter('p','risk',this)">1 - Conservador</div>
+<div class="hb-dd-item" data-val="moderado" onclick="setFilter('p','risk',this)">2 - Moderado</div>
+<div class="hb-dd-item" data-val="mayor" onclick="setFilter('p','risk',this)">3 - Mayor</div>
+</div>
+</div>
+<div class="hb-chip-wrap">
+<button class="hb-chip" id="p-chip-clase" type="button" onclick="toggleDD('p','clase')">
+<span class="hb-chip-dot"></span><span id="p-chip-clase-lbl">Clase</span>
+<svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="5,8 10,13 15,8"></polyline></svg>
+</button>
+<div class="hb-chip-dd" id="p-dd-clase">
+<div class="hb-dd-item" data-val="abierto" onclick="setFilter('p','clase',this)">Abierto</div>
+<div class="hb-dd-item" data-val="cerrado" onclick="setFilter('p','clase',this)">Cerrado</div>
+</div>
+</div>
+<div class="hb-chip-wrap hb-chip-wrap-sort">
+<button class="hb-chip hb-chip-sort" id="p-chip-sort" type="button" onclick="toggleDD('p','sort')">
+<svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="4" y1="6" x2="16" y2="6"></line><line x1="4" y1="10" x2="12" y2="10"></line><line x1="4" y1="14" x2="8" y2="14"></line></svg>
+<span id="p-sort-lbl">Destacados Alianza</span>
+<svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="5,8 10,13 15,8"></polyline></svg>
+</button>
+<div class="hb-chip-dd hb-chip-dd-sort" id="p-dd-sort">
+<div class="hb-dd-item" data-val="order" onclick="setSort('p',this,'Destacados Alianza')">Destacados Alianza</div>
+<div class="hb-dd-sep"></div>
+<div class="hb-dd-item" data-val="ua-desc" onclick="setSort('p',this,'Mayor rendimiento')">Mayor rendimiento</div>
+<div class="hb-dd-item" data-val="ua-asc" onclick="setSort('p',this,'Menor rendimiento')">Menor rendimiento</div>
+<div class="hb-dd-sep"></div>
+<div class="hb-dd-item" data-val="az" onclick="setSort('p',this,'Nombre A-Z')">Nombre A-Z</div>
+<div class="hb-dd-item" data-val="za" onclick="setSort('p',this,'Nombre Z-A')">Nombre Z-A</div>
+</div>
+</div>
+<span class="hb-chip-clear" id="p-clear-filters" onclick="clearAllFilters('p')">
+<svg width="11" height="11" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="4" y1="4" x2="16" y2="16"></line><line x1="16" y1="4" x2="4" y2="16"></line></svg>
+Limpiar filtros
+</span>
+<div class="hb-filters-right">
+<div class="hb-items-per-page">
+<label class="hb-items-label" for="p-items-select">Ver:</label>
+<select class="hb-items-select" id="p-items-select" onchange="setItemsPerPage('p', this.value)">
+<option value="10">10</option>
+<option value="20" selected>20</option>
+<option value="50">50</option>
+<option value="100">100</option>
+</select>
+</div>
+<div class="hb-view-toggle" role="group" aria-label="Cambiar vista">
+<button class="hb-view-btn active" id="p-view-cards" type="button" onclick="setView('p','cards')">Tarjetas</button>
+<button class="hb-view-btn" id="p-view-table" type="button" onclick="setView('p','table')">Tabla</button>
+</div>
+</div>
+</div>
+<div class="hb-hint" id="p-hb-hint">
+<svg class="hb-hint-ico" width="15" height="15" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle><rect x="9.2" y="8.5" width="1.6" height="6" rx=".8"></rect><circle cx="10" cy="6.2" r=".9"></circle></svg>
+<span class="hb-hint-txt">Haz clic en una tarjeta para ver su detalle, marca el selector para comparar y usa la barra superior para filtrar resultados.</span>
+</div>
+{% endif %}
+
+<div class="hb-empty is-hidden" id="p-hb-empty"></div>
+<div class="hb-grid" id="p-portfolio-grid"></div>
+<div class="hb-table-zone" id="p-portfolio-table"></div>
+<div class="hb-pagination" id="p-hb-pagination"></div>
+<p class="hb-footnote">* N.A = No Aplica. Valores expresados en porcentaje (%).</p>
+</div>
+
+<div class="hb-modal" id="hb-modal" onclick="omc(event)">
+<div class="hb-modal-dialog" id="hb-modal-dialog">
+<div class="hb-modal-head">
+<div>
+<div class="hb-modal-subtitle" id="hb-modal-subtitle">Comparativa detallada</div>
+<div class="hb-modal-title" id="hb-modal-title">Comparación</div>
+</div>
+<button class="hb-modal-close" type="button" onclick="closeM()">&#10005;</button>
+</div>
+<div class="hb-modal-body">
+<div id="hb-modal-content"></div>
+
+</div>
+</div>
+</div>
+
+</div>
+{% endif %}
+
+{% assign participationTypes = spaces["sp-que-hacemos"].types["tipo-de-participacion"].entries %}
+{% assign dataList = spaces["sp-que-hacemos"].entries | where: 'Código identificador' %}
+
+<script>{% snippet "component_historical_behavior_js", dataList, participationTypes, fundCode %}</script>
