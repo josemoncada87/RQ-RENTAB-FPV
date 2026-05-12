@@ -323,6 +323,8 @@
     var elClrFlt  = $('clear-filters');
     var elFundData= $('fund-data');
     var elSelect  = $('select-fund');
+    var elFundPickerSearch = $('fund-picker-search');
+    var elFundPickerList   = $('fund-picker-list');
     var elViewCards = $('view-cards');
     var elViewTable = $('view-table');
     var elChipRiskLbl = $('chip-risk-lbl');
@@ -400,6 +402,65 @@
 
     function hideHint() {
       if (!state.hintDone && elHint) { state.hintDone = true; elHint.classList.add('is-hidden'); }
+    }
+
+    function initFundPicker() {
+      if (pfx !== 'f' || !elSelect || !elFundPickerList) return;
+
+      var typeFilter = 'all';
+
+      function normalizeType(v) {
+        var t = esc(v).trim().toLowerCase();
+        if (t.indexOf('abier') !== -1) return 'abierto';
+        if (t.indexOf('cerr') !== -1) return 'cerrado';
+        return t;
+      }
+
+      function filterFundItems() {
+        var q = elFundPickerSearch ? esc(elFundPickerSearch.value).trim().toLowerCase() : '';
+        elFundPickerList.querySelectorAll('.hb-fund-picker-item').forEach(function(item) {
+          var name = esc(item.querySelector('.hb-fund-picker-item-name') && item.querySelector('.hb-fund-picker-item-name').textContent).toLowerCase();
+          var itemType = normalizeType(item.getAttribute('data-type'));
+          var matchesSearch = !q || name.indexOf(q) !== -1;
+          var matchesType = typeFilter === 'all' || itemType === typeFilter;
+          item.classList.toggle('is-hidden', !(matchesSearch && matchesType));
+        });
+      }
+
+      function syncSelectedUi(code) {
+        elFundPickerList.querySelectorAll('.hb-fund-picker-item').forEach(function(item) {
+          var on = esc(item.getAttribute('data-code')) === esc(code);
+          item.classList.toggle('is-selected', on);
+          item.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+      }
+
+      elFundPickerList.querySelectorAll('.hb-fund-picker-item').forEach(function(item) {
+        item.addEventListener('click', function() {
+          var code = item.getAttribute('data-code');
+          if (!code || !elSelect) return;
+          elSelect.value = code;
+          syncSelectedUi(code);
+          elSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+      });
+
+      if (elFundPickerSearch) {
+        elFundPickerSearch.addEventListener('input', filterFundItems);
+      }
+
+      var filterBtns = document.querySelectorAll('#hb-panel-' + pfx + ' .hb-fund-type-btn');
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          typeFilter = btn.getAttribute('data-type') || 'all';
+          filterFundItems();
+        });
+      });
+
+      syncSelectedUi(elSelect.value);
+      filterFundItems();
     }
 
     function resetState() {
@@ -653,10 +714,20 @@
       getFundData: getFundData,
       initSelect: function() {
         if (!elSelect) return;
+        initFundPicker();
         if (document.querySelector('#hb-panel-' + pfx + ':not([hidden])')) {
           if (elSelect.value) getFundData(elSelect.value);
         }
-        elSelect.addEventListener('change', function() { if (this.value) getFundData(this.value); });
+        elSelect.addEventListener('change', function() {
+          if (this.value) getFundData(this.value);
+          if (pfx === 'f' && elFundPickerList) {
+            elFundPickerList.querySelectorAll('.hb-fund-picker-item').forEach(function(item) {
+              var on = esc(item.getAttribute('data-code')) === esc(elSelect.value);
+              item.classList.toggle('is-selected', on);
+              item.setAttribute('aria-selected', on ? 'true' : 'false');
+            });
+          }
+        });
       }
     };
   }

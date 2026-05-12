@@ -23,11 +23,33 @@
 {% if renderFundSelect and listFIC.size > 0 %}
 <form id="f-fund-form" class="hb-select-wrap" novalidate>
 <label class="hb-select-label" for="f-select-fund">Fondo seleccionado</label>
-<select class="hb-select" id="f-select-fund" aria-label="Seleccione un fondo">
+<div class="hb-fund-picker" id="f-fund-picker">
+<div class="hb-fund-picker-controls">
+<div class="hb-fund-picker-search">
+<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="9" r="7"></circle><path d="M15 15l3 3"></path></svg>
+<input id="f-fund-picker-search" type="text" placeholder="Buscar fondo..." aria-label="Buscar fondo">
+</div>
+<div class="hb-fund-picker-filters" role="group" aria-label="Filtrar tipo de fondo">
+<button class="hb-fund-type-btn active" type="button" data-type="all">Todos</button>
+<button class="hb-fund-type-btn" type="button" data-type="abierto">Abierto</button>
+<button class="hb-fund-type-btn" type="button" data-type="cerrado">Cerrado</button>
+</div>
+</div>
+<div class="hb-fund-picker-list" id="f-fund-picker-list" role="listbox" aria-label="Fondos de inversión colectiva">
+{% for item in listFIC %}
+{% assign fundTypeNorm = item.fields['Tipo de fondo'] | default: '' | downcase %}
+<button class="hb-fund-picker-item{% if forloop.first %} is-selected{% endif %}" type="button" role="option" data-code="{{ item.fields['Código identificador'] }}" data-type="{{ fundTypeNorm }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+<span class="hb-fund-picker-item-name">{{ item.meta.name }}</span>
+<span class="hb-fund-picker-item-type">{{ item.fields['Tipo de fondo'] | default: 'Sin clase' }}</span>
+</button>
+{% endfor %}
+</div>
+<select class="hb-select" id="f-select-fund" aria-label="Seleccione un fondo" hidden>
 {% for item in listFIC %}
 <option value="{{ item.fields['Código identificador'] }}" {% if forloop.first %}selected{% endif %}>{{ item.meta.name }}</option>
 {% endfor %}
 </select>
+</div>
 </form>
 {% endif %}
 
