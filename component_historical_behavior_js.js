@@ -23,6 +23,7 @@
   var elModalSub     = document.querySelector('#hb-modal-subtitle');
   var elModalTitle   = document.querySelector('#hb-modal-title');
   var elModalContent = document.querySelector('#hb-modal-content');
+  var elModalTopMetrics = document.querySelector('#hb-modal-top-metrics');
 
   /* ─── PURE HELPERS ─── */
   function num(v)        { return parseFloat(v) || 0; }
@@ -266,6 +267,27 @@
       return '<tr><td>' + esc(period) + '</td>' + cells + '</tr>';
     }).join('');
     return '<table><thead><tr>' + hd + '</tr></thead><tbody>' + bd + '</tbody></table>';
+  }
+
+  function setModalTopMetrics(show, row) {
+    if (!elModalTopMetrics) return;
+    if (!show || !row) {
+      elModalTopMetrics.classList.remove('is-visible');
+      elModalTopMetrics.innerHTML = '';
+      return;
+    }
+    var unitValue = hasVal(row.unitValue) ? esc(row.unitValue) : 'N.A';
+    var fundValue = hasVal(row.fundValue) ? esc(row.fundValue) : 'N.A';
+    elModalTopMetrics.innerHTML =
+      '<div class="hb-modal-top-metric">' +
+        '<span class="hb-modal-top-metric-label">Valor unidad</span>' +
+        '<span class="hb-modal-top-metric-value">' + unitValue + '</span>' +
+      '</div>' +
+      '<div class="hb-modal-top-metric">' +
+        '<span class="hb-modal-top-metric-label">Patrimonio</span>' +
+        '<span class="hb-modal-top-metric-value">' + fundValue + '</span>' +
+      '</div>';
+    elModalTopMetrics.classList.add('is-visible');
   }
 
   /* ─── PANEL FACTORY ─── */
@@ -514,6 +536,7 @@
       if (elModalSub)     elModalSub.textContent   = 'Detalle del portafolio';
       if (elModalTitle)   elModalTitle.textContent  = row.displayName;
       if (elModalContent) elModalContent.innerHTML  = buildCompTable([row]);
+      setModalTopMetrics(pfx === 'p', row);
       elModal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -524,6 +547,7 @@
       if (elModalSub)     elModalSub.textContent   = 'Comparativa detallada';
       if (elModalTitle)   elModalTitle.textContent  = 'Comparación de portafolios';
       if (elModalContent) elModalContent.innerHTML  = buildCompTable(items);
+      setModalTopMetrics(false);
       elModal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -660,6 +684,10 @@
   /* ─── MODAL CLOSE ─── */
   window.closeM = function() {
     if (elModal) elModal.classList.remove('open');
+    if (elModalTopMetrics) {
+      elModalTopMetrics.classList.remove('is-visible');
+      elModalTopMetrics.innerHTML = '';
+    }
     document.body.style.overflow = '';
   };
   window.omc = function(e) { if (e.target === elModal) closeM(); };
