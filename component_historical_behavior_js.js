@@ -2,11 +2,11 @@
   /* ─── CONSTANTS ─── */
   var renderStablePortfolio = [
     { key: 'unitValue', label: 'Valor Unidad',  format: 'currency' },
-    { key: 'fundValue', label: 'Patrimonio',    format: 'currency' },
+    { key: 'fundValue', label: 'VALOR FONDO',   format: 'currency' },
     { key: 'date',      label: 'Fecha',         format: 'date'     }
   ];
   var renderStablePortfolioPV = [
-    { key: 'fundValue', label: 'Patrimonio',    format: 'currency' },
+    { key: 'fundValue', label: 'VALOR FONDO',    format: 'currency' },
     { key: 'date',      label: 'Fecha',         format: 'date'     }
   ];
   var tableHeaders = ['Participación','Año Corrido','Diaria','Mensual','Semestral','Último Año','Últimos 2 Años','Últimos 3 Años'];
@@ -284,7 +284,7 @@
         '<span class="hb-modal-top-metric-value">' + unitValue + '</span>' +
       '</div>' +
       '<div class="hb-modal-top-metric">' +
-        '<span class="hb-modal-top-metric-label">Patrimonio</span>' +
+        '<span class="hb-modal-top-metric-label">VALOR FONDO</span>' +
         '<span class="hb-modal-top-metric-value">' + fundValue + '</span>' +
       '</div>';
     elModalTopMetrics.classList.add('is-visible');
@@ -408,12 +408,27 @@
       if (pfx !== 'f' || !elSelect || !elFundPickerList) return;
 
       var typeFilter = 'all';
+      var sortOrder = 'asc';
+      var elFundSort = document.getElementById('f-fund-sort');
 
       function normalizeType(v) {
         var t = esc(v).trim().toLowerCase();
         if (t.indexOf('abier') !== -1) return 'abierto';
         if (t.indexOf('cerr') !== -1) return 'cerrado';
         return t;
+      }
+
+      function sortFundItems() {
+        var items = Array.from(elFundPickerList.querySelectorAll('.hb-fund-picker-item'));
+        items.sort(function(a, b) {
+          var nameA = esc(a.querySelector('.hb-fund-picker-item-name') && a.querySelector('.hb-fund-picker-item-name').textContent).toLowerCase();
+          var nameB = esc(b.querySelector('.hb-fund-picker-item-name') && b.querySelector('.hb-fund-picker-item-name').textContent).toLowerCase();
+          var cmp = nameA.localeCompare(nameB, 'es');
+          return sortOrder === 'asc' ? cmp : -cmp;
+        });
+        items.forEach(function(item) {
+          elFundPickerList.appendChild(item);
+        });
       }
 
       function filterFundItems() {
@@ -425,6 +440,7 @@
           var matchesType = typeFilter === 'all' || itemType === typeFilter;
           item.classList.toggle('is-hidden', !(matchesSearch && matchesType));
         });
+        sortFundItems();
       }
 
       function syncSelectedUi(code) {
@@ -447,6 +463,13 @@
 
       if (elFundPickerSearch) {
         elFundPickerSearch.addEventListener('input', filterFundItems);
+      }
+
+      if (elFundSort) {
+        elFundSort.addEventListener('change', function() {
+          sortOrder = elFundSort.value || 'asc';
+          sortFundItems();
+        });
       }
 
       var filterBtns = document.querySelectorAll('#hb-panel-' + pfx + ' .hb-fund-type-btn');
@@ -483,10 +506,10 @@
     function createCard(row) {
       var uid  = esc(row.unitId);
       var isSel = state.selected.has(row.unitId);
-      var ua   = fmtMetric(row.yearToDate, row);
-      var r1   = fmtMetric(row.return365,  row);
-      var uaCls = metricCls(row.yearToDate);
-      var r1Cls = metricCls(row.return365);
+      var ua   = fmtMetric(row.return30, row);
+      var r1   = fmtMetric(row.return1,  row);
+      var uaCls = metricCls(row.return30);
+      var r1Cls = metricCls(row.return1);
       var subtitle = pfx === 'f'
         ? (esc(row.unitId) + ' - Participación')
         : (esc(row.unitId) + ' - ' + esc(row.claseLabel));
@@ -502,9 +525,9 @@
         '<div class="hb-card-kicker">' + subtitle + '</div>' +
         '<div class="hb-card-name">' + esc(row.displayName) + '</div>' +
         '<div class="hb-card-metrics">' +
-          '<div class="hb-card-main"><span class="hb-card-main-label">Último Año</span>' +
+          '<div class="hb-card-main"><span class="hb-card-main-label">Diaria</span>' +
           '<span class="hb-card-main-value ' + r1Cls + '">' + r1 + '</span></div>' +
-          '<div class="hb-card-secondary"><span class="hb-card-secondary-label">Año Corrido</span>' +
+          '<div class="hb-card-secondary"><span class="hb-card-secondary-label">Mensual</span>' +
           '<span class="hb-card-secondary-value ' + uaCls + '">' + ua + '</span></div>' +
         '</div>';
       art.onclick = function(e) {
@@ -594,7 +617,7 @@
       hideHint();
       var row = state.rows.find(function(r) { return r.unitId === uid; });
       if (!row || !elModal) return;
-      if (elModalSub)     elModalSub.textContent   = 'Detalle del portafolio';
+      if (elModalSub)     elModalSub.textContent   = pfx === 'f' ? 'Detalle de la participación' : 'Detalle del portafolio';
       if (elModalTitle)   elModalTitle.textContent  = row.displayName;
       if (elModalContent) elModalContent.innerHTML  = buildCompTable([row]);
       setModalTopMetrics(pfx === 'p', row);

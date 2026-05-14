@@ -33,6 +33,10 @@
 <button class="hb-fund-type-btn active" type="button" data-type="all">Todos</button>
 <button class="hb-fund-type-btn" type="button" data-type="abierto">Abierto</button>
 <button class="hb-fund-type-btn" type="button" data-type="cerrado">Cerrado</button>
+<select id="f-fund-sort" class="hb-fund-sort" aria-label="Ordenar fondos">
+<option value="asc">A-Z</option>
+<option value="desc">Z-A</option>
+</select>
 </div>
 </div>
 <div class="hb-fund-picker-list" id="f-fund-picker-list" role="listbox" aria-label="Fondos de inversión colectiva">
@@ -78,7 +82,7 @@
 
 <div class="hb-filters">
 <span class="hb-filters-label">Filtrar</span>
-<div class="hb-chip-wrap">
+<div class="hb-chip-wrap" style="display:none;">
 <button class="hb-chip" id="f-chip-risk" type="button" onclick="toggleDD('f','risk')">
 <span class="hb-chip-dot"></span><span id="f-chip-risk-lbl">Riesgo</span>
 <svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="5,8 10,13 15,8"></polyline></svg>
@@ -107,9 +111,6 @@
 </button>
 <div class="hb-chip-dd hb-chip-dd-sort" id="f-dd-sort">
 <div class="hb-dd-item" data-val="order" onclick="setSort('f',this,'Destacados Alianza')">Destacados Alianza</div>
-<div class="hb-dd-sep"></div>
-<div class="hb-dd-item" data-val="ua-desc" onclick="setSort('f',this,'Mayor rendimiento')">Mayor rendimiento</div>
-<div class="hb-dd-item" data-val="ua-asc" onclick="setSort('f',this,'Menor rendimiento')">Menor rendimiento</div>
 <div class="hb-dd-sep"></div>
 <div class="hb-dd-item" data-val="az" onclick="setSort('f',this,'Nombre A-Z')">Nombre A-Z</div>
 <div class="hb-dd-item" data-val="za" onclick="setSort('f',this,'Nombre Z-A')">Nombre Z-A</div>
@@ -156,7 +157,7 @@ Limpiar filtros
 </div>
 {% if renderFundSelect and listPV.size > 0 %}
 <form id="p-fund-form" class="hb-select-wrap" novalidate>
-<label class="hb-select-label" for="p-select-fund">Tipo de fondo</label>
+<label class="hb-select-label" for="p-select-fund">Fondo</label>
 <select class="hb-select" id="p-select-fund" aria-label="Seleccione un fondo">
 {% for item in listPV %}
 <option value="{{ item.fields['Código identificador'] }}" {% if forloop.first %}selected{% endif %}>{{ item.meta.name }}</option>
@@ -191,7 +192,7 @@ Limpiar filtros
 
 <div class="hb-filters">
 <span class="hb-filters-label">Filtrar</span>
-<div class="hb-chip-wrap">
+<div class="hb-chip-wrap" style="display:none;">
 <button class="hb-chip" id="p-chip-risk" type="button" onclick="toggleDD('p','risk')">
 <span class="hb-chip-dot"></span><span id="p-chip-risk-lbl">Riesgo</span>
 <svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="5,8 10,13 15,8"></polyline></svg>
@@ -220,9 +221,6 @@ Limpiar filtros
 </button>
 <div class="hb-chip-dd hb-chip-dd-sort" id="p-dd-sort">
 <div class="hb-dd-item" data-val="order" onclick="setSort('p',this,'Destacados Alianza')">Destacados Alianza</div>
-<div class="hb-dd-sep"></div>
-<div class="hb-dd-item" data-val="ua-desc" onclick="setSort('p',this,'Mayor rendimiento')">Mayor rendimiento</div>
-<div class="hb-dd-item" data-val="ua-asc" onclick="setSort('p',this,'Menor rendimiento')">Menor rendimiento</div>
 <div class="hb-dd-sep"></div>
 <div class="hb-dd-item" data-val="az" onclick="setSort('p',this,'Nombre A-Z')">Nombre A-Z</div>
 <div class="hb-dd-item" data-val="za" onclick="setSort('p',this,'Nombre Z-A')">Nombre Z-A</div>

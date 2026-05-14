@@ -200,12 +200,35 @@
 	color: #fff;
 }
 
+.hb-fund-sort {
+	appearance: none;
+	border: 1px solid var(--hb-line-2);
+	background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='1 4 6 9 11 4'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 10px center;
+	background-size: 12px;
+	padding: 10px 36px 10px 12px;
+	color: var(--hb-text);
+	border-radius: 4px;
+	font: inherit;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 1;
+	cursor: pointer;
+	transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+
+.hb-fund-sort:hover {
+	border-color: var(--hb-title-blue);
+	color: var(--hb-title-blue);
+}
+
+
 .hb-fund-picker-list {
 	border: 1px solid var(--hb-line);
 	border-radius: 4px;
 	background: #fff;
-	max-height: 240px;
-	overflow: auto;
+	max-height: 296px;
+	overflow-y: auto;
+	overflow-x: hidden;
 	display: grid;
 	padding: 4px;
 	gap: 4px;
@@ -1333,7 +1356,7 @@
 
 @media (max-width: 1050px) {
 	.hb-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-	.hb-summary { grid-template-columns: 1fr; }
+	.hb-summary { grid-template-columns: 1fr; width: 100%; }
 	.hb-summary-card { padding: 20px 24px; }
 }
 
