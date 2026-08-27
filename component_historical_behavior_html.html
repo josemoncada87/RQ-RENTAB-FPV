@@ -70,7 +70,7 @@
 <div class="hb-toolbar-right">
 <div class="hb-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="9" r="7"></circle><path d="M15 15l3 3"></path></svg>
-<input id="f-search-input" type="text" placeholder="Buscar fondo..." oninput="flt('f',this.value)">
+<input id="f-search-input" type="text" placeholder="Buscar participación..." oninput="flt('f',this.value)">
 </div>
 <button class="hb-btn hb-btn-primary" id="f-compare-btn" type="button" onclick="openM('f')" disabled>
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="2" y="3" width="7" height="14" rx="1.5"></rect><rect x="11" y="3" width="7" height="14" rx="1.5"></rect></svg>
@@ -160,7 +160,7 @@ Limpiar filtros
 <label class="hb-select-label" for="p-select-fund">Fondo</label>
 <select class="hb-select" id="p-select-fund" aria-label="Seleccione un fondo">
 {% for item in listPV %}
-<option value="{{ item.fields['Código identificador'] }}" {% if forloop.first %}selected{% endif %}>{{ item.meta.name }}</option>
+<option value="{{ item.fields['Código identificador'] }}" {% if forloop.first %}selected{% endif %}>{{ item.fields['Código identificador'] }} - {{ item.meta.name }}</option>
 {% endfor %}
 </select>
 </form>

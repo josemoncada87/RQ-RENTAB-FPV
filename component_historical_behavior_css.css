@@ -995,7 +995,9 @@
 	color: var(--hb-soft);
 	font-weight: 700;
 	background: var(--hb-bg);
-	white-space: normal;
+	white-space: nowrap;
+	word-break: normal;
+	overflow-wrap: normal;
 }
 
 .hb-table th.hb-th-fund {
@@ -1005,7 +1007,9 @@
 	letter-spacing: .5px;
 	text-transform: uppercase;
 	font-weight: 700;
-	white-space: normal;
+	white-space: nowrap;
+	word-break: normal;
+	overflow-wrap: normal;
 }
 
 .hb-table td {

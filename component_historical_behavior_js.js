@@ -60,6 +60,17 @@
     return esc(v);
   }
 
+  function parseCOCurrency(v) {
+    if (!hasVal(v)) return 0;
+    var s = esc(v).replace(/[^0-9.,-]/g, '').replace(/\./g, '').replace(',', '.');
+    var n = parseFloat(s);
+    return isNaN(n) ? 0 : n;
+  }
+
+  function fmtCOCurrency(n) {
+    return '$ ' + n.toLocaleString('es-CO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
   function rendBand(r) {
     var n = num(r.yearToDate);
     if (n < 0)  return 'negativo';
@@ -250,7 +261,7 @@
         claseLabel: claseLabel,
         rendBand:  rendBand(u),
         trendBand: trendBand(u),
-        searchTxt: name.toLowerCase()
+        searchTxt: (unitIdRaw + ' ' + name).toLowerCase()
       });
     }).filter(Boolean);
     rows.sort(function(a, b) { return a.order - b.order; });
@@ -259,7 +270,7 @@
 
   function buildCompTable(items) {
     var periods = ['Año Corrido','Diaria','Mensual','Semestral','Último Año','Últimos 2 Años','Últimos 3 Años'];
-    var hd = '<th>Período</th>' + items.map(function(it) {
+    var hd = '<th>Rentabilidad</th>' + items.map(function(it) {
       return '<th class="hb-th-fund">' + esc(it.displayName) + '</th>';
     }).join('');
     var bd = periods.map(function(period, i) {
@@ -408,11 +419,11 @@
     }
 
     function initFundPicker() {
-      if (pfx !== 'f' || !elSelect || !elFundPickerList) return;
+      if (!elSelect || !elFundPickerList) return;
 
       var typeFilter = 'all';
       var sortOrder = 'asc';
-      var elFundSort = document.getElementById('f-fund-sort');
+      var elFundSort = document.getElementById(pfx + '-fund-sort');
 
       function normalizeType(v) {
         var t = esc(v).trim().toLowerCase();
@@ -545,7 +556,7 @@
     /* ── table builder ── */
     function createTable(items) {
       var hd = '<th class="hb-table-chk-col"></th>' +
-        '<th class="hb-th-fund">Participación</th>' +
+        '<th class="hb-th-fund">' + (pfx === 'p' ? 'Portafolio' : 'Participación') + '</th>' +
         tableHeaders.slice(1).map(function(h) { return '<th>' + esc(h) + '</th>'; }).join('');
       var bd = items.map(function(row) {
         var isSel = state.selected.has(row.unitId);
@@ -555,7 +566,7 @@
         }).join('');
         return '<tr class="' + (isSel ? 'hb-table-row-sel' : '') + '">' +
           '<td class="hb-table-chk-col"><span class="hb-table-chk' + (isSel ? ' on' : '') + '" onclick="tg(\'' + pfx + '\',\'' + uid + '\')">✓</span></td>' +
-          '<td class="hb-table-portfolio">' + esc(row.displayName) + '</td>' + cells + '</tr>';
+          '<td class="hb-table-portfolio">' + esc(row.unitId ? (row.unitId + ' - ' + row.displayName) : row.displayName) + '</td>' + cells + '</tr>';
       }).join('');
       var tbl = document.createElement('table');
       tbl.className = 'hb-table';
@@ -609,9 +620,15 @@
       if (!elFundData) return;
       var sp = (data && data.stablePortfolio) || {};
       var summaryConfig = pfx === 'p' ? renderStablePortfolioPV : renderStablePortfolio;
+      var displaySp = sp;
+      if (pfx === 'p') {
+        var units = (data && data.units) || [];
+        var total = parseCOCurrency(sp.fundValue) + units.reduce(function(acc, u) { return acc + parseCOCurrency(u.fundValue); }, 0);
+        displaySp = Object.assign({}, sp, { fundValue: fmtCOCurrency(total) });
+      }
       elFundData.innerHTML = summaryConfig.map(function(item) {
         return '<div class="hb-summary-card"><div class="hb-summary-label">' + esc(item.label) +
-          '</div><div class="hb-summary-value">' + fmtSummary(sp[item.key], item.format) + '</div></div>';
+          '</div><div class="hb-summary-value">' + fmtSummary(displaySp[item.key], item.format) + '</div></div>';
       }).join('');
     }
 
@@ -746,7 +763,7 @@
         }
         elSelect.addEventListener('change', function() {
           if (this.value) getFundData(this.value);
-          if (pfx === 'f' && elFundPickerList) {
+          if (elFundPickerList) {
             elFundPickerList.querySelectorAll('.hb-fund-picker-item').forEach(function(item) {
               var on = esc(item.getAttribute('data-code')) === esc(elSelect.value);
               item.classList.toggle('is-selected', on);
