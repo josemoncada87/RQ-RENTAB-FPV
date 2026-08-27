@@ -191,12 +191,15 @@
     function getClaseLabelFromTag(tag, u, cfg, fallbackFundType) {
       var mapped = claseLabelFromTag(tag);
       if (mapped) return mapped;
-      var raw = cfg.fundType || fallbackFundType || getFieldAny(u, ['Tipo de fondo', 'Tipo de Fondo', 'clase', 'class', 'fundClass', 'tipoClase']);
+      var raw = getFieldAny(u, ['portfolioClass', 'portfolio_class', 'clase', 'class', 'fundClass', 'tipoClase', 'Tipo de fondo', 'Tipo de Fondo']) || cfg.fundType || fallbackFundType;
       if (hasVal(raw)) return esc(raw).trim();
       return 'Sin clase';
     }
 
     function getClaseTag(u, cfg, fallbackFundType) {
+      // New API returns class per unit in `portfolioClass` (Abierto/Cerrado).
+      var unitClassTag = normalizeClaseTag(getTagValue(u, ['portfolioClass', 'portfolio_class']));
+      if (unitClassTag) return unitClassTag;
       var tag = normalizeClaseTag(cfg.fundType);
       if (tag) return tag;
       tag = normalizeClaseTag(fallbackFundType);

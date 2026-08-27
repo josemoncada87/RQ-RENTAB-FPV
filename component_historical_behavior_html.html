@@ -43,7 +43,7 @@
 {% for item in listFIC %}
 {% assign fundTypeNorm = item.fields['Tipo de fondo'] | default: '' | downcase %}
 <button class="hb-fund-picker-item{% if forloop.first %} is-selected{% endif %}" type="button" role="option" data-code="{{ item.fields['Código identificador'] }}" data-type="{{ fundTypeNorm }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
-<span class="hb-fund-picker-item-name">{{ item.meta.name }}</span>
+<span class="hb-fund-picker-item-name">{{ item.fields['Código identificador'] }} - {{ item.meta.name }}</span>
 <span class="hb-fund-picker-item-type">{{ item.fields['Tipo de fondo'] | default: 'Sin clase' }}</span>
 </button>
 {% endfor %}
