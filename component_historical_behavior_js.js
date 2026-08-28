@@ -13,6 +13,7 @@
   var colKeys      = ['yearToDate','return1','return30','return180','return365','return730','return1095'];
   var defaultSort  = 'order';
   var defaultSortLabel = 'Destacados Alianza';
+  var PV_FIXED_FUND_ID = '300';
 
   /* ─── LIQUID DATA ─── */
   var dataLista = {{ dataList | json }};
@@ -706,7 +707,10 @@
     /* ── public API ── */
     return {
       hasLoaded:    function()      { return state.loaded; },
-      loadFirst:    function()      { if (elSelect && elSelect.value) getFundData(elSelect.value); },
+      loadFirst:    function()      {
+        if (pfx === 'p') { getFundData(PV_FIXED_FUND_ID); return; }
+        if (elSelect && elSelect.value) getFundData(elSelect.value);
+      },
       tg: function(id) {
         hideHint();
         state.selected.has(id) ? state.selected.delete(id) : state.selected.add(id);
@@ -847,8 +851,9 @@
     // Specific fund provided — try FIC first, then PV
     panelF.getFundData(initialFund);
   } else {
-    // Auto-load first fund in each panel select; FIC is active by default
+    // Auto-load first fund in the FIC select; FIC is active by default
     panelF.initSelect();
-    panelP.initSelect();
   }
+  // Pensiones voluntarias has no selector — always query the fixed fund on load.
+  panelP.loadFirst();
 })();

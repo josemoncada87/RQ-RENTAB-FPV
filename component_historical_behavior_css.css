@@ -1388,4 +1388,5 @@
 	.hb-toolbar-title { font-size: 16px; }
 	.hb-card-name { font-size: 11px; }
 	.hb-card-main-value { font-size: 16px; }
+	#hb-panel-p .hb-summary { grid-template-columns: 1fr; }
 }

@@ -155,16 +155,6 @@ Limpiar filtros
 <div class="hb-kicker">Rentabilidad en el</div>
 <h2 class="hb-title">Fondo de pensiones voluntarias</h2>
 </div>
-{% if renderFundSelect and listPV.size > 0 %}
-<form id="p-fund-form" class="hb-select-wrap" novalidate>
-<label class="hb-select-label" for="p-select-fund">Fondo</label>
-<select class="hb-select" id="p-select-fund" aria-label="Seleccione un fondo">
-{% for item in listPV %}
-<option value="{{ item.fields['Código identificador'] }}" {% if forloop.first %}selected{% endif %}>{{ item.fields['Código identificador'] }} - {{ item.meta.name }}</option>
-{% endfor %}
-</select>
-</form>
-{% endif %}
 </div>
 
 <div class="hb-summary" id="p-fund-data"></div>
