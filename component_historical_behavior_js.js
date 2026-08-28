@@ -164,7 +164,17 @@
     return map;
   }
 
-  function normalizeRows(data, currentFund) {
+  function withStablePortfolioUnit(data, pfx) {
+    if (pfx !== 'p') return data;
+    var sp = data && data.stablePortfolio;
+    if (!sp || !hasVal(sp.unitId)) return data;
+    var units = (data.units || []);
+    var alreadyPresent = units.some(function(u) { return sameCode(u.unitId, sp.unitId); });
+    if (alreadyPresent) return data;
+    return Object.assign({}, data, { units: units.concat([sp]) });
+  }
+
+  function normalizeRows(data, currentFund, pfx) {
     function normalizeTag(v) {
       return esc(v).trim().toLowerCase();
     }
@@ -255,7 +265,7 @@
         unitId: unitIdRaw,
         displayName: name,
         order:       cfg.order || 999,
-        'Cambiar cero': cfg.changeZero,
+        'Cambiar cero': pfx === 'p' ? true : cfg.changeZero,
         riskTag:   getRiskTag(u, cfg),
         claseTag:  claseTag,
         claseLabel: claseLabel,
@@ -681,7 +691,7 @@
         .then(function(data) {
           renderFundData(data);
           state.fund = fundObj;
-          state.rows = normalizeRows(data, fundObj);
+          state.rows = normalizeRows(withStablePortfolioUnit(data, pfx), fundObj, pfx);
           resetState();
           setLoading(false);
           renderGrid();
