@@ -30,6 +30,7 @@
   function num(v)        { return parseFloat(v) || 0; }
   function hasVal(v)     { return v !== null && v !== undefined && v !== ''; }
   function esc(v)        { return String(v == null ? '' : v); }
+  function cleanName(v)  { return esc(v).replace(/\s+/g, ' ').trim(); }
 
   function metricCls(v) {
     var n = num(v);
@@ -264,7 +265,7 @@
       // Si está parametrizado, se respeta el valor explícito de 'Ocultar fila en ceros'.
       var hideOnZero = isParametrized ? cfg.hideOnZero : true;
       if (hideOnZero && isEmptyRow(u)) return null;
-      var name = (cfg.useAlias && cfg.alias) ? cfg.alias : (u.unitName || unitIdRaw);
+      var name = cleanName((cfg.useAlias && cfg.alias) ? cfg.alias : (u.unitName || unitIdRaw));
       var claseTag = getClaseTag(u, cfg, fallbackFundType);
       var claseLabel = getClaseLabelFromTag(claseTag, u, cfg, fallbackFundType);
       return Object.assign({}, u, {
