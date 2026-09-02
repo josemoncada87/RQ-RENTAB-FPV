@@ -245,7 +245,7 @@
     }
 
     function getCfgByUnitId(unitIdRaw) {
-      return map[unitIdRaw] || map[esc(unitIdRaw).trim()] || map[normalizeKey(unitIdRaw)] || {};
+      return map[unitIdRaw] || map[esc(unitIdRaw).trim()] || map[normalizeKey(unitIdRaw)] || null;
     }
 
     function getRiskTag(u, cfg) {
@@ -256,9 +256,14 @@
     var units = (data && data.units) || [];
     var rows = units.map(function(u) {
       var unitIdRaw = getUnitIdRaw(u);
-      var cfg = getCfgByUnitId(unitIdRaw);
+      var rawCfg = getCfgByUnitId(unitIdRaw);
+      var isParametrized = !!rawCfg;
+      var cfg = rawCfg || {};
       if (cfg.disabled) return null;
-      if (cfg.hideOnZero && isEmptyRow(u)) return null;
+      // Sin fila de configuración en el CMS, se oculta por defecto si está todo en cero.
+      // Si está parametrizado, se respeta el valor explícito de 'Ocultar fila en ceros'.
+      var hideOnZero = isParametrized ? cfg.hideOnZero : true;
+      if (hideOnZero && isEmptyRow(u)) return null;
       var name = (cfg.useAlias && cfg.alias) ? cfg.alias : (u.unitName || unitIdRaw);
       var claseTag = getClaseTag(u, cfg, fallbackFundType);
       var claseLabel = getClaseLabelFromTag(claseTag, u, cfg, fallbackFundType);
