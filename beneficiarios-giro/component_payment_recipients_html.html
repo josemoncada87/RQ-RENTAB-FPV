@@ -1,0 +1,97 @@
+<div class="pr-shell">
+
+<div class="pr-hero">
+<div class="pr-kicker">Atención al cliente</div>
+<h2 class="pr-title">Consulta de beneficiarios de giro</h2>
+<p class="pr-lead">¿Recibió un pago desde una cartera de la fiduciaria y necesita saber quién lo ordenó? Ingrese los datos del pago tal como aparecen en su extracto bancario y le mostraremos el ordenante inicial de los recursos.</p>
+</div>
+
+<ol class="pr-stepper" id="pr-stepper" aria-label="Progreso de la consulta">
+<li data-step="1" class="on" aria-current="step"><span>1</span>Datos del pago</li>
+<li data-step="2"><span>2</span>Ordenante del giro</li>
+</ol>
+
+<div class="pr-stage" id="pr-stage" tabindex="-1">
+
+<form class="pr-card pr-form" id="pr-form" novalidate>
+<div class="pr-form-head">
+<div><p class="pr-eyebrow">Paso 1 de 2</p><h3>Datos del pago recibido</h3></div>
+<span class="pr-req-note">Todos los campos son obligatorios</span>
+</div>
+<div class="pr-form-alert" id="pr-form-alert" role="alert"></div>
+
+<fieldset>
+<legend>Beneficiario del giro</legend>
+<div class="pr-f">
+<label for="pr-tipoId">Tipo de identificación</label>
+<select id="pr-tipoId" required><option value="">Seleccione…</option></select>
+<span class="pr-hint"></span>
+</div>
+<div class="pr-f">
+<label for="pr-numId">Número de identificación</label>
+<input id="pr-numId" inputmode="numeric" autocomplete="off" maxlength="15" placeholder="Ej.: 1144056789" required>
+<span class="pr-hint">Solo números, sin puntos ni dígito de verificación.</span>
+</div>
+</fieldset>
+
+<fieldset>
+<legend>Cuenta donde recibió el dinero</legend>
+<div class="pr-f">
+<label for="pr-banco">Banco destino</label>
+<select id="pr-banco" required><option value="">Seleccione…</option></select>
+<span class="pr-hint"></span>
+</div>
+<div class="pr-f">
+<label for="pr-tipoCta">Tipo de cuenta</label>
+<select id="pr-tipoCta" required><option value="">Seleccione…</option></select>
+<span class="pr-hint"></span>
+</div>
+<div class="pr-f pr-full">
+<label for="pr-cuenta">Número de cuenta bancaria</label>
+<input id="pr-cuenta" autocomplete="off" maxlength="20" placeholder="Ej.: 45612378901" required>
+<span class="pr-hint">Letras y números, sin espacios, guiones ni caracteres especiales.</span>
+</div>
+</fieldset>
+
+<fieldset>
+<legend>Datos de la operación</legend>
+<div class="pr-f">
+<label for="pr-valor">Valor recibido</label>
+<div class="pr-money"><span>$</span><input id="pr-valor" inputmode="decimal" autocomplete="off" placeholder="3850000.00" required></div>
+<span class="pr-hint">Sin separador de miles. Use punto (.) solo para los centavos.</span>
+</div>
+<div class="pr-f">
+<label for="pr-fecha">Fecha de la operación</label>
+<input id="pr-fecha" type="date" required>
+<span class="pr-hint">Día en que el dinero llegó a su cuenta.</span>
+</div>
+</fieldset>
+
+<div class="pr-actions">
+<label class="pr-verify" id="pr-verify"><input type="checkbox" id="pr-human"><span>No soy un robot<small>Verificación de seguridad</small></span></label>
+<div class="pr-btns">
+<button type="button" class="pr-btn-sec" id="pr-clear">Limpiar</button>
+<button type="submit" class="pr-btn-cta" id="pr-submit">Consultar</button>
+</div>
+</div>
+</form>
+
+<div class="pr-card pr-loader" id="pr-loader" role="status" aria-live="polite" hidden>
+<svg class="pr-ld-mark" viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2 24 24H2Z" fill="#00b6ff"></path><path d="M13 2 24 24h-8Z" fill="#035ba9"></path><path d="M8 24l5-10 5 10Z" fill="#d2d655"></path></svg>
+<p class="pr-eyebrow">Cargando…</p>
+<h3>Buscando su giro</h3>
+<ol class="pr-ld-steps" id="pr-ld-steps">
+<li><i></i>Validando los datos ingresados</li>
+<li><i></i>Consultando operaciones</li>
+<li><i></i>Preparando el resultado</li>
+</ol>
+<div class="pr-ld-bar"><i id="pr-ld-bar"></i></div>
+<p class="pr-ld-note">Esto puede tardar unos segundos. No cierre ni recargue la página.</p>
+</div>
+
+<section class="pr-card pr-form" id="pr-results" aria-live="polite" hidden></section>
+
+</div>
+</div>
+
+<script>{% snippet "component_payment_recipients_js" %}</script>

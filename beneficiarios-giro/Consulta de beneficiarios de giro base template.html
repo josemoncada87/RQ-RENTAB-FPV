@@ -1,0 +1,523 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Consulta de beneficiarios de giro v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+/* Layout v3: light portal hero → breadcrumb → stepper → un solo contenedor que alterna: formulario → cargador → resultado (tarjetas/tabla) → footer claro */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --surface-2:#f5f7fb; --ink:#002646; --ink-2:#6a6e80; --ink-3:#9da1b3;
+  --line:#e2e4ec; --line-2:#edeff6; --brand:#035ba9; --brand-strong:#074b86; --brand-soft:#e6f0fa;
+  --sky:#00b6ff; --lime:#d2d655; --lime-hover:#c5c94a; --lime-2:#a7aa44; --navy:#002646;
+  --ok:#1f7a4d; --ok-soft:#e7f4ec; --warn:#a15c00; --warn-soft:#fdf3e3; --err:#b3261e; --err-soft:#fbeceb;
+  --shadow:0 4px 10px rgba(0,38,70,.07); --shadow-cta:0 6px 15px rgba(0,0,0,.10);
+  --f-display:"Space Grotesk","Segoe UI",system-ui,sans-serif;
+  --f-ui:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+  --r:2px; color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:clamp(16px,4vw,48px)}
+.num{font-variant-numeric:tabular-nums}
+.eyebrow{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-2);margin:0 0 8px}
+
+/* Hero */
+.hero{background:var(--surface-2);position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(115deg,transparent 64%,rgba(0,182,255,.10) 64%,rgba(0,182,255,.10) 76%,transparent 76%),
+  linear-gradient(115deg,transparent 76%,rgba(210,214,85,.20) 76%,rgba(210,214,85,.20) 82%,transparent 82%)}
+.hero .wrap{position:relative;padding-block:22px 32px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:30px}
+.brandmark{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:700;font-size:18px;color:var(--navy)}
+.brandmark svg{width:26px;height:26px}
+.brandmark small{display:block;font-family:var(--f-ui);font-weight:400;font-size:12px;color:var(--ink-2);margin-top:-2px}
+.demo-tag{font-size:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);padding:4px 10px;border-radius:999px}
+.hero h1{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,4.4vw,46px);line-height:1.05;margin:0;color:var(--brand);text-wrap:balance;max-width:22ch}
+.hero .lead{color:var(--ink-2);max-width:64ch;margin:14px 0 0;font-size:15px}
+.crumbs{border-bottom:1px solid var(--line)}
+.crumbs .wrap{padding-block:10px;font-size:12.5px;color:var(--ink-2);display:flex;gap:8px;flex-wrap:wrap}
+.crumbs b{color:var(--brand);font-weight:600}
+
+main{padding-block:32px 56px;display:flex;flex-direction:column;gap:40px}
+
+/* Prototype bar */
+.proto{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;background:var(--surface-2);border:1px dashed var(--line);padding:10px 14px;font-size:12.5px;color:var(--ink-2)}
+.proto b{color:var(--ink);font-weight:600}
+.ghost{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:6px 12px;font-size:12.5px;font-weight:500;cursor:pointer;color:var(--brand)}
+.ghost:hover{border-color:var(--brand);background:var(--brand-soft)}
+
+/* Form + aside */
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line-2);box-shadow:var(--shadow);border-radius:var(--r)}
+.form{padding:24px clamp(18px,3vw,32px) 26px}
+.form-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line-2);padding-bottom:16px;margin-bottom:20px}
+.form-head h2{font-family:var(--f-display);font-size:24px;margin:0;color:var(--ink);line-height:1.15}
+.form-head .eyebrow{font-size:12px;margin-bottom:4px}
+.req-note{font-size:12px;color:var(--ink-2)}
+fieldset{border:0;padding:0;margin:0 0 22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+legend{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px;padding:0}
+legend::before{content:"";width:18px;height:2px;background:var(--lime-2)}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f.full{grid-column:1/-1}
+.f label{font-size:13px;font-weight:600;color:var(--ink)}
+.f label .src{font-weight:400;color:var(--ink-3);font-size:11.5px;margin-left:6px}
+.f input,.f select{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:11px 12px;font-size:15px;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.f select{appearance:none;padding-right:34px;cursor:pointer;background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23035ba9' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 12px center}
+.f input:hover,.f select:hover{border-color:var(--ink-3)}
+.f input:focus,.f select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.f .hint{font-size:12px;color:var(--ink-2);min-height:18px}
+.f .hint b{color:var(--ink);font-weight:600}
+.f.invalid input,.f.invalid select{border-color:var(--err);box-shadow:0 0 0 3px var(--err-soft)}
+.f.invalid .hint{color:var(--err)}
+.money{position:relative}
+.money span{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink-2);font-weight:500}
+.money input{padding-left:28px}
+
+.actions{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line-2);padding-top:20px}
+.verify{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:var(--surface-2);padding:10px 14px;border-radius:var(--r);cursor:pointer;user-select:none}
+.verify input{width:20px;height:20px;accent-color:var(--brand);cursor:pointer;margin:0}
+.verify span{font-size:13px}
+.verify small{display:block;color:var(--ink-3);font-size:11px}
+.verify.invalid{border-color:var(--err);background:var(--err-soft)}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-cta{background:var(--lime);color:#002646;border:0;border-radius:var(--r);padding:12px 26px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:var(--shadow-cta);display:inline-flex;align-items:center;gap:10px}
+.btn-cta:hover{background:var(--lime-hover)}
+.btn-cta[disabled]{opacity:.7;cursor:progress}
+.btn-sec{background:transparent;border:1px solid var(--line);border-radius:var(--r);padding:11px 18px;font-weight:600;font-size:14px;cursor:pointer;color:var(--ink-2)}
+.btn-sec:hover{border-color:var(--ink-3);color:var(--ink)}
+.spin{width:14px;height:14px;border:2px solid rgba(0,38,70,.25);border-top-color:#002646;border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.form-alert{display:none;margin-bottom:18px;padding:10px 14px;border-left:3px solid var(--err);background:var(--err-soft);color:var(--err);font-size:13px}
+.form-alert.show{display:block}
+
+.help{padding:22px;display:flex;flex-direction:column;gap:16px;position:sticky;top:20px}
+.help h3{font-family:var(--f-display);font-size:18px;margin:0;line-height:1.2}
+.help p{margin:0;color:var(--ink-2);font-size:13px}
+.stmt{border:1px solid var(--line);background:var(--surface-2);padding:12px 14px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);line-height:1.6}
+.stmt .hl{background:#f5f6c9;padding:0 3px}
+.stmt .cap{display:block;font-family:var(--f-ui);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+.checklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:13px}
+.checklist li{display:flex;gap:10px;align-items:flex-start}
+.checklist li::before{content:"";flex:none;width:7px;height:7px;margin-top:7px;background:var(--sky);transform:rotate(45deg)}
+.flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11.5px;color:var(--ink-2)}
+.flow span{border:1px solid var(--line);padding:3px 8px;background:var(--surface)}
+.flow i{font-style:normal;color:var(--ink-3)}
+
+/* Results */
+.res-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 24px;flex-wrap:wrap;margin-bottom:16px}
+.res-head h2{font-family:var(--f-display);font-weight:700;font-size:clamp(22px,2.6vw,30px);color:var(--brand);margin:0;line-height:1.1}
+.res-head .eyebrow{font-size:12px;margin-bottom:4px}
+.summary{display:grid;grid-template-columns:1.3fr repeat(3,minmax(0,1fr));gap:0;margin-bottom:16px}
+.summary>div{padding:16px 18px;border-right:1px solid var(--line-2)}
+.summary>div:last-child{border-right:0}
+.summary .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+.summary .v{font-family:var(--f-display);font-weight:700;font-size:22px;line-height:1.2;margin-top:4px}
+.summary .v small{font-family:var(--f-ui);font-size:12px;color:var(--ink-2);font-weight:500;margin-left:6px}
+.summary .first{background:var(--brand);color:#fff}
+.summary .first .k{color:#cfe2f6}
+.status{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px}
+.status.ok{background:var(--ok-soft);color:var(--ok)}
+.status.ok::before{content:"✓"}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:1080px}
+thead th{background:var(--navy);color:#fff;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;text-align:left;padding:12px 14px;white-space:nowrap}
+thead th.r{text-align:right}
+td{padding:12px 14px;border-bottom:1px solid var(--line-2);vertical-align:top}
+td.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.mono{font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:nth-child(even){background:var(--surface-2)}
+tbody tr:hover{background:var(--brand-soft)}
+td .strong{font-weight:600;color:var(--ink)}
+td .sub{display:block;font-size:11.5px;color:var(--ink-2)}
+.tag{display:inline-block;font-size:11.5px;padding:2px 8px;border:1px solid var(--line);background:var(--surface);white-space:nowrap}
+tfoot td{font-weight:700;border-top:2px solid var(--navy);border-bottom:0}
+.tbl-foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px;font-size:12px;color:var(--ink-2);border-top:1px solid var(--line-2)}
+
+/* v2: selector de vista + tarjetas por fila */
+.res-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.res-tools .count{font-size:13px;color:var(--ink-2)}
+.res-tools .count b{color:var(--ink)}
+.viewsw{display:inline-flex;border:1px solid var(--line);background:var(--surface);padding:3px;gap:3px;border-radius:var(--r)}
+.viewsw button{display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;padding:8px 14px;font-size:13px;font-weight:600;color:var(--ink-2);cursor:pointer;border-radius:1px;min-height:38px}
+.viewsw button svg{width:16px;height:16px;flex:none}
+.viewsw button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.viewsw button:hover:not([aria-pressed="true"]){background:var(--brand-soft);color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:20px}
+/* Tarjeta al estilo de "Productos recomendados": borde izquierdo celeste, sombra de tarjeta, rótulo en versalitas, título en mayúsculas */
+.rcard{display:flex;flex-direction:column;background:var(--surface);border:0;border-left:4px solid var(--sky);box-shadow:0 4px 10px rgba(0,0,0,.10);border-radius:var(--r);padding:18px 20px 0}
+.rc-label span{white-space:nowrap}
+.rc-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);display:flex;justify-content:space-between;gap:8px}
+.rc-label b{color:var(--ink);font-weight:600;letter-spacing:.08em}
+.rc-title{font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.2;text-transform:uppercase;color:var(--navy);margin:8px 0 2px;text-wrap:balance}
+.rc-titleid{font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.rc-titleid b{color:var(--ink);font-weight:600}
+.rc-role{display:inline-block;align-self:flex-start;margin-top:10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--brand);border-bottom:2px solid var(--lime)}
+.rc-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:16px -20px 0;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+.rc-metrics>div{padding:12px 14px;border-right:1px solid var(--line-2);min-width:0}
+.rc-metrics>div:first-child{grid-column:1/-1;padding-left:20px;border-right:0;border-bottom:1px solid var(--line-2)}
+.rc-metrics>div:nth-child(2){padding-left:20px}
+.rc-metrics>div:last-child{border-right:0}
+.rc-metrics .v{display:block;font-family:var(--f-display);font-weight:700;font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.rc-metrics .v.lg{font-size:22px;color:var(--brand)}
+.rc-metrics .k{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-top:2px}
+.rc-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px 18px;padding:14px 0 16px}
+.rc-f{min-width:0}
+.rc-f .k{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:2px}
+.rc-f .v{font-size:14px;color:var(--ink);font-weight:500;overflow-wrap:anywhere}
+.rc-f .sub{display:block;font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.rc-foot{margin-top:auto;border-top:1px solid var(--line-2);margin-inline:-20px;padding:10px 20px;display:flex;justify-content:flex-end}
+.copy{background:none;border:0;color:var(--brand);font-size:13px;cursor:pointer;padding:6px 0;text-decoration:underline;text-underline-offset:3px}
+.copy:hover{color:var(--brand-strong)}
+/* v3: stepper + contenedor único + cargador */
+.stepper{list-style:none;margin:0 0 -16px;padding:0;display:flex;gap:28px;flex-wrap:wrap;counter-reset:st}
+.stepper li{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-3);padding-bottom:10px;border-bottom:3px solid transparent;font-weight:500}
+.stepper li span{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);font-family:var(--f-display);font-weight:700;font-size:13px;color:var(--ink-3);background:var(--surface)}
+.stepper li.on{color:var(--ink);border-bottom-color:var(--lime)}
+.stepper li.on span{background:var(--brand);border-color:var(--brand);color:#fff}
+.stepper li.done{color:var(--ink-2)}
+.stepper li.done span{background:var(--brand-soft);border-color:var(--brand-soft);color:var(--brand)}
+#stage{scroll-margin-top:16px}
+#stage:focus{outline:none}
+.res-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line-2)}
+.back{background:none;border:0;padding:6px 0;color:var(--brand);font-weight:600;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.back:hover{color:var(--brand-strong);text-decoration:underline;text-underline-offset:3px}
+.loader{min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;gap:6px}
+.ld-mark{width:64px;height:64px;margin-bottom:14px}
+.ld-mark path{transform-box:fill-box;transform-origin:center;animation:ldp 1.2s ease-in-out infinite}
+.ld-mark path:nth-child(2){animation-delay:.2s}.ld-mark path:nth-child(3){animation-delay:.4s}
+@keyframes ldp{0%,100%{opacity:.25;transform:scale(.92)}45%{opacity:1;transform:scale(1)}}
+.loader .eyebrow{font-size:12px;margin:0}
+.loader h2{font-family:var(--f-display);font-weight:700;font-size:clamp(22px,2.6vw,28px);color:var(--brand);margin:0 0 18px}
+.ld-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;text-align:left;min-width:min(100%,320px)}
+.ld-steps li{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--ink-3)}
+.ld-steps li i{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:700}
+.ld-steps li.act{color:var(--ink);font-weight:500}
+.ld-steps li.act i{border-color:var(--line);border-top-color:var(--brand);animation:sp .8s linear infinite}
+.ld-steps li.ok{color:var(--ink-2)}
+.ld-steps li.ok i{background:var(--brand);border-color:var(--brand);color:#fff}
+.ld-steps li.ok i::before{content:"✓"}
+.ld-bar{width:min(100%,320px);height:4px;background:var(--line-2);margin-top:22px;border-radius:2px;overflow:hidden}
+.ld-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sky),var(--brand));transition:width .7s ease}
+.ld-note{font-size:12px;color:var(--ink-3);margin-top:10px}
+.res-foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 2px 0;font-size:12px;color:var(--ink-2)}
+.empty{padding:28px clamp(18px,3vw,32px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;border-left:3px solid var(--warn)}
+.empty .ic{width:44px;height:44px;border-radius:50%;background:var(--warn-soft);color:var(--warn);display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:22px}
+.empty h3{font-family:var(--f-display);font-size:20px;margin:0 0 6px}
+.empty p{margin:0 0 12px;color:var(--ink-2);max-width:64ch}
+.empty ul{margin:0 0 16px;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.empty li b{font-weight:600}
+.echo{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.echo span{font-size:12px;background:var(--surface-2);border:1px solid var(--line);padding:3px 9px}
+
+details.tech{margin-top:16px}
+details.tech summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--brand);padding:10px 0;list-style:none;display:flex;align-items:center;gap:8px}
+details.tech summary::-webkit-details-marker{display:none}
+details.tech summary::before{content:"+";display:inline-grid;place-items:center;width:18px;height:18px;border:1px solid var(--brand);font-weight:700;font-size:13px;line-height:1}
+details.tech[open] summary::before{content:"−"}
+.tech-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+pre{margin:0;background:var(--navy);color:#dbe7f5;padding:14px 16px;font-size:12px;line-height:1.6;overflow-x:auto;border-radius:var(--r)}
+pre .k{color:#9ee3ff} pre .s{color:#e2e59a} pre .c{color:#7f93ad}
+.map{width:100%;border-collapse:collapse;font-size:12.5px;min-width:0}
+.map th{background:none;color:var(--ink-2);text-transform:uppercase;letter-spacing:.1em;font-size:10.5px;text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
+.map td{padding:7px 8px;border-bottom:1px solid var(--line-2)}
+.map code{font-size:12px;color:var(--brand)}
+
+footer{background:var(--surface-2);border-top:1px solid var(--line);color:var(--ink-2);font-size:12.5px}
+footer .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer b{color:var(--ink)}
+
+@media (max-width:980px){.grid{grid-template-columns:1fr}.help{position:static}.summary{grid-template-columns:repeat(2,minmax(0,1fr))}.summary>div:nth-child(2){border-right:0}.tech-body{grid-template-columns:1fr}}
+@media (max-width:640px){
+  fieldset{grid-template-columns:1fr}
+  .rc-body{grid-template-columns:1fr}
+  .stepper{gap:16px}.stepper li{font-size:12px}
+  .viewsw{width:100%}.viewsw button{flex:1;justify-content:center}
+  .summary{grid-template-columns:1fr}.summary>div{border-right:0;border-bottom:1px solid var(--line-2)}
+  .actions{flex-direction:column;align-items:stretch}.btns{flex-direction:column-reverse}.btn-cta,.btn-sec{justify-content:center;width:100%}
+  .empty{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brandmark">
+        <svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2 24 24H2Z" fill="#00b6ff"/><path d="M13 2 24 24h-8Z" fill="#035ba9"/><path d="M8 24l5-10 5 10Z" fill="#d2d655"/></svg>
+        <div>Portal fiduciario<small>Servicios en línea</small></div>
+      </div>
+      <span class="demo-tag">Prototipo v3 · datos simulados</span>
+    </div>
+    <p class="eyebrow">Atención al cliente /</p>
+    <h1>Consulta de beneficiarios de giro</h1>
+    <p class="lead">¿Recibiste un pago desde una cartera de la fiduciaria y necesitas saber quién lo ordenó? Ingresa los datos del pago tal como aparecen en tu extracto bancario y te mostramos el ordenante inicial de los recursos.</p>
+  </div>
+</header>
+<nav class="crumbs" aria-label="Ruta"><div class="wrap"><span>Inicio</span><span>/</span><span>Atención al cliente</span><span>/</span><b>Consulta de beneficiarios de giro</b></div></nav>
+
+<main class="wrap">
+  <div class="proto" role="note">
+    <b>Modo prototipo.</b> La consulta al BUS / SIFI está simulada.
+    <button class="ghost" type="button" id="demo-ok">Cargar ejemplo con resultados</button>
+    <button class="ghost" type="button" id="demo-none">Cargar ejemplo sin resultados</button>
+  </div>
+
+  <ol class="stepper" id="stepper" aria-label="Progreso de la consulta">
+    <li data-step="1" class="on" aria-current="step"><span>1</span>Datos del pago</li>
+    <li data-step="2"><span>2</span>Ordenante del giro</li>
+  </ol>
+  <div id="stage" tabindex="-1">
+    <form class="card form" id="form" novalidate>
+      <div class="form-head">
+        <div><p class="eyebrow">Paso 1 de 2</p><h2>Datos del pago recibido</h2></div>
+        <span class="req-note">Todos los campos son obligatorios</span>
+      </div>
+      <div class="form-alert" id="form-alert" role="alert"></div>
+
+      <fieldset>
+        <legend>Beneficiario del giro</legend>
+        <div class="f">
+          <label for="tipoId">Tipo de identificación <span class="src">GEMSAUXI</span></label>
+          <select id="tipoId" required><option value="">Selecciona…</option></select>
+          <span class="hint"></span>
+        </div>
+        <div class="f">
+          <label for="numId">Número de identificación</label>
+          <input id="numId" inputmode="numeric" autocomplete="off" maxlength="15" placeholder="Ej.: 1144056789" required>
+          <span class="hint">Solo números, sin puntos ni dígito de verificación.</span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Cuenta donde recibiste el dinero</legend>
+        <div class="f">
+          <label for="banco">Banco destino <span class="src">GEMSBACO</span></label>
+          <select id="banco" required><option value="">Selecciona…</option></select>
+          <span class="hint"></span>
+        </div>
+        <div class="f">
+          <label for="tipoCta">Tipo de cuenta <span class="src">GEMSTPBA</span></label>
+          <select id="tipoCta" required><option value="">Selecciona…</option></select>
+          <span class="hint"></span>
+        </div>
+        <div class="f full">
+          <label for="cuenta">Número de cuenta bancaria</label>
+          <input id="cuenta" autocomplete="off" maxlength="20" placeholder="Ej.: 45612378901" required>
+          <span class="hint">Letras y números, sin espacios, guiones ni caracteres especiales.</span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Datos de la operación</legend>
+        <div class="f">
+          <label for="valor">Valor recibido</label>
+          <div class="money"><span>$</span><input id="valor" inputmode="decimal" autocomplete="off" placeholder="3850000.00" required></div>
+          <span class="hint">Sin separador de miles. Usa punto (.) solo para los centavos.</span>
+        </div>
+        <div class="f">
+          <label for="fecha">Fecha de la operación</label>
+          <input id="fecha" type="date" required>
+          <span class="hint">Día en que el dinero llegó a tu cuenta.</span>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <label class="verify" id="verify"><input type="checkbox" id="human"><span>No soy un robot<small>Verificación de seguridad</small></span></label>
+        <div class="btns">
+          <button type="button" class="btn-sec" id="clear">Limpiar</button>
+          <button type="submit" class="btn-cta" id="submit">Consultar</button>
+        </div>
+      </div>
+    </form>
+    <div class="card loader" id="loader" role="status" aria-live="polite" hidden>
+      <svg class="ld-mark" viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2 24 24H2Z" fill="#00b6ff"/><path d="M13 2 24 24h-8Z" fill="#035ba9"/><path d="M8 24l5-10 5 10Z" fill="#d2d655"/></svg>
+      <p class="eyebrow">Cargando…</p>
+      <h2>Buscando tu giro</h2>
+      <ol class="ld-steps" id="ld-steps">
+        <li><i></i>Validando los datos ingresados</li>
+        <li><i></i>Consultando operaciones en SIFI</li>
+        <li><i></i>Preparando el resultado</li>
+      </ol>
+      <div class="ld-bar"><i id="ld-bar"></i></div>
+      <p class="ld-note">Esto puede tardar unos segundos. No cierres ni recargues la página.</p>
+    </div>
+    <section class="card form" id="results" aria-live="polite" hidden></section>
+  </div>
+</main>
+
+<footer><div class="wrap">
+  <div><b>Prototipo de interfaz</b> · Catálogos, nombres y operaciones son ficticios.</div>
+  <div>Horario de atención: lunes a viernes, 8:00 a. m. a 4:00 p. m.</div>
+</div></footer>
+
+<script>
+(()=>{
+// ---- Catálogos simulados (SIFI)
+const GEMSAUXI=[['CC','Cédula de ciudadanía'],['CE','Cédula de extranjería'],['NIT','NIT'],['PA','Pasaporte'],['TI','Tarjeta de identidad'],['PPT','Permiso por protección temporal'],['NE','Nit extranjería']];
+const GEMSBACO=[['1001','Banco de Bogotá'],['1002','Banco Popular'],['1007','Bancolombia'],['1013','BBVA Colombia'],['1019','Scotiabank Colpatria'],['1023','Banco de Occidente'],['1032','Banco Caja Social'],['1040','Banco Agrario'],['1051','Davivienda'],['1052','Banco AV Villas'],['1060','Banco Pichincha'],['1062','Banco Falabella'],['1066','Banco Cooperativo Coopcentral'],['1507','Nequi'],['1551','Daviplata']];
+const GEMSTPBA=[['AH','Ahorros'],['CC','Corriente'],['DE','Depósito electrónico']];
+const fill=(id,list,fmt)=>{const s=document.getElementById(id);list.forEach(([c,d])=>s.add(new Option(fmt?fmt(c,d):d,c)))};
+fill('tipoId',GEMSAUXI);fill('banco',GEMSBACO);fill('tipoCta',GEMSTPBA,(c,d)=>c+' – '+d);
+const $=id=>document.getElementById(id);
+const desc=(list,c)=>(list.find(x=>x[0]===c)||['',''])[1];
+
+// ---- Base simulada de operaciones
+const DB=[
+ {tipoId:'CC',numId:'1144056789',banco:'1007',tipoCta:'AH',cuenta:'45612378901',valor:'3850000.00',fecha:'2026-09-15',
+  rows:[
+   {fecha:'2026-09-15',op:'OC-2026-0918342',idTit:'900487215',tipoTit:'NIT',nomTit:'Constructora Altos del Lago S.A.S.',idBen:'1144056789',nomBen:'Laura Marcela Ríos Patiño',valor:3850000,tipoCli:'Fideicomiso inmobiliario',nomCli:'Fideicomiso Torres del Río – Etapa 2'},
+   {fecha:'2026-09-15',op:'OC-2026-0918517',idTit:'SIFI-0045213',tipoTit:'Código SIFI',nomTit:'Inversiones Valle Verde Ltda.',idBen:'1144056789',nomBen:'Laura Marcela Ríos Patiño',valor:3850000,tipoCli:'Encargo fiduciario',nomCli:'Encargo de administración y pagos 3317'},
+   {fecha:'2026-09-15',op:'OC-2026-0918790',idTit:'901233870',tipoTit:'NIT',nomTit:'Concesionaria Vial Andina S.A.S.',idBen:'1144056789',nomBen:'Laura Marcela Ríos Patiño',valor:3850000,tipoCli:'Patrimonio autónomo',nomCli:'P.A. Recaudo Peajes Corredor Sur'},
+  ]},
+];
+
+// ---- Sanitización en vivo según especificación
+$('numId').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'')});
+$('cuenta').addEventListener('input',e=>{const v=e.target.value,c=v.replace(/[^a-zA-Z0-9]/g,'');if(v!==c){e.target.value=c;flash('cuenta','Quitamos los caracteres especiales. Solo se aceptan letras y números.')}else resetHint('cuenta')});
+$('valor').addEventListener('input',e=>{let v=e.target.value.replace(/,/g,'.').replace(/[^\d.]/g,'');const p=v.split('.');if(p.length>2)v=p[0]+'.'+p.slice(1).join('');const [i,d]=v.split('.');if(d!==undefined)v=i+'.'+d.slice(0,2);e.target.value=v;valorHint()});
+const today=new Date();const iso=d=>d.toISOString().slice(0,10);$('fecha').max=iso(new Date(today.getTime()-today.getTimezoneOffset()*6e4));
+
+const HINTS={};document.querySelectorAll('.f').forEach(f=>{const h=f.querySelector('.hint');const i=f.querySelector('input,select');HINTS[i.id]=h.innerHTML});
+function resetHint(id){const f=$(id).closest('.f');f.classList.remove('invalid');f.querySelector('.hint').innerHTML=HINTS[id]}
+function flash(id,msg){const h=$(id).closest('.f').querySelector('.hint');h.innerHTML='<b>'+msg+'</b>';clearTimeout(flash.t);flash.t=setTimeout(()=>resetHint(id),2600)}
+const cop=n=>'$ '+n.toLocaleString('es-CO',{minimumFractionDigits:2,maximumFractionDigits:2});
+function valorHint(){const v=$('valor').value;const f=$('valor').closest('.f');f.classList.remove('invalid');
+  f.querySelector('.hint').innerHTML=v&&!isNaN(+v)&&+v>0?'Así lo leemos: <b class="num">'+cop(+v)+'</b>':HINTS.valor}
+['tipoId','banco','tipoCta','fecha','numId'].forEach(id=>$(id).addEventListener('change',()=>resetHint(id)));
+$('human').addEventListener('change',()=>$('verify').classList.remove('invalid'));
+
+// ---- Validación
+const RULES={
+ tipoId:v=>v?'':'Selecciona el tipo de identificación.',
+ numId:v=>!v?'Ingresa el número de identificación.':v.length<5?'El número parece incompleto.':'',
+ banco:v=>v?'':'Selecciona el banco donde recibiste el dinero.',
+ tipoCta:v=>v?'':'Selecciona el tipo de cuenta.',
+ cuenta:v=>!v?'Ingresa el número de cuenta.':v.length<4?'El número de cuenta parece incompleto.':'',
+ valor:v=>!v?'Ingresa el valor recibido.':!/^\d+(\.\d{1,2})?$/.test(v)||+v<=0?'Escribe un valor válido, por ejemplo 3850000.00':'',
+ fecha:v=>!v?'Selecciona la fecha de la operación.':v>$('fecha').max?'La fecha no puede ser posterior a hoy.':'',
+};
+function validate(){let bad=[];for(const id in RULES){const msg=RULES[id]($(id).value.trim());const f=$(id).closest('.f');
+  if(msg){f.classList.add('invalid');f.querySelector('.hint').textContent=msg;bad.push(id)}else if(f.classList.contains('invalid'))resetHint(id)}
+  if(!$('human').checked){$('verify').classList.add('invalid');bad.push('human')}
+  const al=$('form-alert');
+  if(bad.length){al.textContent=bad.length===1&&bad[0]==='human'?'Confirma la verificación de seguridad para continuar.':'Revisa los '+bad.filter(b=>b!=='human').length+' campos marcados'+(bad.includes('human')?' y confirma la verificación de seguridad.':'.');al.classList.add('show');$(bad[0]).focus()}
+  else al.classList.remove('show');
+  return !bad.length}
+
+// ---- Payload según especificación
+const ddmmyyyy=s=>{const [y,m,d]=s.split('-');return d+m+y};
+function payload(){return{tipoIdentificacion:$('tipoId').value,numeroIdentificacion:Number($('numId').value),codigoBanco:$('banco').value,tipoCuenta:$('tipoCta').value,cuentaBancaria:$('cuenta').value,valor:Number($('valor').value).toFixed(2),fecha:ddmmyyyy($('fecha').value)}}
+function hl(json){return json.replace(/("[^"]+")(\s*:)/g,'<span class="k">$1</span>$2').replace(/:\s*("[^"]*")/g,': <span class="s">$1</span>')}
+
+// ---- Submit
+$('form').addEventListener('submit',e=>{e.preventDefault();if(!validate())return;
+  const p=payload();const t0=performance.now();
+  show('loader');
+  const lis=[...document.querySelectorAll('#ld-steps li')];lis.forEach(l=>l.className='');$('ld-bar').style.width='0';
+  const step=k=>{lis.forEach((l,j)=>l.className=j<k?'ok':j===k?'act':'');$('ld-bar').style.width=Math.round(k/lis.length*100)+'%'};
+  step(0);clearTimers();
+  TIMERS.push(setTimeout(()=>step(1),700),setTimeout(()=>step(2),1700),setTimeout(()=>step(3),2300),
+    setTimeout(()=>{const hit=DB.find(r=>r.tipoId===p.tipoIdentificacion&&r.numId===String(p.numeroIdentificacion)&&r.banco===p.codigoBanco&&r.tipoCta===p.tipoCuenta&&r.cuenta.toUpperCase()===p.cuentaBancaria.toUpperCase()&&Number(r.valor)===Number(p.valor)&&ddmmyyyy(r.fecha)===p.fecha);
+      render(p,hit?hit.rows:[],Math.round(performance.now()-t0));show('results');},2700));});
+
+// ---- Contenedor único: formulario → cargador → resultado
+let TIMERS=[];const clearTimers=()=>{TIMERS.forEach(clearTimeout);TIMERS=[]};
+function show(which){
+  $('form').hidden=which!=='form';$('loader').hidden=which!=='loader';$('results').hidden=which!=='results';
+  const st=which==='form'?1:2;
+  document.querySelectorAll('#stepper li').forEach(li=>{const n=+li.dataset.step;li.classList.toggle('on',n===st);li.classList.toggle('done',n<st);n===st?li.setAttribute('aria-current','step'):li.removeAttribute('aria-current')});
+  const stage=$('stage');if(stage.getBoundingClientRect().top<0)stage.scrollIntoView({behavior:'smooth',block:'start'});
+  if(which==='results'){const h=$('results').querySelector('h2');if(h){h.tabIndex=-1;h.focus({preventScroll:true})}}
+}
+function goForm(focusId){clearTimers();show('form');if(focusId)$(focusId).focus({preventScroll:true})}
+
+// ---- Vista de resultados (tarjetas por defecto)
+let VIEW='cards';try{const v=localStorage.getItem('giros-vista');if(v==='table'||v==='cards')VIEW=v}catch(e){}
+function setView(v){VIEW=v;try{localStorage.setItem('giros-vista',v)}catch(e){}
+  const c=$('v-cards'),t=$('v-table');if(!c||!t)return;c.hidden=v!=='cards';t.hidden=v!=='table';
+  document.querySelectorAll('.viewsw button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.view===v));
+  const h=$('v-hint');if(h)h.textContent=v==='table'?'Desliza la tabla hacia los lados para ver todas las columnas.':''}
+function selectText(el){try{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}}
+const fdate=s=>{const [y,m,d]=s.split('-');return d+'/'+m+'/'+y};
+const fmtId=n=>Number(n).toLocaleString('es-CO');
+function render(p,rows,ms){const sec=$('results');
+  const tipo=desc(GEMSAUXI,p.tipoIdentificacion);
+  const tech=`<details class="tech"><summary>Vista técnica: solicitud enviada al BUS</summary><div class="tech-body">
+    <pre aria-label="Solicitud JSON"><span class="c">// POST /bus/sifi/giros/ordenante</span>\n${hl(JSON.stringify(p,null,2))}</pre>
+    <table class="map"><thead><tr><th>Campo</th><th>Regla aplicada</th></tr></thead><tbody>
+    <tr><td><code>tipoIdentificacion</code></td><td>Solo el código del tipo (GEMSAUXI)</td></tr>
+    <tr><td><code>numeroIdentificacion</code></td><td>Formato numérico</td></tr>
+    <tr><td><code>codigoBanco</code></td><td>Solo el código del banco (GEMSBACO)</td></tr>
+    <tr><td><code>tipoCuenta</code></td><td>Solo el código del tipo de cuenta (GEMSTPBA)</td></tr>
+    <tr><td><code>cuentaBancaria</code></td><td>Alfanumérico, sin caracteres especiales</td></tr>
+    <tr><td><code>valor</code></td><td>Sin separador de miles, punto decimal</td></tr>
+    <tr><td><code>fecha</code></td><td>DDMMYYYY</td></tr></tbody></table></div></details>`;
+  if(!rows.length){
+    sec.innerHTML=`<div class="res-nav"><button type="button" class="back" data-act="back">← Modificar datos</button><button type="button" class="btn-sec" data-act="new">Nueva consulta</button></div><div class="res-head"><div><p class="eyebrow">Paso 2 de 2 · Resultado</p><h2>Sin operaciones para estos datos</h2></div></div>
+    <div class="card empty"><div class="ic" aria-hidden="true">!</div><div>
+      <h3>No encontramos giros que coincidan</h3>
+      <p>Buscamos un pago con exactamente estos datos y no hubo coincidencias. Un solo dígito o un centavo de diferencia cambia el resultado.</p>
+      <div class="echo">${[tipo+' '+fmtId(p.numeroIdentificacion),desc(GEMSBACO,p.codigoBanco),desc(GEMSTPBA,p.tipoCuenta)+' '+p.cuentaBancaria,cop(+p.valor),fdate($('fecha').value)].map(x=>`<span>${x}</span>`).join('')}</div>
+      <ul><li><b>Valor:</b> compáralo con el extracto, incluidos los centavos.</li><li><b>Fecha:</b> usa la del abono; los pagos del viernes pueden aparecer el lunes.</li><li><b>Cuenta:</b> verifica que sea la cuenta que recibió el dinero, sin ceros de más.</li></ul>
+      <div class="btns"><button class="btn-cta" type="button" id="edit">Corregir datos</button></div>
+    </div></div>${tech}`;
+    $('edit').onclick=()=>goForm('valor');
+  }else{
+    const total=rows.reduce((s,r)=>s+r.valor,0);
+    const idTit=r=>/^\d+$/.test(r.idTit)?fmtId(r.idTit):r.idTit;
+    const trs=rows.map(r=>`<tr><td class="mono">${fdate(r.fecha)}</td><td class="mono">${r.op}</td><td class="mono">${idTit(r)}<span class="sub">${r.tipoTit}</span></td><td><span class="strong">${r.nomTit}</span></td><td class="mono">${fmtId(r.idBen)}</td><td>${r.nomBen}</td><td class="r">${cop(r.valor)}</td><td><span class="tag">${r.tipoCli}</span></td><td>${r.nomCli}</td></tr>`).join('');
+    const cards=rows.map((r,i)=>`<article class="rcard" aria-label="Giro ${i+1} de ${rows.length}">
+      <div class="rc-label"><span>Giro ${i+1} de ${rows.length}</span><b>${r.tipoCli}</b></div>
+      <span class="rc-role">Ordenante inicial</span>
+      <h3 class="rc-title">${r.nomTit}</h3>
+      <div class="rc-titleid">${r.tipoTit} <b>${idTit(r)}</b></div>
+      <div class="rc-metrics">
+        <div><span class="v lg">${cop(r.valor)}</span><span class="k">Valor del giro</span></div>
+        <div><span class="v">${fdate(r.fecha)}</span><span class="k">Fecha giro</span></div>
+        <div><span class="v">${r.op}</span><span class="k">Operación de caja</span></div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-f"><span class="k">Beneficiario</span><span class="v">${r.nomBen}</span><span class="sub">ID ${fmtId(r.idBen)}</span></div>
+        <div class="rc-f"><span class="k">Cliente asociado</span><span class="v">${r.nomCli}</span><span class="sub">${r.tipoCli}</span></div>
+      </div>
+      <div class="rc-foot"><button type="button" class="copy" data-copy="${r.op}">Copiar n.º de operación</button></div>
+    </article>`).join('');
+    const ICON_CARDS='<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="1.5" width="5.5" height="5.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="1.5" width="5.5" height="5.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="9" width="5.5" height="5.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="5.5" height="5.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+    const ICON_TABLE='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 2.5h13M1.5 6.5h13M1.5 10.5h13M1.5 14h13" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>';
+    const stamp=`Respuesta de SIFI en ${(ms/1000).toFixed(1).replace('.',',')} s · ${new Date().toLocaleString('es-CO',{dateStyle:'short',timeStyle:'short'})}`;
+    sec.innerHTML=`<div class="res-nav"><button type="button" class="back" data-act="back">← Modificar datos</button><button type="button" class="btn-sec" data-act="new">Nueva consulta</button></div><div class="res-head"><div><p class="eyebrow">Paso 2 de 2 · Resultado</p><h2>Ordenante del giro</h2></div><span class="status ok">${rows.length} ${rows.length>1?'operaciones encontradas':'operación encontrada'}</span></div>
+    <div class="card summary">
+      <div class="first"><div class="k">Identificación beneficiario</div><div class="v num">${fmtId(p.numeroIdentificacion)}<small style="color:#cfe2f6">${tipo}</small></div></div>
+      <div><div class="k">Operaciones</div><div class="v num">${rows.length}</div></div>
+      <div><div class="k">Valor total</div><div class="v num">${cop(total)}</div></div>
+      <div><div class="k">Fecha del giro</div><div class="v num">${fdate(rows[0].fecha)}</div></div>
+    </div>
+    <div class="res-tools"><span class="count">Mostrando <b>${rows.length}</b> ${rows.length>1?'giros':'giro'} · el titular es el ordenante inicial de los recursos</span>
+      <div class="viewsw" role="group" aria-label="Cambiar vista de resultados">
+        <button type="button" data-view="cards" aria-pressed="${VIEW==='cards'}">${ICON_CARDS}Tarjetas</button>
+        <button type="button" data-view="table" aria-pressed="${VIEW==='table'}">${ICON_TABLE}Tabla</button>
+      </div></div>
+    <div class="cards" id="v-cards" ${VIEW==='cards'?'':'hidden'}>${cards}</div>
+    <div class="card tbl-card" id="v-table" ${VIEW==='table'?'':'hidden'}><div class="tbl-wrap"><table><thead><tr><th>Fecha giro</th><th>Operación de caja</th><th>ID titular</th><th>Nombre titular</th><th>ID beneficiario</th><th>Nombre beneficiario</th><th class="r">Valor</th><th>Tipo cliente asociado</th><th>Nombre cliente asociado</th></tr></thead>
+      <tbody>${trs}</tbody>${rows.length>1?`<tfoot><tr><td colspan="6">Total</td><td class="r">${cop(total)}</td><td colspan="2"></td></tr></tfoot>`:''}</table></div></div>
+    <div class="res-foot"><span>${stamp}</span><span id="v-hint">${VIEW==='table'?'Desliza la tabla hacia los lados para ver todas las columnas.':''}</span></div>${tech}`;
+    sec.querySelectorAll('.viewsw button').forEach(b=>b.onclick=()=>setView(b.dataset.view));
+    sec.querySelectorAll('.copy').forEach(b=>b.onclick=()=>{const t=b.dataset.copy;const done=()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar n.º de operación',1600)};
+      try{navigator.clipboard.writeText(t).then(done,()=>{selectText(b.closest('.rcard').querySelector('.rc-metrics div:nth-child(3) .v'));b.textContent='Selecciona y copia'})}catch(e){selectText(b.closest('.rcard').querySelector('.rc-metrics div:nth-child(3) .v'))}});
+  }
+  sec.querySelector('[data-act="back"]').onclick=()=>goForm('tipoId');
+  sec.querySelector('[data-act="new"]').onclick=()=>{setForm({});goForm('tipoId')};
+}
+
+// ---- Demo + limpiar
+function setForm(v){for(const k of ['tipoId','numId','banco','tipoCta','cuenta','valor','fecha']){$(k).value=v[k]||'';resetHint(k)}valorHint();$('human').checked=!!v.tipoId;$('verify').classList.remove('invalid');$('form-alert').classList.remove('show')}
+$('demo-ok').onclick=()=>{goForm();setForm(DB[0])};
+$('demo-none').onclick=()=>{goForm();setForm({...DB[0],valor:'3850000.50',fecha:'2026-09-16'})};
+$('clear').onclick=()=>{setForm({});$('tipoId').focus()};
+})();
+</script>
+
+</body></html>

@@ -61,6 +61,7 @@
 {% snippet "component_informative_section_css" %}
 {% snippet "component_spinner_css" %}
 {% snippet "component_historical_behavior_css" %}
+{% snippet "component_payment_recipients_css" %}
 
 .card-titulars{box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);border-radius: 4px;}
 .card-article__wrapper{height: 200px;display: flex;}
