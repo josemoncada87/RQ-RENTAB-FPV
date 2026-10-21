@@ -324,8 +324,6 @@
       '<td class="pr-mono">' + esc(r.op) + '</td>' +
       '<td class="pr-mono">' + esc(fmtTitId(r)) + '<span class="pr-sub">' + esc(r.tipoTit) + '</span></td>' +
       '<td><span class="pr-strong">' + esc(r.nomTit) + '</span></td>' +
-      '<td class="pr-mono">' + fmtId(r.idBen) + '</td>' +
-      '<td>' + esc(r.nomBen) + '</td>' +
       '<td class="pr-r">' + cop(r.valor) + '</td>' +
       '<td><span class="pr-tag">' + esc(r.tipoCli) + '</span></td>' +
       '<td>' + esc(r.nomCli) + '</td></tr>';
@@ -337,14 +335,15 @@
     var stamp = 'Respuesta en ' + (ms / 1000).toFixed(1).replace('.', ',') + ' s · ' +
       new Date().toLocaleString('es-CO', { dateStyle: 'short', timeStyle: 'short' });
     var tfoot = n > 1
-      ? '<tfoot><tr><td colspan="6">Total</td><td class="pr-r">' + cop(total) + '</td><td colspan="2"></td></tr></tfoot>'
+      ? '<tfoot><tr><td colspan="4">Total</td><td class="pr-r">' + cop(total) + '</td><td colspan="2"></td></tr></tfoot>'
       : '';
 
     return navHtml() +
       '<div class="pr-res-head"><div><p class="pr-eyebrow">Paso 2 de 2 · Resultado</p><h3>Ordenante del giro</h3></div>' +
         '<span class="pr-status pr-ok">' + n + ' ' + plural(n, 'operación encontrada', 'operaciones encontradas') + '</span></div>' +
       '<div class="pr-card pr-summary">' +
-        '<div class="pr-first"><div class="pr-k">Identificación beneficiario</div><div class="pr-v pr-num">' + fmtId(p.numeroIdentificacion) + '<small>' + esc(tipo) + '</small></div></div>' +
+        '<div class="pr-first"><div class="pr-k">Beneficiario</div><div class="pr-v pr-name">' + esc(rows[0].nomBen) + '</div>' +
+          '<div class="pr-first-id pr-num">' + esc(tipo) + ' <b>' + fmtId(p.numeroIdentificacion) + '</b></div></div>' +
         '<div><div class="pr-k">Operaciones</div><div class="pr-v pr-num">' + n + '</div></div>' +
         '<div><div class="pr-k">Valor total</div><div class="pr-v pr-num">' + cop(total) + '</div></div>' +
         '<div><div class="pr-k">Fecha del giro</div><div class="pr-v pr-num">' + fmtDate(rows[0].fecha) + '</div></div>' +
@@ -358,7 +357,7 @@
         rows.map(function (r, i) { return cardHtml(r, i, n); }).join('') +
       '</div>' +
       '<div class="pr-card" id="pr-v-table"' + (view === 'table' ? '' : ' hidden') + '><div class="pr-tbl-wrap"><table class="pr-table">' +
-        '<thead><tr><th>Fecha giro</th><th>Operación de caja</th><th>ID titular</th><th>Nombre titular</th><th>ID beneficiario</th><th>Nombre beneficiario</th><th class="pr-r">Valor</th><th>Tipo cliente asociado</th><th>Nombre cliente asociado</th></tr></thead>' +
+        '<thead><tr><th>Fecha giro</th><th>Operación de caja</th><th>ID titular</th><th>Nombre titular</th><th class="pr-r">Valor</th><th>Tipo cliente asociado</th><th>Nombre cliente asociado</th></tr></thead>' +
         '<tbody>' + rows.map(rowHtml).join('') + '</tbody>' + tfoot +
       '</table></div></div>' +
       '<div class="pr-res-foot"><span>' + stamp + '</span><span id="pr-v-hint">' + tableHint(view) + '</span></div>';

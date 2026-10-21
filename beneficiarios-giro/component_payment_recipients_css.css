@@ -439,24 +439,13 @@
 	width: 64px;
 	height: 64px;
 	margin-bottom: 14px;
-}
-
-.pr-ld-mark path {
-	transform-box: fill-box;
-	transform-origin: center;
+	display: block;
+	border-radius: 14px;
 	animation: pr-ldp 1.2s ease-in-out infinite;
 }
 
-.pr-ld-mark path:nth-child(2) {
-	animation-delay: .2s;
-}
-
-.pr-ld-mark path:nth-child(3) {
-	animation-delay: .4s;
-}
-
 @keyframes pr-ldp {
-	0%, 100% { opacity: .25; transform: scale(.92); }
+	0%, 100% { opacity: .55; transform: scale(.92); }
 	45% { opacity: 1; transform: scale(1); }
 }
 
@@ -669,6 +658,22 @@
 .pr-summary .pr-first .pr-k,
 .pr-summary .pr-first .pr-v small {
 	color: #cfe2f6;
+}
+
+.pr-summary .pr-first .pr-name {
+	font-size: 18px;
+	overflow-wrap: anywhere;
+}
+
+.pr-summary .pr-first-id {
+	margin-top: 4px;
+	font-size: 12.5px;
+	color: #cfe2f6;
+}
+
+.pr-summary .pr-first-id b {
+	color: #fff;
+	font-weight: 600;
 }
 
 .pr-res-tools {
