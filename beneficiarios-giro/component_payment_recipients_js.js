@@ -19,6 +19,7 @@
   var FIELDS = ['tipoId','numId','banco','tipoCta','cuenta','valor','fecha'];
   var VIEW_KEY = 'pr-giros-vista';
   var ICON_CARDS = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="1.5" width="5.5" height="5.5" fill="none" stroke="currentColor" stroke-width="1.5"></rect><rect x="9" y="1.5" width="5.5" height="5.5" fill="none" stroke="currentColor" stroke-width="1.5"></rect><rect x="1.5" y="9" width="5.5" height="5.5" fill="none" stroke="currentColor" stroke-width="1.5"></rect><rect x="9" y="9" width="5.5" height="5.5" fill="none" stroke="currentColor" stroke-width="1.5"></rect></svg>';
+  var ICON_BACK = '<svg viewBox="0 0 20 20" width="12" height="12" aria-hidden="true"><path d="M18.3223 8.33329H5.68274L11.1782 2.85447C11.4918 2.54089 11.668 2.11558 11.668 1.67211C11.668 1.22864 11.4918 0.80333 11.1782 0.489749C10.8646 0.176168 10.4393 0 9.99585 0C9.55238 0 9.12707 0.176168 8.81349 0.489749L0.487022 8.81622C0.335412 8.9746 0.216568 9.16135 0.13731 9.36577C-0.0292497 9.7712 -0.0292497 10.226 0.13731 10.6314C0.216568 10.8358 0.335412 11.0226 0.487022 11.1809L8.81349 19.5074C8.9683 19.6635 9.15249 19.7874 9.35542 19.8719C9.55835 19.9565 9.77601 20 9.99585 20C10.2157 20 10.4334 19.9565 10.6363 19.8719C10.8392 19.7874 11.0234 19.6635 11.1782 19.5074C11.3343 19.3526 11.4582 19.1684 11.5427 18.9655C11.6273 18.7626 11.6708 18.5449 11.6708 18.3251C11.6708 18.1052 11.6273 17.8875 11.5427 17.6846C11.4582 17.4817 11.3343 17.2975 11.1782 17.1427L5.68274 11.6639H18.3223C18.764 11.6639 19.1876 11.4884 19.4999 11.1761C19.8122 10.8638 19.9876 10.4402 19.9876 9.99858C19.9876 9.55692 19.8122 9.13334 19.4999 8.82104C19.1876 8.50874 18.764 8.33329 18.3223 8.33329Z" fill="currentColor"></path></svg>';
   var ICON_TABLE = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 2.5h13M1.5 6.5h13M1.5 10.5h13M1.5 14h13" stroke="currentColor" stroke-width="1.5" fill="none"></path></svg>';
 
   /* ─── DOM ─── */
@@ -81,9 +82,9 @@
     var v = $('valor').value;
     var f = fieldOf('valor');
     f.classList.remove('pr-invalid');
-    f.querySelector('.pr-hint').innerHTML = v && !isNaN(+v) && +v > 0
-      ? 'Así lo leemos: <b class="pr-num">' + cop(+v) + '</b>'
-      : HINTS.valor;
+    f.querySelector('.pr-hint').innerHTML = HINTS.valor + (v && !isNaN(+v) && +v > 0
+      ? '<br>Así lo leemos: <b class="pr-num">' + cop(+v) + '</b>'
+      : '');
   }
 
   /* ─── LIVE SANITIZING ─── */
@@ -263,19 +264,9 @@
 
   function tableHint(v) { return v === 'table' ? 'Deslice la tabla hacia los lados para ver todas las columnas.' : ''; }
 
-  function selectText(el) {
-    try {
-      var r = document.createRange();
-      r.selectNodeContents(el);
-      var s = getSelection();
-      s.removeAllRanges();
-      s.addRange(r);
-    } catch (e) {}
-  }
-
   function navHtml() {
-    return '<div class="pr-res-nav"><button type="button" class="pr-back" data-act="back">← Modificar datos</button>' +
-      '<button type="button" class="pr-btn-sec" data-act="new">Nueva consulta</button></div>';
+    return '<div class="pr-res-nav"><button type="button" class="pr-back" data-act="back">' + ICON_BACK + 'Modificar datos</button>' +
+      '<button type="button" class="pr-btn-sec pr-btn-new" data-act="new">Nueva consulta</button></div>';
   }
 
   function renderEmpty(p, tipo) {
@@ -300,10 +291,9 @@
       '</div></div>';
   }
 
-  function cardHtml(r, i, total) {
-    return '<article class="pr-rcard" aria-label="Giro ' + (i + 1) + ' de ' + total + '">' +
-      '<div class="pr-rc-label"><span>Giro ' + (i + 1) + ' de ' + total + '</span><b>' + esc(r.tipoCli) + '</b></div>' +
-      '<span class="pr-rc-role">Ordenante inicial</span>' +
+  function cardHtml(r) {
+    return '<article class="pr-rcard">' +
+      '<div class="pr-rc-label"><b>' + esc(r.tipoCli) + '</b></div>' +
       '<h4 class="pr-rc-title">' + esc(r.nomTit) + '</h4>' +
       '<div class="pr-rc-titleid">' + esc(r.tipoTit) + ' <b>' + esc(fmtTitId(r)) + '</b></div>' +
       '<div class="pr-rc-metrics">' +
@@ -312,10 +302,8 @@
         '<div><span class="pr-v pr-op">' + esc(r.op) + '</span><span class="pr-k">Operación de caja</span></div>' +
       '</div>' +
       '<div class="pr-rc-body">' +
-        '<div class="pr-rc-f"><span class="pr-k">Beneficiario</span><span class="pr-v">' + esc(r.nomBen) + '</span><span class="pr-sub">ID ' + fmtId(r.idBen) + '</span></div>' +
         '<div class="pr-rc-f"><span class="pr-k">Cliente asociado</span><span class="pr-v">' + esc(r.nomCli) + '</span><span class="pr-sub">' + esc(r.tipoCli) + '</span></div>' +
       '</div>' +
-      '<div class="pr-rc-foot"><button type="button" class="pr-copy" data-copy="' + esc(r.op) + '">Copiar n.º de operación</button></div>' +
     '</article>';
   }
 
@@ -331,50 +319,29 @@
 
   function renderFound(p, rows, tipo, ms) {
     var n = rows.length;
-    var total = rows.reduce(function (s, r) { return s + r.valor; }, 0);
     var stamp = 'Respuesta en ' + (ms / 1000).toFixed(1).replace('.', ',') + ' s · ' +
       new Date().toLocaleString('es-CO', { dateStyle: 'short', timeStyle: 'short' });
-    var tfoot = n > 1
-      ? '<tfoot><tr><td colspan="4">Total</td><td class="pr-r">' + cop(total) + '</td><td colspan="2"></td></tr></tfoot>'
-      : '';
 
     return navHtml() +
-      '<div class="pr-res-head"><div><p class="pr-eyebrow">Paso 2 de 2 · Resultado</p><h3>Ordenante del giro</h3></div>' +
-        '<span class="pr-status pr-ok">' + n + ' ' + plural(n, 'operación encontrada', 'operaciones encontradas') + '</span></div>' +
+      '<div class="pr-res-head"><div><p class="pr-eyebrow">Paso 2 de 2 · Resultado</p><h3>Ordenante del giro</h3></div></div>' +
       '<div class="pr-card pr-summary">' +
         '<div class="pr-first"><div class="pr-k">Beneficiario</div><div class="pr-v pr-name">' + esc(rows[0].nomBen) + '</div>' +
           '<div class="pr-first-id pr-num">' + esc(tipo) + ' <b>' + fmtId(p.numeroIdentificacion) + '</b></div></div>' +
-        '<div><div class="pr-k">Operaciones</div><div class="pr-v pr-num">' + n + '</div></div>' +
-        '<div><div class="pr-k">Valor total</div><div class="pr-v pr-num">' + cop(total) + '</div></div>' +
         '<div><div class="pr-k">Fecha del giro</div><div class="pr-v pr-num">' + fmtDate(rows[0].fecha) + '</div></div>' +
       '</div>' +
-      '<div class="pr-res-tools"><span class="pr-count">Mostrando <b>' + n + '</b> ' + plural(n, 'giro', 'giros') + ' · el titular es el ordenante inicial de los recursos</span>' +
+      '<div class="pr-res-tools"><span class="pr-count">Mostrando <b>' + n + '</b> ' + plural(n, 'fila', 'filas') + '</span>' +
         '<div class="pr-viewsw" role="group" aria-label="Cambiar vista de resultados">' +
           '<button type="button" data-view="cards" aria-pressed="' + (view === 'cards') + '">' + ICON_CARDS + 'Tarjetas</button>' +
           '<button type="button" data-view="table" aria-pressed="' + (view === 'table') + '">' + ICON_TABLE + 'Tabla</button>' +
         '</div></div>' +
       '<div class="pr-cards" id="pr-v-cards"' + (view === 'cards' ? '' : ' hidden') + '>' +
-        rows.map(function (r, i) { return cardHtml(r, i, n); }).join('') +
+        rows.map(cardHtml).join('') +
       '</div>' +
       '<div class="pr-card" id="pr-v-table"' + (view === 'table' ? '' : ' hidden') + '><div class="pr-tbl-wrap"><table class="pr-table">' +
         '<thead><tr><th>Fecha giro</th><th>Operación de caja</th><th>ID titular</th><th>Nombre titular</th><th class="pr-r">Valor</th><th>Tipo cliente asociado</th><th>Nombre cliente asociado</th></tr></thead>' +
-        '<tbody>' + rows.map(rowHtml).join('') + '</tbody>' + tfoot +
+        '<tbody>' + rows.map(rowHtml).join('') + '</tbody>' +
       '</table></div></div>' +
       '<div class="pr-res-foot"><span>' + stamp + '</span><span id="pr-v-hint">' + tableHint(view) + '</span></div>';
-  }
-
-  function bindCopy(btn) {
-    btn.addEventListener('click', function () {
-      var label = 'Copiar n.º de operación';
-      var target = btn.closest('.pr-rcard').querySelector('.pr-op');
-      function fallback() { selectText(target); btn.textContent = 'Seleccione y copie'; }
-      try {
-        navigator.clipboard.writeText(btn.dataset.copy).then(function () {
-          btn.textContent = 'Copiado';
-          setTimeout(function () { btn.textContent = label; }, 1600);
-        }, fallback);
-      } catch (e) { fallback(); }
-    });
   }
 
   function render(p, rows, ms) {
@@ -386,7 +353,6 @@
     sec.querySelectorAll('.pr-viewsw button').forEach(function (b) {
       b.addEventListener('click', function () { setView(b.dataset.view); });
     });
-    sec.querySelectorAll('.pr-copy').forEach(bindCopy);
 
     var edit = sec.querySelector('[data-act="edit"]');
     if (edit) edit.addEventListener('click', function () { goForm('valor'); });
